@@ -18,9 +18,26 @@ code {
 @tailwind utilities;
 
 @font-face {
-  font-family: "KBFGDisplayB";
-  src: url("assets/fonts/KBFGDisplayB.otf") format("opentype");
-  font-weight: normal;
+  font-family: "KBFGDisplay";
+  src: local("KBFGDisplay"),
+    url("assets/fonts/KBFGDisplayB.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KBFGText";
+  src: url("assets/fonts/KBFGTextM.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KBFGText";
+  src: url("assets/fonts/KBFGTextL.otf") format("opentype");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
