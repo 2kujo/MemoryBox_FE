@@ -1,3 +1,4 @@
+import { Container } from "postcss";
 import React, { useState } from "react";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 export default function MakeMemory() {
@@ -42,7 +43,10 @@ export default function MakeMemory() {
     }
 
     setShowImages(imageUrlLists);
+
   };
+
+
 
   const handleDeleteImage = (id) => {
     setShowImages(showImages.filter((_, index) => index !== id));
@@ -58,24 +62,30 @@ export default function MakeMemory() {
     <div className="h-full w-full text-left">
       <hr className="hr1" />
 
-      <div>
-        <label htmlFor="gallery-input-file" onChange={handleAddImages}>
+<div className="wrap">
+      <div className="scroll__wrap">
+      
+    {showImages.map((image, id) => (
+    <div className="scroll--element" key={id}>
+      <img src={image} alt={`${image}-${id}`} />
+    </div>
+  ))}
+         
+          </div>
+
+          <label htmlFor="gallery-input-file" onChange={handleAddImages}>
           <input
             type="file"
             id="gallery-input-file"
             multiple="multiple"
             style={{ display: "none" }}
           />
-          <ScrollMenu className="photo-preview" onWheel={onWheel}>
-            {showImages.map((image, id) => (
-              <div key={id}>
-                <img src={image} alt={`${image}-${id}`} />
-              </div>
-            ))}
-          </ScrollMenu>
-          {/* <div  ></div> */}
+          
           <span>사진추가</span>
         </label>
+    
+        
+        
       </div>
       <hr className="hr1" />
 
