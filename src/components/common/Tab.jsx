@@ -5,7 +5,7 @@ export default function Tab(props){
     const [tabIdx, setTabIdx] = useState(0);
 
     function onTabClicked(idx){
-        setTabIdx(idx)
+        setTabIdx(idx);
         console.log(idx);
     }
 
