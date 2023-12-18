@@ -1,0 +1,43 @@
+.bottom-to-top-pop{
+    top: 0;
+    animation-name: pop-bottom-to-top;
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1.0);
+    animation-fill-mode: forwwards;
+}
+
+.close-pop-btn{
+    opacity: 0;
+    animation-name: close-pop-btn-show;
+    animation-delay: 1.2s;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1.0);
+    animation-fill-mode: forwards;
+}
+
+.image-con img:first-child{
+    width: 50px; height: 50px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    animation-name: img-animation-01;
+    animation-delay: 1.8s;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1.0);
+    animation-fill-mode: forwards;
+}
+
+@keyframes pop-bottom-to-top {
+    from {top: 100%}
+    to {top: 0}
+}
+
+@keyframes close-pop-btn-show{
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes img-animation-01{
+    from {top: 100%;}
+    to {top: 0;}
+}
