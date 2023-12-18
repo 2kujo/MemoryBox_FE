@@ -6,6 +6,7 @@ module.exports = {
       yellow: "#FBB901",
       brown: "#6E6053",
       grey: "#6E6053",
+      silver: "#D3D3D3",
       blue: "#287EFF",
       font1: "#333333",
       font2: "#838687",
@@ -13,6 +14,12 @@ module.exports = {
     fontFamily: {
       display: ["KBFGDisplay", "sans-serif"],
       text: ["KBFGText", "sans-serif"],
+    },
+    fontSize: {
+      xs: "0.8rem",
+      sm: "1rem",
+      md: "1.3rem",
+      lg: "1.3rem",
     },
     borderRadius: {
       sm: "10px",
