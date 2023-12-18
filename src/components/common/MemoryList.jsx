@@ -1,12 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function MemoryList({ memoryContents }) {
+  const navigate = useNavigate();
+
+  function onClickMemoryDetail(memoryId) {
+    navigate(`/memories/${memoryId}`);
+  }
+
   return (
     <div>
       {memoryContents.map((memory, memoryId) => (
         <div
           key={memoryId}
           className="cash-box-memory px-3 py-3 flex justify-between items-center border-b border-b-silver"
+          onClick={() => onClickMemoryDetail(memoryId)}
         >
           <div className="memory-text">
             <div className="text-sm">{memory.title}</div>
