@@ -2,14 +2,12 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import MakeMemory from "./components/pages/MakeMemory.jsx";
+import MakeMemory from "./pages/MakeMemory.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
 
-  return (
-    <MakeMemory/>
-  )
+  return <MakeMemory />;
 }
 
 export default App;

@@ -48,20 +48,32 @@
 }
 
 /* 가로 스크롤 적용 */
-.scroll__wrap {
-  overflow-x: auto;
+.scroll-wrap {
+  overflow-x: scroll;
   white-space: nowrap;
   font-size: 0;
 }
-.scroll--element {
+.scroll-element {
   display: inline-block;
-  width: 150px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   background: #fff;
   font-size: 16px;
   line-height: 150px;
   text-align: center;
+  overflow: hidden;
 }
-.scroll--element + .scroll--element {
+
+.scroll-element + .scroll-element {
   margin-left: 15px;
+}
+
+.hr-nav {
+  background-color: gray;
+  height: 1px;
+}
+
+.camera-box {
+  width: 100px;
+  height: 100px;
 }
