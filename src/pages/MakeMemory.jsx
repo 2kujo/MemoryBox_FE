@@ -94,7 +94,7 @@ export default function MakeMemory() {
 
           <div className="memory-title-box">
             <input
-              className="mt-5 w-full"
+              className="mt-5 w-full "
               type="text"
               id="memory_title"
               placeholder="제목을 입력하세요(선택사항)"
@@ -103,9 +103,10 @@ export default function MakeMemory() {
             ></input>
           </div>
           <hr className="hr1 mt-5" />
-          <div className="memory-content-box h-[25vh]">
+          <div className="memory-content-box">
+            <div>
             <textarea
-              className="mt-5 w-full h-full"
+              className="mt-5 w-full h-40"
               type="text"
               id="memory_title"
               placeholder="내용을 작성해주세요"
@@ -113,12 +114,16 @@ export default function MakeMemory() {
               maxLength="200"
               onChange={onTextareaHandler}
             ></textarea>
-            <p>
+            </div>
+            <div className="text-right">
               <span>{inputCount}</span>
               <span>/200</span>
-            </p>
+            </div>
           </div>
+          <div>
           <hr className="hr1 mt-5" />
+          </div>
+          
           <div className="mt-20">
             <LongBtn text="다음" clickFunc={nextStep} />
           </div>
@@ -143,6 +148,75 @@ export default function MakeMemory() {
             </div>
           </div>
           <div className="mb-16">
+            <LongBtn text="다음" clickFunc={nextStep} />
+          </div>
+        </div>
+      </div>
+    );
+  }else if(step == 2){
+    return (
+      <div className="w-full h-full">
+        <Navbar pageTitle={"추억 기록"} />
+        <hr className="hr-nav" />
+
+        <div className="mt-4 w-full h-full flex-col justify-between ">
+          <div className="wrap">
+            <div className="scroll-wrap">
+              {showImages.map((image, id) => (
+                <div className="scroll-element rounded-sm" key={id}>
+                  <img
+                    className="w-full h-full m-auto object-cover"
+                    src={image}
+                    alt={`${image}-${id}`}
+                  />
+                </div>
+              ))}
+              
+            </div>
+          </div>
+
+          <hr className="hr1" />
+
+          <div className="memory-title-box">
+            <input
+              className="mt-5 w-full "
+              type="text"
+              id="memory_title"
+              autoComplete="off"
+              //onChange={onChangeMemoryTitle}
+            ></input>
+          </div>
+          <hr className="hr1 mt-5" />
+          <div className="memory-content-box">
+            <div>
+            <textarea
+              className="mt-5 w-full h-40"
+              type="text"
+              id="memory_title"
+              autoComplete="off"
+              maxLength="200"
+              onChange={onTextareaHandler}
+            ></textarea>
+            </div>
+            <div className="text-right">
+              <span>{inputCount}</span>
+              <span>/200</span>
+            </div>
+          </div>
+          <div>
+          <hr className="hr1 mt-5" />
+          </div>
+          <div className="memory-deposit-box flex justify-between">
+            <input
+              className="mt-5 w-full "
+              type="text"
+              id="memory_title"
+              autoComplete="off"
+              //onChange={onChangeMemoryTitle}
+            ></input>
+          </div>
+          <hr className="hr1 mt-5" />
+          <div className="mt-20">
             <LongBtn text="다음" clickFunc={nextStep} />
           </div>
         </div>
