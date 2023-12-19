@@ -47,12 +47,14 @@ export default function MakeMemory() {
   };
   const onChangeDepositAmount = (event) => {
     let num = event.target.value;
+    // 금액 콤마 찍기
     // const formatValue = "12345".toLocaleString("ko-KR");
     // console.log(formatValue);
     // depositInput.value = formatValue;
     setDepositAmount(num);
   };
 
+  //스크롤 하기 실패
   function moveScroll() {
     console.log(elementRef.current);
     document.getElementsByClassName("scroll-wrap").scrollLeft += 10000;
@@ -192,7 +194,6 @@ export default function MakeMemory() {
             {memoryTitle === "" && (
               <div className="font-text text-[#888]">제목 없음</div>
             )}
-
             {memoryTitle !== "" && (
               <div>
                 <label>제목 : </label>
