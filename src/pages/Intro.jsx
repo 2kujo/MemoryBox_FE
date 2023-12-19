@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import IntroBibi from '@/assets/images/intro_bibi.png'
+import IntroFinishBibi from '@/assets/images/intro_finish_bibi.gif'
 import LongBtn from '@/components/common/LongBtn.jsx'
 import AnivPop from '@/components/AnivPop.jsx'
 
@@ -39,7 +40,7 @@ export default function Intro(){
             <div className="text-3xl text-center font-display mb-1">추억 저금통 준비 완료!</div>
             <div className="text-grey text-xl text-center font-text">KB와 함께 추억을 저금해보세요</div>
             <div className="mt-10 mb-20">
-                <img className="mx-auto" src={IntroBibi} alt="" />
+                <img className="mx-auto" src={IntroFinishBibi} alt="" />
             </div>
             <LongBtn text="추억 저금하기" clickFunc={endIntro}/>
           </div>

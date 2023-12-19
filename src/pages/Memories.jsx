@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
+import FloatingBtn from "@/components/common/FloatingBtn";
 
 export default function Memories() {
+  const navigate = useNavigate();
+
   // isFinished props로 받기
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [savingsType, setSavingsType] = useState("KB 특★별한 우리아이 적금");
@@ -43,13 +46,17 @@ export default function Memories() {
     },
   ];
 
+  function floatingClickHandler(){
+    navigate("/make-memory")
+  }
+
   return (
     <div>
       <Navbar pageTitle={cashBoxTitle} />
-      <div className="mx-2">
-        <div className="cash-box-outline flex-col px-5 boder-b border-b-silver">
+      <div className="font-text">
+        <div className="cash-box-outline flex-col px-3 boder-b border-b-silver">
           {!isFinished && <div className="text-sm pb-0.5">{savingsType}</div>}
-          <div className="text-md font-bold">{cashBoxTitle}</div>
+          <div className="font-display text-md font-bold">{cashBoxTitle}</div>
           <div className="text-xs">
             {!!isFinished && <span className="text-grey pr-2">입금 계좌</span>}
             <span className="text-font1">{cashBoxAcno}</span>
@@ -73,6 +80,7 @@ export default function Memories() {
           <MemoryList memoryContents={ongoinDummyData} />
         </div>
       </div>
+      {!!isFinished && <FloatingBtn type="write" clickFunc={floatingClickHandler}/>}
     </div>
   );
 }
