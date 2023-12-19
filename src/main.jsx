@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <App /> */}
     {/* <ServiceMain /> */}
-    <div className="m-auto h-max max-w-[640px] pb-10 px-5">
+    <div className="m-auto h-[100dvh] max-w-[100dvw] pb-10 px-5">
       <RouterProvider router={RouterObject} />
     </div>
   </React.StrictMode>

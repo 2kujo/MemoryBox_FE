@@ -26,11 +26,13 @@ export default function MemoryList({ memoryContents }) {
               <span>원</span>
             </div>
           </div>
-          <img
-            className="w-20 h-20 rounded-sm"
-            src={memory.images[0]}
-            alt={`${memory.title}`}
-          />
+          <div className="w-20 h-20 overflow-hidden rounded-sm">
+            <img
+              className="w-full h-full m-auto object-cover"
+              src={memory.images[0]}
+              alt={`${memory.title}`}
+            />
+          </div>
         </div>
       ))}
     </div>
