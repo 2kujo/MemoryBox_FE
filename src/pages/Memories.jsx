@@ -18,28 +18,28 @@ export default function Memories() {
       title: "민조 아랫니",
       depositAmout: 50000,
       createAt: "2023-12-04",
-      images: ["/src/assets/first_tooth.png"],
+      images: ["/src/assets/images/first_tooth.png"],
     },
     {
       memoryId: 2,
       title: "민조 아랫니",
       depositAmout: 30000,
       createAt: "2023-11-28",
-      images: ["/src/assets/first_tooth.png"],
+      images: ["/src/assets/images/first_tooth.png"],
     },
     {
       memoryId: 3,
       title: "민조 아랫니",
       depositAmout: 99900,
       createAt: "2023-11-28",
-      images: ["/src/assets/first_tooth.png"],
+      images: ["/src/assets/images/first_tooth.png"],
     },
     {
       memoryId: 4,
       title: "민조 아랫니",
       depositAmout: 1000,
       createAt: "2023-11-28",
-      images: ["/src/assets/first_tooth.png"],
+      images: ["/src/assets/images/first_tooth.png"],
     },
   ];
 
