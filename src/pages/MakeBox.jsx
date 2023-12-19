@@ -9,9 +9,16 @@ export default function MakeBox() {
   const navigate = useNavigate();
   const [cashboxName, setCashboxName] = useState('');
   const [cashboxDesc, setCashboxDesc] = useState('');
-  const [cashboxPdType, setCashboxPdType] = useState('');
-  const [step, setStep] = useState(2);
+  const [cashboxProduct, setCashboxProduct] = useState('');
+  const [currProduct, setCurrProduct] = useState(null);
+  const [step, setStep] = useState(0);
   const totalStep = 3;
+  const productList = [
+    {key: 0, title: 'KB 특별한 적금', duration: 36, min: 3, max: 3.5},
+    {key: 1, title: 'KB내맘대로적금', duration: 36, min: 3.15, max: 3.75},
+    {key: 2, title: 'KB우리아이행복적금', duration: 24, min: 3.2, max: 3.55},
+    {key: 3, title: 'KB상호부금', duration: 36, min: 3.15, max: 3.55}
+  ];
   
   function nextStep(){
     setStep(step+1);
@@ -23,9 +30,14 @@ export default function MakeBox() {
   const handleCashboxDescChange = (event) => {
     setCashboxDesc(event.target.value);
   };
-  function getCashboxPdType(){
+
+  function selectCashboxProduct(idx, productName){
+    setCurrProduct(idx);
+    setCashboxProduct(productName);
+  }
+
+  function makeCashbox(){
     // name, desc, productType 사용해 api 통신 수행
-    
     navigate("/intro-finish")
   }
 
@@ -87,17 +99,23 @@ export default function MakeBox() {
           </div>
           <div className="grow flex flex-col justify-between">
             <div>
-              <div className="mb-1 text-xl font-text">연결할 상품을 선택해주세요</div>
-              <div>
-                <div className="rounded-sm bg-[rgba(255,199,0,0.3)] p-8">
-                  <div className="font-text text-md">우리 민조</div>
-                  <div className="font-text text-xs text-grey">2000.05.31 - 2000.05.31</div>
-                  <div className="font-text text-md text-right">200,000원</div>
-                </div>
+              <div className="mb-5 text-xl font-text">연결할 상품을 선택해주세요</div>
+              <div className="mb-[-0.75rem]">
+                {productList.map((product, idx, array) => {
+                    return (
+                      <div key={idx} onClick={() => selectCashboxProduct(idx, product.title)} className={idx === currProduct ? "border-2 border-blue mb-3 shadow-md rounded-sm bg-[#f3f3f3] p-5" : "border-2 border-transparent mb-3 shadow-md rounded-sm bg-[#f3f3f3] p-5"}>
+                        <div className="font-text text-md mb-2">{product.title}</div>
+                        <div className="font-text text-right">
+                          <span className="text-xs text-grey">{product.duration}개월 기준, </span>
+                          <span className="text-sm text-blue font-semibold">{product.min}%~{product.max}%</span>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
             <div className="mb-16">
-              <LongBtn text="다음" clickFunc={getCashboxPdType}/>
+              <LongBtn text="다음" clickFunc={makeCashbox}/>
             </div>
           </div>
         </div>

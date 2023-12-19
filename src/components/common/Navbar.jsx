@@ -8,7 +8,7 @@ export default function Navbar({ pageTitle }) {
   return (
     <div className="flex justify-between p-5 sticky bg-[#ffffff] top-0">
       <div className="flex gap-3 font-text font-medium">
-        <ChevronLeftIcon class="h-6 w-6 text-gray-500" />
+        <ChevronLeftIcon className="h-6 w-6 text-gray-500" />
         <span>{pageTitle}</span>
       </div>
       <div className="flex gap-3">

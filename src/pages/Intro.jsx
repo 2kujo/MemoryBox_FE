@@ -1,18 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import IntroBibi from '@/assets/images/intro_bibi.png'
 import LongBtn from '@/components/common/LongBtn.jsx'
-import FloatingBtn from '@/components/common/FloatingBtn.jsx'
-import Tab from '@/components/common/Tab.jsx'
 import AnivPop from '@/components/AnivPop.jsx'
 
 export default function Intro(){
   const location = useLocation();
   const navigate = useNavigate();
   const needPop = true;
-  const tabList = [
-      {key: 0, title: '저금중', contents: <div className="0"></div>},
-      {key: 1, title: '저금 완료', contents: <div className="1"></div>}
-  ];
+  
   function startIntro(){
     //cert를 통해 유저 판별
     navigate("/make-box")
@@ -23,7 +18,6 @@ export default function Intro(){
   if(location.pathname == "/"){
     return (
       <>
-      {/* <Tab tabList={tabList}/> */}
       <div className="flex w-full h-full justify-center items-center">
           <div className="w-full">
             <div className="text-4xl text-center font-display mb-1">KB 추억 저금통</div>
@@ -47,7 +41,7 @@ export default function Intro(){
             <div className="mt-10 mb-20">
                 <img className="mx-auto" src={IntroBibi} alt="" />
             </div>
-            <LongBtn text="시작하기" clickFunc={endIntro}/>
+            <LongBtn text="추억 저금하기" clickFunc={endIntro}/>
           </div>
       </div>
       </>
