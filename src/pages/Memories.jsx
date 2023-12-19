@@ -16,9 +16,11 @@ export default function Memories() {
 
   const [isFinished, setIsFinished] = useState(1);
 
-  function onClickHandler() {
+  function onClickHandlerToMakeMemory() {
     navigate("/make-memory");
   }
+
+  function onClickHanlderToAlbum() {}
 
   const ongoinDummyData = [
     {
@@ -81,7 +83,12 @@ export default function Memories() {
           <MemoryList memoryContents={ongoinDummyData} />
         </div>
       </div>
-      <FloatingBtn type="write" clickFunc={onClickHandler} />
+      {!isFinished && (
+        <FloatingBtn type="write" clickFunc={onClickHandlerToMakeMemory} />
+      )}
+      {!!isFinished && (
+        <FloatingBtn type="album" clickFunc={onClickHanlderToAlbum} />
+      )}
     </div>
   );
 }
