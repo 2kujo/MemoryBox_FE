@@ -10,7 +10,7 @@ export default function MakeBox() {
   const [cashboxName, setCashboxName] = useState('');
   const [cashboxDesc, setCashboxDesc] = useState('');
   const [cashboxPdType, setCashboxPdType] = useState('');
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
   const totalStep = 3;
   
   function nextStep(){
@@ -23,6 +23,9 @@ export default function MakeBox() {
   const handleCashboxDescChange = (event) => {
     setCashboxDesc(event.target.value);
   };
+
+  
+
   function getCashboxPdType(){
     // name, desc, productType 사용해 api 통신 수행
     
@@ -87,12 +90,35 @@ export default function MakeBox() {
           </div>
           <div className="grow flex flex-col justify-between">
             <div>
-              <div className="mb-1 text-xl font-text">연결할 상품을 선택해주세요</div>
-              <div>
-                <div className="rounded-sm bg-[rgba(255,199,0,0.3)] p-8">
-                  <div className="font-text text-md">우리 민조</div>
-                  <div className="font-text text-xs text-grey">2000.05.31 - 2000.05.31</div>
-                  <div className="font-text text-md text-right">200,000원</div>
+              <div className="mb-5 text-xl font-text">연결할 상품을 선택해주세요</div>
+              <div className="mb-[-0.75rem]">
+                <div className="mb-3 shadow-md rounded-sm bg-[rgba(255,199,0,0.3)] p-5">
+                  <div className="font-text text-md mb-2">KB 특별한 적금</div>
+                  <div className="font-text text-right">
+                    <span className="text-xs text-grey">36개월 기준, </span>
+                    <span className="text-sm text-blue font-semibold">3%~3.5%</span>
+                  </div>
+                </div>
+                <div className="mb-3 shadow-md rounded-sm bg-[rgba(255,199,0,0.3)] p-5">
+                  <div className="font-text text-md mb-2">KB내맘대로적금</div>
+                  <div className="font-text text-right">
+                    <span className="text-xs text-grey">36개월 기준, </span>
+                    <span className="text-sm text-blue font-semibold">3.15%~3.75%</span>
+                  </div>
+                </div>
+                <div className="mb-3 shadow-md rounded-sm bg-[rgba(255,199,0,0.3)] p-5">
+                  <div className="font-text text-md mb-2">KB우리아이행복적금</div>
+                  <div className="font-text text-right">
+                    <span className="text-xs text-grey">24개월 기준, </span>
+                    <span className="text-sm text-blue font-semibold">3.2%~3.55%</span>
+                  </div>
+                </div>
+                <div className="mb-3 shadow-md rounded-sm bg-[rgba(255,199,0,0.3)] p-5">
+                  <div className="font-text text-md mb-2">KB상호부금</div>
+                  <div className="font-text text-right">
+                    <span className="text-xs text-grey">36개월 기준, </span>
+                    <span className="text-sm text-blue font-semibold">3.15%~3.55%</span>
+                  </div>
                 </div>
               </div>
             </div>
