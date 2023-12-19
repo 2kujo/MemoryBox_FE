@@ -6,7 +6,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 
 export default function Navbar({ pageTitle }) {
   return (
-    <div className="flex justify-between pt-1 pb-5 sticky bg-[#ffffff] top-0">
+    <div className="flex justify-between p-5 sticky bg-[#ffffff] top-0">
       <div className="flex gap-3 font-text font-medium">
         <ChevronLeftIcon className="h-6 w-6 text-gray-500" />
         <span>{pageTitle}</span>
