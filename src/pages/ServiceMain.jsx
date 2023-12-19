@@ -78,7 +78,7 @@ export default function ServiceMain() {
   // 저금 완료 목록 가져오기
   if (tabList[1].contents === "") {
     tabList[1].contents = (
-      <div className="flex-col space-y-7 font-text">
+      <div className="flex-col space-y-5 font-text">
         {finishedCashBoxList.map((cashbox) => (
           <div key={cashbox.cashBoxId} className="relative h-44">
             <img
@@ -87,7 +87,7 @@ export default function ServiceMain() {
               className="object-cover shadow-md absolute top-0 left-0 z-0"
             />
             <div className="flex justify-center relative pt-1 pb-4">
-              <span className="text-font1">자기앞추억</span>
+              <span className="text-font1 text-sm">자기앞추억</span>
             </div>
             <div className="flex justify-evenly relative">
               <div className="">
@@ -110,11 +110,11 @@ export default function ServiceMain() {
                     </span>
                   </div>
                   <div>
-                    <span className="pr-2">추억으로 모은 돈</span>
-                    <span className="text-yellow font-bold text-sm pr-1">
+                    <span className="pr-2 text-xs">추억으로 모은 돈</span>
+                    <span className="text-yellow font-bold text-md pr-1">
                       {cashbox.balance.toLocaleString("ko-KR")}
                     </span>
-                    <span>원</span>
+                    <span className="text-xs">원</span>
                   </div>
                 </div>
               </div>

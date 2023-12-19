@@ -19,9 +19,9 @@ module.exports = {
       text: ["KBFGText", "sans-serif"],
     },
     fontSize: {
-      xs: "0.8rem",
-      sm: "1rem",
-      md: "1.3rem",
+      xs: "0.7rem",
+      sm: "0.8rem",
+      md: "1rem",
       lg: "1.3rem",
       xl: "1.5rem",
       "3xl": "2.2rem",
