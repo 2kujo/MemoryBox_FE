@@ -9,6 +9,8 @@ export default function MakeMemory() {
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
+  const [changedDeposit, setChangedDeposit] = useState("");
+
   const [inputCount, setInputCount] = useState(0);
   const [step, setStep] = useState(0);
   const totalStep = 3;
@@ -45,13 +47,17 @@ export default function MakeMemory() {
     setInputCount(event.target.value.length);
     setMemoryDesc(event.target.value);
   };
+
+  
   const onChangeDepositAmount = (event) => {
     let num = event.target.value;
     // 금액 콤마 찍기
-    // const formatValue = "12345".toLocaleString("ko-KR");
-    // console.log(formatValue);
-    // depositInput.value = formatValue;
-    setDepositAmount(num);
+    console.log("dd"+ num);
+    console.log(Number(num));
+    setDepositAmount(Number(num));
+    setChangedDeposit(num.replaceAll(",","").replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+    
+    console.log(depositAmount);
   };
 
   //스크롤 하기 실패
@@ -150,8 +156,9 @@ export default function MakeMemory() {
             <div className="text-xl font-text">얼마를 넣을까요?</div>
             <div className="w-full">
               <input
-                type="number"
+                type="text"
                 id="input_deposit"
+                value={changedDeposit}
                 onChange={onChangeDepositAmount}
                 maxLength="20"
                 className="border-b-[1px] w-full py-2 outline-none text-md font-text"
