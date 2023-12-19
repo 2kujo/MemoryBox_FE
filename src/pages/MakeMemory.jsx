@@ -2,6 +2,7 @@ import Navbar from "@/components/common/Navbar";
 import React, { useState, useRef } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
+import Step from "@/components/common/Step";
 
 export default function MakeMemory() {
   //   const [memoryTitle, setMemoryTitle] = useState("");
@@ -15,6 +16,8 @@ export default function MakeMemory() {
 
   const [showImages, setShowImages] = useState([]);
   const [step, setStep] = useState(0);
+  const totalStep = 3;
+
   const elementRef = useRef(null);
 
   function nextStep() {
@@ -58,9 +61,10 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full">
         <Navbar pageTitle={"추억 기록"} />
-        <hr className="hr-nav" />
-
-        <div className="mt-4 w-full h-full flex-col justify-between ">
+        <div className="mt-4 w-full h-full flex-col">
+          <div className="grow-0">
+            <Step totalStep={totalStep} currStep={step} />
+          </div>
           <div className="wrap">
             <div className="scroll-wrap">
               {showImages.map((image, id) => (
@@ -105,15 +109,15 @@ export default function MakeMemory() {
           <hr className="hr1 mt-5" />
           <div className="memory-content-box">
             <div>
-            <textarea
-              className="mt-5 w-full h-40"
-              type="text"
-              id="memory_title"
-              placeholder="내용을 작성해주세요"
-              autoComplete="off"
-              maxLength="200"
-              onChange={onTextareaHandler}
-            ></textarea>
+              <textarea
+                className="mt-5 w-full h-40"
+                type="text"
+                id="memory_title"
+                placeholder="내용을 작성해주세요"
+                autoComplete="off"
+                maxLength="200"
+                onChange={onTextareaHandler}
+              ></textarea>
             </div>
             <div className="text-right">
               <span>{inputCount}</span>
@@ -121,9 +125,9 @@ export default function MakeMemory() {
             </div>
           </div>
           <div>
-          <hr className="hr1 mt-5" />
+            <hr className="hr1 mt-5" />
           </div>
-          
+
           <div className="mt-20">
             <LongBtn text="다음" clickFunc={nextStep} />
           </div>
@@ -134,7 +138,10 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full">
         <Navbar />
-        <div className="mt-4 flex w-full h-full flex-col justify-between">
+        <div className="mt-4 flex w-full h-full flex-col">
+          <div className="grow-0 mb-4">
+            <Step totalStep={totalStep} currStep={step} />
+          </div>
           <div>
             <div className="mb-1 text-xl font-text">얼마를 넣을까요?</div>
             <div className="w-full">
@@ -153,13 +160,14 @@ export default function MakeMemory() {
         </div>
       </div>
     );
-  }else if(step == 2){
+  } else if (step == 2) {
     return (
       <div className="w-full h-full">
         <Navbar pageTitle={"추억 기록"} />
-        <hr className="hr-nav" />
-
-        <div className="mt-4 w-full h-full flex-col justify-between ">
+        <div className="mt-4 w-full h-full flex-col">
+          <div className="grow-0 mb-4">
+            <Step totalStep={totalStep} currStep={step} />
+          </div>
           <div className="wrap">
             <div className="scroll-wrap">
               {showImages.map((image, id) => (
@@ -171,12 +179,9 @@ export default function MakeMemory() {
                   />
                 </div>
               ))}
-              
             </div>
           </div>
-
           <hr className="hr1" />
-
           <div className="memory-title-box">
             <input
               className="mt-5 w-full "
@@ -189,14 +194,14 @@ export default function MakeMemory() {
           <hr className="hr1 mt-5" />
           <div className="memory-content-box">
             <div>
-            <textarea
-              className="mt-5 w-full h-40"
-              type="text"
-              id="memory_title"
-              autoComplete="off"
-              maxLength="200"
-              onChange={onTextareaHandler}
-            ></textarea>
+              <textarea
+                className="mt-5 w-full h-40"
+                type="text"
+                id="memory_title"
+                autoComplete="off"
+                maxLength="200"
+                onChange={onTextareaHandler}
+              ></textarea>
             </div>
             <div className="text-right">
               <span>{inputCount}</span>
@@ -204,7 +209,7 @@ export default function MakeMemory() {
             </div>
           </div>
           <div>
-          <hr className="hr1 mt-5" />
+            <hr className="hr1 mt-5" />
           </div>
           <div className="memory-deposit-box flex justify-between">
             <input
