@@ -10,7 +10,8 @@ export default function ServiceMain() {
     {key: 1, title: '저금 완료', contents: ''}
   ];
 
-  useEffect(() => {
+  // 최초 저금통 목록 가져오기
+  if(tabList[0].contents == ""){
     // 저금중 저금통 목록
     tabList[0].contents = 
       <div>
@@ -28,7 +29,7 @@ export default function ServiceMain() {
         </div>
         <FloatingBtn type="add"/>
       </div>
-  }, []);
+  }
 
   return (
     <div className="w-full h-full">
