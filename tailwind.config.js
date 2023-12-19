@@ -5,7 +5,7 @@ module.exports = {
     colors: {
       yellow: "#FBB901",
       brown: "#6E6053",
-      grey: "#6E6053",
+      grey: "#838687",
       silver: "#D3D3D3",
       blue: "#287EFF",
       white: "#FFFFFF",
@@ -30,7 +30,7 @@ module.exports = {
       sm: "10px",
       md: "20px",
       lg: "30px",
-      full: "100%"
+      full: "100%",
     },
     extend: {},
   },
