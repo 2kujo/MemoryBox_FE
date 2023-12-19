@@ -1,0 +1,192 @@
+#anniversary-pop{position: absolute; left: 0; top: 0;}
+#anniversary-pop.closed{display: none;}
+
+.bottom-to-top-pop{
+    top: 0;
+    animation-name: pop-bottom-to-top;
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1.0);
+    animation-fill-mode: forwwards;
+}
+
+.close-pop-btn{
+    opacity: 0;
+    animation-name: close-pop-btn-show;
+    animation-delay: 1.2s;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1.0);
+    animation-fill-mode: forwards;
+}
+
+.image-con img{border-radius: 10px;}
+.image-con img:nth-child(1){
+    width: 100px; height: 100px;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    animation-name: img-animation-01;
+    animation-delay: 1.8s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    /* animation-iteration-count: infinite; */
+}
+
+.image-con img:nth-child(2){
+    width: 150px; height: 150px;
+    position: absolute;
+    top: 100%;
+    left: 20%;
+    animation-name: img-animation-02;
+    animation-delay: 2.5s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(3){
+    width: 80px; height: 80px;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    animation-name: img-animation-03;
+    animation-delay: 3.3s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(4){
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 100%;
+    left: 5%;
+    animation-name: img-animation-04;
+    animation-delay: 3.5s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(5){
+    width: 100px; height: 100px;
+    position: absolute;
+    top: 100%;
+    left: 25%;
+    animation-name: img-animation-05;
+    animation-delay: 3.9s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(6){
+    width: 90px; height: 90px;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    animation-name: img-animation-06;
+    animation-delay: 4.3s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(7){
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 100%;
+    left: 5%;
+    animation-name: img-animation-07;
+    animation-delay: 4.8s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(8){
+    width: 100px; height: 100px;
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    animation-name: img-animation-08;
+    animation-delay: 5.3s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(9){
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    animation-name: img-animation-09;
+    animation-delay: 5.7s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.image-con img:nth-child(10){
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    animation-name: img-animation-10;
+    animation-delay: 6s;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pop-bottom-to-top {
+    from {top: 100%}
+    to {top: 0}
+}
+
+@keyframes close-pop-btn-show{
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes img-animation-01{
+    from {top: 100%;}
+    to {top: -100px;}
+}
+@keyframes img-animation-02{
+    from {top: 100%;}
+    to {top: -150px;}
+}
+@keyframes img-animation-03{
+    from {top: 100%;}
+    to {top: -80px;}
+}
+@keyframes img-animation-04{
+    from {top: 100%;}
+    to {top: -120px;}
+}
+@keyframes img-animation-05{
+    from {top: 100%;}
+    to {top: -100px;}
+}
+@keyframes img-animation-06{
+    from {top: 100%;}
+    to {top: -120px;}
+}
+@keyframes img-animation-07{
+    from {top: 100%;}
+    to {top: -120px;}
+}
+@keyframes img-animation-08{
+    from {top: 100%;}
+    to {top: -120px;}
+}
+@keyframes img-animation-09{
+    from {top: 100%;}
+    to {top: -120px;}
+}
+@keyframes img-animation-10{
+    from {top: 100%;}
+    to {top: -120px;}
+}

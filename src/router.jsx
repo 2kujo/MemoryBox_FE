@@ -6,6 +6,7 @@ import MakeMemory from "@/pages/MakeMemory";
 import Memories from "@/pages/Memories";
 import Memory from "@/pages/Memory";
 import ServiceMain from "@/pages/ServiceMain";
+import SpecialCert from "@/pages/SpecialCert";
 
 export const RouterInfo = [
   {
@@ -36,4 +37,8 @@ export const RouterInfo = [
     path: "/make-memory",
     element: <MakeMemory />,
   },
+  {
+    path: "/special-cert",
+    element: <SpecialCert/>,
+  }
 ];
