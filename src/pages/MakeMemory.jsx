@@ -5,16 +5,11 @@ import LongBtn from "@/components/common/LongBtn";
 import Step from "@/components/common/Step";
 
 export default function MakeMemory() {
-  //   const [memoryTitle, setMemoryTitle] = useState("");
-
-  //   function onChangeMemoryTitle(event) {
-  //     const memoryTitle = event.target.value;
-  //     setMemoryTitle(memoryTitle);
-  //   }
-  //   const [duration, setDuration] = React.useState(500);
-  //   const [isSlide, setIsSlide] = useState(false);
-
   const [showImages, setShowImages] = useState([]);
+  const [memoryTitle, setMemoryTitle] = useState("");
+  const [memoryDesc, setMemoryDesc] = useState("");
+  const [depositAmount, setDepositAmount] = useState(0);
+  const [inputCount, setInputCount] = useState(0);
   const [step, setStep] = useState(0);
   const totalStep = 3;
 
@@ -23,7 +18,6 @@ export default function MakeMemory() {
   function nextStep() {
     setStep(step + 1);
   }
-
   //   이미지 상대경로 저장
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
@@ -42,30 +36,37 @@ export default function MakeMemory() {
     moveScroll();
   };
 
+  function onChangeMemoryTitle(event) {
+    const memoryTitle = event.target.value;
+    setMemoryTitle(memoryTitle);
+  }
+
+  const onChangeMemoryDesc = (event) => {
+    setInputCount(event.target.value.length);
+    setMemoryDesc(event.target.value);
+  };
+  const onChangeDepositAmount = (event) => {
+    let num = event.target.value;
+    // const formatValue = "12345".toLocaleString("ko-KR");
+    // console.log(formatValue);
+    // depositInput.value = formatValue;
+    setDepositAmount(num);
+  };
+
   function moveScroll() {
     console.log(elementRef.current);
     document.getElementsByClassName("scroll-wrap").scrollLeft += 10000;
   }
 
-  const handleDeleteImage = (id) => {
-    setShowImages(showImages.filter((_, index) => index !== id));
-  };
-
-  const [inputCount, setInputCount] = useState(0);
-
-  const onTextareaHandler = (e) => {
-    setInputCount(e.target.value.length);
-  };
-
   if (step == 0) {
     return (
-      <div className="w-full h-full">
+      <div className="w-full h-full flex flex-col">
         <Navbar pageTitle={"추억 기록"} />
-        <div className="mt-4 w-full h-full flex-col">
-          <div className="grow-0">
-            <Step totalStep={totalStep} currStep={step} />
-          </div>
-          <div className="wrap">
+        <div className="grow-0">
+          <Step totalStep={totalStep} currStep={step} />
+        </div>
+        <div className="w-full h-full flex flex-col justify-between">
+          <div className="wrap w-full">
             <div className="scroll-wrap">
               {showImages.map((image, id) => (
                 <div className="scroll-element rounded-sm" key={id}>
@@ -93,30 +94,28 @@ export default function MakeMemory() {
               </div>
             </div>
           </div>
-
           <hr className="hr1" />
-
           <div className="memory-title-box">
             <input
-              className="mt-5 w-full "
+              className="mt-5 w-full"
               type="text"
               id="memory_title"
               placeholder="제목을 입력하세요(선택사항)"
               autoComplete="off"
-              //onChange={onChangeMemoryTitle}
+              onChange={onChangeMemoryTitle}
             ></input>
           </div>
           <hr className="hr1 mt-5" />
           <div className="memory-content-box">
-            <div>
+            <div className="my-5">
               <textarea
-                className="mt-5 w-full h-40"
+                className="w-full h-40"
                 type="text"
                 id="memory_title"
                 placeholder="내용을 작성해주세요"
                 autoComplete="off"
                 maxLength="200"
-                onChange={onTextareaHandler}
+                onChange={onChangeMemoryDesc}
               ></textarea>
             </div>
             <div className="text-right">
@@ -125,10 +124,10 @@ export default function MakeMemory() {
             </div>
           </div>
           <div>
-            <hr className="hr1 mt-5" />
+            <hr className="hr1 mb-5" />
           </div>
 
-          <div className="mt-20">
+          <div>
             <LongBtn text="다음" clickFunc={nextStep} />
           </div>
         </div>
@@ -136,25 +135,25 @@ export default function MakeMemory() {
     );
   } else if (step == 1) {
     return (
-      <div className="w-full h-full">
-        <Navbar />
-        <div className="mt-4 flex w-full h-full flex-col">
-          <div className="grow-0 mb-4">
-            <Step totalStep={totalStep} currStep={step} />
-          </div>
+      <div className="w-full h-full flex flex-col justify-between">
+        <Navbar pageTitle={"추억 기록"} />
+        <div className="grow-0">
+          <Step totalStep={totalStep} currStep={step} />
+        </div>
+        <div className="mt-4 flex w-full h-full flex-col justify-between">
           <div>
-            <div className="mb-1 text-xl font-text">얼마를 넣을까요?</div>
+            <div className="text-xl font-text">얼마를 넣을까요?</div>
             <div className="w-full">
               <input
-                type="text"
-                // value={cashboxName}
-                // onChange={handleCashboxNameChange}
+                type="number"
+                id="input_deposit"
+                onChange={onChangeDepositAmount}
                 maxLength="20"
                 className="border-b-[1px] w-full py-2 outline-none text-md font-text"
               />
             </div>
           </div>
-          <div className="mb-16">
+          <div>
             <LongBtn text="다음" clickFunc={nextStep} />
           </div>
         </div>
@@ -162,66 +161,64 @@ export default function MakeMemory() {
     );
   } else if (step == 2) {
     return (
-      <div className="w-full h-full">
+      <div className="w-full h-full flex flex-col">
         <Navbar pageTitle={"추억 기록"} />
-        <div className="mt-4 w-full h-full flex-col">
-          <div className="grow-0 mb-4">
-            <Step totalStep={totalStep} currStep={step} />
+        <div className="grow-0">
+          <Step totalStep={totalStep} currStep={step} />
+        </div>
+        <div className="w-full h-full flex flex-col justify-between">
+          {showImages.length === 0 && (
+            <div>
+              <div className="font-text text-[#888]">사진 없음</div>
+            </div>
+          )}
+          {showImages.length !== 0 && (
+            <div className="wrap w-full">
+              <div className="scroll-wrap">
+                {showImages.map((image, id) => (
+                  <div className="scroll-element rounded-sm" key={id}>
+                    <img
+                      className="w-full h-full m-auto object-cover"
+                      src={image}
+                      alt={`${image}-${id}`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <hr className="hr1" />
+          <div className="memory-title-box font-text">
+            {memoryTitle === "" && (
+              <div className="font-text text-[#888]">제목 없음</div>
+            )}
+
+            {memoryTitle !== "" && (
+              <div>
+                <label>제목 : </label>
+                <span>{memoryTitle}</span>
+              </div>
+            )}
           </div>
-          <div className="wrap">
-            <div className="scroll-wrap">
-              {showImages.map((image, id) => (
-                <div className="scroll-element rounded-sm" key={id}>
-                  <img
-                    className="w-full h-full m-auto object-cover"
-                    src={image}
-                    alt={`${image}-${id}`}
-                  />
-                </div>
-              ))}
+          <hr className="hr1" />
+          <div className="memory-content-box font-text h-40">
+            {memoryDesc === "" && (
+              <div className="font-text text-[#888]">내용 없음</div>
+            )}
+            {memoryDesc !== "" && <div className="font-text">{memoryDesc}</div>}
+          </div>
+          <div>
+            <hr className="hr1" />
+          </div>
+          <div className="memory-deposit-box h-8 font-text flex items-center justify-between">
+            <div>입금액</div>
+            <div>
+              <span className="text-blue">{depositAmount}</span>
+              <span> 원</span>
             </div>
           </div>
           <hr className="hr1" />
-          <div className="memory-title-box">
-            <input
-              className="mt-5 w-full "
-              type="text"
-              id="memory_title"
-              autoComplete="off"
-              //onChange={onChangeMemoryTitle}
-            ></input>
-          </div>
-          <hr className="hr1 mt-5" />
-          <div className="memory-content-box">
-            <div>
-              <textarea
-                className="mt-5 w-full h-40"
-                type="text"
-                id="memory_title"
-                autoComplete="off"
-                maxLength="200"
-                onChange={onTextareaHandler}
-              ></textarea>
-            </div>
-            <div className="text-right">
-              <span>{inputCount}</span>
-              <span>/200</span>
-            </div>
-          </div>
           <div>
-            <hr className="hr1 mt-5" />
-          </div>
-          <div className="memory-deposit-box flex justify-between">
-            <input
-              className="mt-5 w-full "
-              type="text"
-              id="memory_title"
-              autoComplete="off"
-              //onChange={onChangeMemoryTitle}
-            ></input>
-          </div>
-          <hr className="hr1 mt-5" />
-          <div className="mt-20">
             <LongBtn text="다음" clickFunc={nextStep} />
           </div>
         </div>

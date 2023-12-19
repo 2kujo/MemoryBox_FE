@@ -44,7 +44,6 @@
 /* 기본 구조 */
 .wrap {
   max-width: 500px;
-  margin: 10px auto;
 }
 
 /* 가로 스크롤 적용 */
@@ -76,4 +75,10 @@
 .camera-box {
   width: 100px;
   height: 100px;
+}
+
+.hr1 {
+  background: gray;
+  height: 0.5px;
+  border: 0;
 }
