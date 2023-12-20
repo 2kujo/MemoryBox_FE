@@ -40,3 +40,48 @@
 .read-the-docs {
   color: #888;
 }
+
+/* 기본 구조 */
+.wrap {
+  max-width: 500px;
+}
+
+/* 가로 스크롤 적용 */
+.scroll-wrap {
+  overflow-x: scroll;
+  white-space: nowrap;
+  font-size: 0;
+}
+.scroll-element {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  font-size: 16px;
+  line-height: 150px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.scroll-element + .scroll-element {
+  margin-left: 15px;
+}
+
+.hr-nav {
+  background-color: gray;
+  height: 1px;
+}
+
+.camera-box {
+  width: 100px;
+  height: 100px;
+}
+
+.hr1 {
+  background: gray;
+  height: 0.5px;
+  border: 0;
+}
+.warning-text {
+  color: red;
+}

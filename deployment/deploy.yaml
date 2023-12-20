@@ -29,6 +29,15 @@ spec:
             limits:
               cpu: 500m
               memory: 1024Mi
+            volumeMounts:
+            - name: image-data-app
+              mountPath: /usr/share/nginx/html/image
+              readOnly: true
+      volumes:
+        - name: image-data-app
+          persistentVolumeClaim:
+            claimName: memory-box-app
+            readOnly: true
 
 ---
 
