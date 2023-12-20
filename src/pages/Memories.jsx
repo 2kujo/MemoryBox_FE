@@ -14,7 +14,7 @@ export default function Memories() {
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
 
-  const [isFinished, setIsFinished] = useState(1);
+  const [isFinished, setIsFinished] = useState(0);
 
   function onClickHandlerToMakeMemory() {
     navigate("/make-memory");
@@ -41,6 +41,13 @@ export default function Memories() {
       memoryId: 3,
       title: "민조 아랫니",
       depositAmout: 99900,
+      createAt: "2023-11-28",
+      images: ["/src/assets/images/first_tooth.png"],
+    },
+    {
+      memoryId: 4,
+      title: "민조 아랫니",
+      depositAmout: 1000,
       createAt: "2023-11-28",
       images: ["/src/assets/images/first_tooth.png"],
     },
