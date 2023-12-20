@@ -13,6 +13,11 @@ code {
     monospace;
 }
 
+input{
+  -webkit-appearance: none;
+  -webkit-border-radius:0px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

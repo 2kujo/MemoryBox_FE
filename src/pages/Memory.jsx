@@ -34,9 +34,9 @@ export default function Memory() {
   };
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden font-text">
       <Navbar pageTitle={cashBoxTitle} />
-      <div className="w-[100dvw] h-[100vw] absolute left-0">
+      <div className="w-[100dvw] h-[100dvw] absolute left-0">
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
           activeItemIndex={activeItemIndex}
@@ -68,17 +68,22 @@ export default function Memory() {
       <div className="h-[100vw]"></div>
       <div className="memory-outline flex justify-between p-2">
         <div className="">
-          <div className="text-sm font-semibold">{memoryData.title}</div>
+          <div className="text-sm font-medium">{memoryData.title}</div>
           <div className="text-xs text-grey">{memoryData.createdAt}</div>
         </div>
         <div className="text-sm pt-3">
-          <span className="text-blue font-bold">
+          <span className="text-blue font-bold pr-0.5">
             {memoryData.depositAmount.toLocaleString("ko-KR")}
           </span>
           <span>원</span>
         </div>
       </div>
-      <textarea className="memory-content p-2">{memoryData.content}</textarea>
+      <textarea
+        className="memory-content p-2 bg-white text-font1 opacity-90"
+        disabled
+      >
+        {memoryData.content}
+      </textarea>
     </div>
   );
 }

@@ -1,16 +1,29 @@
 import React, { useState } from "react";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
+import FloatingBtn from "@/components/common/FloatingBtn";
 
 export default function Memories() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // isFinished props로 받기
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [savingsType, setSavingsType] = useState("KB 특★별한 우리아이 적금");
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
+  const [isFinished, setIsFinished] = useState(0);
 
-  const [isFinished, setIsFinished] = useState(1);
+  const cashBoxId = location.state.cashBoxId;
+
+  function onClickHandlerToMakeMemory() {
+    navigate("/make-memory", { state: { cashBoxId: cashBoxId } });
+  }
+
+  function onClickHanlderToAlbum() {
+    navigate("/memories/album");
+  }
 
   const ongoinDummyData = [
     {
@@ -41,15 +54,26 @@ export default function Memories() {
       createAt: "2023-11-28",
       images: ["/src/assets/images/first_tooth.png"],
     },
+    {
+      memoryId: 4,
+      title: "민조 아랫니",
+      depositAmout: 1000,
+      createAt: "2023-11-28",
+      images: ["/src/assets/images/first_tooth.png"],
+    },
   ];
+
+  function floatingClickHandler() {
+    navigate("/make-memory");
+  }
 
   return (
     <div>
       <Navbar pageTitle={cashBoxTitle} />
       <div className="mx-2">
-        <div className="cash-box-outline flex-col px-5 boder-b border-b-silver">
+        <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
           {!isFinished && <div className="text-sm pb-0.5">{savingsType}</div>}
-          <div className="text-md font-bold">{cashBoxTitle}</div>
+          <div className="font-display text-md font-bold">{cashBoxTitle}</div>
           <div className="text-xs">
             {!!isFinished && <span className="text-grey pr-2">입금 계좌</span>}
             <span className="text-font1">{cashBoxAcno}</span>
@@ -73,6 +97,12 @@ export default function Memories() {
           <MemoryList memoryContents={ongoinDummyData} />
         </div>
       </div>
+      {!isFinished && (
+        <FloatingBtn type="write" clickFunc={onClickHandlerToMakeMemory} />
+      )}
+      {!!isFinished && (
+        <FloatingBtn type="album" clickFunc={onClickHanlderToAlbum} />
+      )}
     </div>
   );
 }

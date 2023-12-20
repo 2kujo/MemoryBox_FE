@@ -10,7 +10,15 @@ export function requestMemory(cashBoxId, memoryId, success, fail) {
   );
 }
 
-export function requestCreateMemory(cashBoxId, params, success, fail) {
+export function requestCreateMemory(
+  cashBoxId,
+  title,
+  content,
+  depopsitAmount,
+  imagesFiles,
+  success,
+  fail
+) {
   UserApi.post(`/cash-boxes/${cashBoxId}/memories`, params)
     .then(success)
     .catch(fail);
