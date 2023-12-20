@@ -14,8 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <App /> */}
     {/* <ServiceMain /> */}
 
-    <div className="m-auto h-[100dvh] max-w-[100dvw] pb-10 px-5">
-
+    <div className="m-auto h-[100dvh] max-w-[100dvw] pb-10 px-5 font-text">
       <RouterProvider router={RouterObject} />
     </div>
   </React.StrictMode>

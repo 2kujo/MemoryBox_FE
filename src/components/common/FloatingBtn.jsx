@@ -7,7 +7,7 @@ export default function FloatingBtn(props) {
   if (type == "add") {
     return (
       <button
-        className="w-16 h-16 pl-3 bg-yellow rounded-full absolute right-4 bottom-4"
+        className="w-16 h-16 bg-yellow rounded-full fixed right-4 bottom-4 drop-shadow-md flex justify-center items-center"
         onClick={props.clickFunc}
       >
         <PlusIcon className="h-10 w-10 text-[#ffffff]" />
@@ -16,7 +16,7 @@ export default function FloatingBtn(props) {
   } else if (type == "write") {
     return (
       <button
-        className="w-16 h-16 pl-4 bg-yellow rounded-full absolute right-4 bottom-4"
+        className="w-16 h-16 bg-yellow rounded-full fixed right-4 bottom-4 drop-shadow-md flex justify-center items-center"
         onClick={props.clickFunc}
       >
         <PencilIcon className="h-8 w-8 text-[#ffffff]" />
@@ -25,7 +25,7 @@ export default function FloatingBtn(props) {
   } else if (type == "album") {
     return (
       <button
-        className="w-16 h-16 bg-yellow rounded-full absolute right-4 bottom-4 flex justify-center items-center"
+        className="w-16 h-16 bg-yellow rounded-full fixed right-4 bottom-4 flex justify-center items-center drop-shadow-md"
         onClick={props.clickFunc}
       >
         <img
