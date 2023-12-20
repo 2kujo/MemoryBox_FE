@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, KeyboardEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "@/components/common/Navbar.jsx";
@@ -8,6 +8,7 @@ import Step from "@/components/common/Step.jsx";
 import LongBtn from "@/components/common/LongBtn.jsx";
 
 export default function MakeBox() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [cashboxName, setCashboxName] = useState("");
   const [cashboxDesc, setCashboxDesc] = useState("");
@@ -25,6 +26,8 @@ export default function MakeBox() {
     1: '저금통 설명은',
     2: '연결할 상품은'
   }
+
+  document.body.style.backgroundColor = "#FFFFFF";
 
   function nextStep() {
     if(isNextStepPossible()){
