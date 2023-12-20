@@ -1,3 +1,5 @@
+import axios from "axios";
+// import { getCookie } from "@/api/Cookies";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from 'axios';
@@ -5,6 +7,14 @@ import { Cookies } from "react-cookie";
 
 export default function SpecialCert(){
     const navigate = useNavigate();
+    axios.defaults.withCredentials = true;
+
+    const UserApi = axios.create({
+    baseURL: "http://memorybox-cert:8080/special-cert",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    });
 
     const CertApi = axios.create({
         baseURL: "http://memorybox-cert:8080/",

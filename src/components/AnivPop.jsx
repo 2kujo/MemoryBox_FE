@@ -37,9 +37,12 @@ export default function AnivPop(props) {
             <div className="img-box"></div>
             <div className="img-box"></div>
             <div className="img-box"></div>
+
         </div>
-        <LongBtn text="보러가기" clickFunc={props.memoriesUrl} />
+        <div className="px-10">
+            <LongBtn text="보러가기" clickFunc={props.memoriesUrl}/>
+        </div>
       </div>
-    </div>
+  </div>
   );
 }
