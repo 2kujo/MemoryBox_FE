@@ -58,7 +58,7 @@ export default function MakeBox() {
     if(isValidNextStep()){
       setStep(step+1);
     }else{
-      console.log(validVal[step]+" 반드시 입력해야 합니다.");
+      toast(validVal[step]+" 반드시 입력해야 합니다.");
     }
   }
 
