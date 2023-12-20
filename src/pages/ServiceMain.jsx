@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/common/Navbar.jsx";
 import Tab from "@/components/common/Tab.jsx";
 import FloatingBtn from "@/components/common/FloatingBtn.jsx";
+import AnivPop from "@/components/AnivPop.jsx";
 import "@/pages/css/ServiceMain.css";
 
 export default function ServiceMain() {
@@ -132,6 +133,7 @@ export default function ServiceMain() {
       <div>
         <Tab tabList={tabList} />
       </div>
+      <AnivPop memoriesTitle="우리 민조" memoriesDuration="100" />
     </div>
   );
 }

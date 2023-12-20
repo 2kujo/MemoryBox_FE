@@ -46,3 +46,7 @@ input{
   font-style: normal;
   font-display: swap;
 }
+
+/* toast */
+.Toastify__progress-bar-theme--light{background: #FBB901;}
+.Toastify__toast-body{font-family: "KBFGText";}
