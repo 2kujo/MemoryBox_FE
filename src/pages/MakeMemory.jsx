@@ -96,22 +96,17 @@ export default function MakeMemory() {
 
   async function onSubmitMemory(event) {
     event.preventDefault();
+
     console.log(memoryTitle);
     console.log(memoryDesc);
     console.log(depositAmount);
-
-    const imgList = new FormData();
-
-    for (var i = 0; i < imageList.length; i++) {
-      imgList.append("imageList", imageList[i]);
-    }
 
     await requestCreateMemory(
       cashBoxId,
       memoryTitle,
       memoryDesc,
       depositAmount,
-      imgList
+      imageList
     );
   }
 
