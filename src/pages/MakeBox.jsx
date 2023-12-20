@@ -43,6 +43,7 @@ export default function MakeBox() {
       return false;
     }
     else return true;
+  }
 
   const validVal = {
     0: '저금통 이름은',
@@ -68,7 +69,7 @@ export default function MakeBox() {
       return false;
     }
     return true;
-
+  }
 
   // input에서 엔터 입력 시 키패드 내려주기 위한 함수
   const keyDownHandler = (event) => {
