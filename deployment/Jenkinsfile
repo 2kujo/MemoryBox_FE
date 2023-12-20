@@ -60,7 +60,7 @@ podTemplate(
 						)]) {
 						    sh 'echo user "$USER" pasword "$PASSWORD"'
 						    sh "podman login ${registry} --username ${USER} --password ${PASSWORD}"
-							sh "podman build -f ./deployment/Dockerfile-cicd -t ${registry}/${organization}/${repository}:${tag} ."
+							sh "podman build -f ./deployment/Dockerfile-nginx -t ${registry}/${organization}/${repository}:${tag} ."
 							sh "sleep 2"
 							sh "podman push ${registry}/${organization}/${repository}:${tag}"
 							sh "podman tag ${registry}/${organization}/${repository}:${tag} ${registry}/${organization}/${repository}:latest"
