@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "@/components/common/Navbar.jsx";
 import Step from "@/components/common/Step.jsx";
 import LongBtn from "@/components/common/LongBtn.jsx";
@@ -18,6 +20,29 @@ export default function MakeBox() {
     {key: 1, title: 'KB내맘대로적금', duration: 36, min: 3.15, max: 3.75},
     {key: 2, title: 'KB우리아이행복적금', duration: 24, min: 3.2, max: 3.55}
   ];
+  const invalidTxt = {
+    0: '저금통 이름은',
+    1: '저금통 설명은',
+    2: '연결할 상품은'
+  }
+
+  function nextStep() {
+    if(isNextStepPossible()){
+      setStep(step + 1);
+    }else{
+      toast(invalidTxt[step] + ' 필수 입력값입니다');
+    }
+  }
+
+  function isNextStepPossible(){
+    if(step == 0 && cashboxName == ''){
+      return false;
+    }else if(step == 1 && cashboxDesc == ''){
+      return false;
+    }else if(step == 2 && cashboxProduct == ''){
+      return false;
+    }
+    else return true;
 
   const validVal = {
     0: '저금통 이름은',
@@ -62,23 +87,25 @@ export default function MakeBox() {
     setCashboxDesc(event.target.value);
   };
 
-
-  // 연결 상품
-  function selectCashboxProduct(idx, productName){
-    setCurrProduct(idx);
-    setCashboxProduct(productName);
+  function selectCashboxProduct(idx, productName) {
+      setCurrProduct(idx);
+      setCashboxProduct(productName);
   }
 
-  // 저금통 생성
-  function makeCashbox(){
-    // name, desc, productType 사용해 api 통신 수행
-    navigate("/intro-finish");
+  function makeCashbox() {
+    if(isNextStepPossible()){
+      // name, desc, productType 사용해 api 통신 수행
+      navigate("/intro-finish");
+    }else{
+      toast(invalidTxt[step] + ' 필수 입력값입니다');
+    }
   }
 
   if (step == 0) {
     // 저금통 이름 입력
     return (
       <div className="w-full h-full">
+        <ToastContainer />
         <Navbar pageTitle="추억 저금통"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
@@ -93,6 +120,7 @@ export default function MakeBox() {
                   type="text"
                   value={cashboxName}
                   onChange={handleCashboxNameChange}
+                  onKeyDown={keyDownHandler}
                   maxLength="20"
                   className="border-b-[1px] w-full py-2 outline-none text-md "
                 />
@@ -109,6 +137,7 @@ export default function MakeBox() {
     // 저금통 설명 입력
     return (
       <div className="w-full h-full">
+        <ToastContainer />
         <Navbar pageTitle="추억 저금통"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
@@ -123,6 +152,7 @@ export default function MakeBox() {
                   type="text"
                   value={cashboxDesc}
                   onChange={handleCashboxDescChange}
+                  onKeyDown={keyDownHandler}
                   maxLength="20"
                   className="border-b-[1px] w-full py-2 outline-none text-md "
                 />
@@ -138,6 +168,7 @@ export default function MakeBox() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full">
+        <ToastContainer />
         <Navbar pageTitle="추억 저금통"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
