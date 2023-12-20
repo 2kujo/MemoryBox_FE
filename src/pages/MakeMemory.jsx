@@ -2,6 +2,8 @@ import Navbar from "@/components/common/Navbar";
 import React, { useState, useRef } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
+import { ToastContainer, toast } from "react-toastify";
+
 import Step from "@/components/common/Step";
 import { useLocation } from "react-router-dom";
 import { requestCreateMemory } from "@/api/memory";
@@ -24,8 +26,27 @@ export default function MakeMemory() {
   console.log(cashBoxId);
 
   function nextStep() {
-    setStep(step + 1);
+    if (isValidNextStep()) {
+      setStep(step + 1);
+    } else {
+      toast(validVal[step] + " 필수 입력값입니다");
+    }
   }
+
+  const validVal = {
+    0: "사진 혹은 내용은",
+    1: "입금액은",
+  };
+  // 스텝 이동에 대한 입력값 valid check
+  function isValidNextStep() {
+    if (step == 0 && memoryDesc === "" && showImages.length === 0) {
+      return false;
+    } else if (step == 1 && changedDeposit === "") {
+      return false;
+    }
+    return true;
+  }
+
   //   이미지 상대경로 저장
   const handleAddImages = (event) => {
     const imgLists = event.target.files;
@@ -105,6 +126,7 @@ export default function MakeMemory() {
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
+        <ToastContainer />
         <Navbar pageTitle={"추억 기록"} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
@@ -183,6 +205,7 @@ export default function MakeMemory() {
   } else if (step == 1) {
     return (
       <div className="w-full h-full flex flex-col">
+        <ToastContainer />
         <Navbar pageTitle={"추억 기록"} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
