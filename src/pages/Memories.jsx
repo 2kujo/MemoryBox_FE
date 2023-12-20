@@ -14,13 +14,15 @@ export default function Memories() {
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
 
-  const [isFinished, setIsFinished] = useState(0);
+  const [isFinished, setIsFinished] = useState(1);
 
   function onClickHandlerToMakeMemory() {
     navigate("/make-memory");
   }
 
-  function onClickHanlderToAlbum() {}
+  function onClickHanlderToAlbum() {
+    navigate("/memories/album");
+  }
 
   const ongoinDummyData = [
     {

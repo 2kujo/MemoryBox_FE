@@ -7,31 +7,31 @@ export default function FloatingBtn(props) {
   if (type == "add") {
     return (
       <button
-        className="w-16 h-16 bg-yellow rounded-full fixed right-4 bottom-4 drop-shadow-md flex justify-center items-center"
+        className="w-14 h-14 bg-yellow rounded-full fixed right-5 bottom-5 drop-shadow-md flex justify-center items-center"
         onClick={props.clickFunc}
       >
-        <PlusIcon className="h-10 w-10 text-[#ffffff]" />
+        <PlusIcon className="h-8 w-8 text-[#ffffff]" />
       </button>
     );
   } else if (type == "write") {
     return (
       <button
-        className="w-16 h-16 bg-yellow rounded-full fixed right-4 bottom-4 drop-shadow-md flex justify-center items-center"
+        className="w-14 h-14 bg-yellow rounded-full fixed right-5 bottom-5 drop-shadow-md flex justify-center items-center"
         onClick={props.clickFunc}
       >
-        <PencilIcon className="h-8 w-8 text-[#ffffff]" />
+        <PencilIcon className="w-7 h-7 text-[#ffffff]" />
       </button>
     );
   } else if (type == "album") {
     return (
       <button
-        className="w-16 h-16 bg-yellow rounded-full fixed right-4 bottom-4 flex justify-center items-center drop-shadow-md"
+        className="w-14 h-14 bg-yellow rounded-full fixed right-5 bottom-5 flex justify-center items-center drop-shadow-md"
         onClick={props.clickFunc}
       >
         <img
           src="/src/assets/images/album1.svg"
           alt="디지털 앨범 아이콘"
-          className="w-8 h-8 text-white"
+          className="w-7 h-7 text-white"
         />
       </button>
     );
