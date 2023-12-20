@@ -3,7 +3,6 @@ import React, { useState, useRef } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
 import Step from "@/components/common/Step";
-import RegistMemory from "@/api/memory";
 
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
