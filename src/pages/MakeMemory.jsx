@@ -1,5 +1,5 @@
 import Navbar from "@/components/common/Navbar";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
 import Step from "@/components/common/Step";
@@ -48,15 +48,16 @@ export default function MakeMemory() {
     setMemoryDesc(event.target.value);
   };
 
-  
   const onChangeDepositAmount = (event) => {
     let num = event.target.value;
     // 금액 콤마 찍기
-    console.log("dd"+ num);
+    console.log("dd" + num);
     console.log(Number(num));
     setDepositAmount(Number(num));
-    setChangedDeposit(num.replaceAll(",","").replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-    
+    setChangedDeposit(
+      num.replaceAll(",", "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    );
+
     console.log(depositAmount);
   };
 
@@ -66,6 +67,7 @@ export default function MakeMemory() {
     document.getElementsByClassName("scroll-wrap").scrollLeft += 10000;
   }
 
+  const onKeyDownHandler = (event) => {};
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
@@ -111,6 +113,7 @@ export default function MakeMemory() {
               placeholder="제목을 입력하세요(선택사항)"
               autoComplete="off"
               onChange={onChangeMemoryTitle}
+              onKeyDown={onKeyDownHandler}
             ></input>
           </div>
           <hr className="hr1" />
