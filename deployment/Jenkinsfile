@@ -18,7 +18,7 @@ podTemplate(
 	],
     //volume mount
     volumes: [
-        nfsVolume( mountPath: '/home/jenkins/agent/workspace', serverAddress: '165.192.105.60', serverPath: '/users/data/jenkins', readOnly: false ),
+        nfsVolume( mountPath: '/home/jenkins/agent/workspace/memorybox-fe', serverAddress: '165.192.105.60', serverPath: '/users/data/jenkins', readOnly: false ),
      ]
 ) 
 
