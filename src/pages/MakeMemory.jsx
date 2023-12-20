@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
 import Step from "@/components/common/Step";
+import RegistMemory from "@/api/memory";
 
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
@@ -53,6 +54,7 @@ export default function MakeMemory() {
 
   //금액 콤마 찍기
   const onChangeDepositAmount = (event) => {
+    console.log(typeof event.target.value);
     let num = event.target.value.replaceAll(",", "");
     setDepositAmount(parseInt(num));
     setChangedDeposit(
@@ -66,15 +68,28 @@ export default function MakeMemory() {
     }
   };
 
-  function onSubmitMemory(event) {
+  async function onSubmitMemory(event) {
     event.preventDefault();
     console.log(memoryTitle);
     console.log(memoryDesc);
     console.log(depositAmount);
+
+    const imgList = new FormData();
+
     for (var i = 0; i < imageList.length; i++) {
-      console.log(imageList[i]);
+      imgList.append("imageList", imageList[i]);
     }
+
+    await RegistMemory(memoryTitle, memoryDesc, depositAmount, imgList);
   }
+
+  window.onpopstate = function (event) {
+    console.log("sdsdsd");
+    const state = { id: 1 };
+    const url = "/make-box";
+
+    history.pushState(state, "", url);
+  };
 
   if (step == 0) {
     return (
@@ -125,7 +140,7 @@ export default function MakeMemory() {
           </div>
           <hr className="hr1" />
           <div className="memory-content-box">
-            <div className="my-5 h-60">
+            <div className="mt-4 h-60">
               <textarea
                 className="w-full h-full focus:outline-none font-text"
                 type="text"
@@ -136,15 +151,12 @@ export default function MakeMemory() {
                 onChange={onChangeMemoryDesc}
               ></textarea>
             </div>
-            <div className="text-right font-text">
+            <div className="text-right font-text mb-5">
               <span>{inputCount}</span>
               <span>/200</span>
             </div>
           </div>
-          <div>
-            <hr className="hr1 mb-5" />
-          </div>
-
+          <hr className="hr1" />
           <div className="h-36 flex flex-col justify-between">
             <div></div>
             <div>
@@ -165,15 +177,19 @@ export default function MakeMemory() {
           <div>
             <div className="text-xl font-text">얼마를 넣을까요?</div>
             <div className="w-full">
-              <input
-                type="text"
-                id="input_deposit"
-                value={changedDeposit}
-                onChange={onChangeDepositAmount}
-                onKeyDown={onKeyDownHandler}
-                maxLength="20"
-                className="border-b-[1px] w-full py-2 outline-none text-md font-text"
-              />
+              <div className="h-full mt-5 relative">
+                <div className="w-full absolute border-b-[1px] h-[48px] py-2 text-md font-text">
+                  {changedDeposit}
+                </div>
+                <input
+                  type="number"
+                  id="input_deposit"
+                  onChange={onChangeDepositAmount}
+                  onKeyDown={onKeyDownHandler}
+                  maxLength="20"
+                  className="opacity-0  w-full outline-none text-md"
+                />
+              </div>
             </div>
           </div>
           <div>

@@ -39,6 +39,6 @@ export const RouterInfo = [
   },
   {
     path: "/special-cert",
-    element: <SpecialCert/>,
-  }
+    element: <SpecialCert />,
+  },
 ];
