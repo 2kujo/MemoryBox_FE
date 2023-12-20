@@ -9,6 +9,10 @@ export default function Intro() {
   const navigate = useNavigate();
   const needPop = true;
 
+  if(location.pathname == "/"){
+    document.body.style.backgroundColor = "#FFDA48";
+  }
+  
   function startIntro() {
     //cert를 통해 유저 판별
     navigate("/make-box");
