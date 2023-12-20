@@ -29,7 +29,7 @@ export default function FloatingBtn(props) {
         onClick={props.clickFunc}
       >
         <img
-          src="/src/assets/images/album3.svg"
+          src="/src/assets/images/album1.svg"
           alt="디지털 앨범 아이콘"
           className="w-8 h-8 text-white"
         />
