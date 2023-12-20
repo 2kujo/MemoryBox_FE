@@ -1,5 +1,5 @@
 import Navbar from "@/components/common/Navbar";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
 import Step from "@/components/common/Step";
