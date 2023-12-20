@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
@@ -62,13 +61,17 @@ export default function Memories() {
     },
   ];
 
+  function floatingClickHandler(){
+    navigate("/make-memory")
+  }
+
   return (
     <div>
       <Navbar pageTitle={cashBoxTitle} />
       <div className="mx-2">
         <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
           {!isFinished && <div className="text-sm pb-0.5">{savingsType}</div>}
-          <div className="text-md font-bold">{cashBoxTitle}</div>
+          <div className="font-display text-md font-bold">{cashBoxTitle}</div>
           <div className="text-xs">
             {!!isFinished && <span className="text-grey pr-2">입금 계좌</span>}
             <span className="text-font1">{cashBoxAcno}</span>

@@ -1,7 +1,9 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import IntroBibi from "@/assets/images/intro_bibi.png";
-import LongBtn from "@/components/common/LongBtn.jsx";
-import AnivPop from "@/components/AnivPop.jsx";
+
+import IntroBibi from '@/assets/images/intro_bibi.png'
+import IntroFinishBibi from '@/assets/images/intro_finish_bibi.gif'
+import LongBtn from '@/components/common/LongBtn.jsx'
+import AnivPop from '@/components/AnivPop.jsx'
 
 export default function Intro() {
   const location = useLocation();

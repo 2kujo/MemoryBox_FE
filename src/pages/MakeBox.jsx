@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/common/Navbar.jsx";
 import Step from "@/components/common/Step.jsx";
@@ -14,14 +14,20 @@ export default function MakeBox() {
   const [step, setStep] = useState(0);
   const totalStep = 3;
   const productList = [
-    { key: 0, title: "KB 특별한 적금", duration: 36, min: 3, max: 3.5 },
-    { key: 1, title: "KB내맘대로적금", duration: 36, min: 3.15, max: 3.75 },
-    { key: 2, title: "KB우리아이행복적금", duration: 24, min: 3.2, max: 3.55 },
-    { key: 3, title: "KB상호부금", duration: 36, min: 3.15, max: 3.55 },
+    {key: 0, title: 'KB 특별한 적금', duration: 36, min: 3, max: 3.5},
+    {key: 1, title: 'KB내맘대로적금', duration: 36, min: 3.15, max: 3.75},
+    {key: 2, title: 'KB우리아이행복적금', duration: 24, min: 3.2, max: 3.55}
   ];
 
   function nextStep() {
     setStep(step + 1);
+  }
+
+  const keyDownHandler = (event) => {
+    if(event.code == "Enter" || event.code == "enter" || event.keyCode == 13){
+      event.target.blur();
+    }
+    console.log(event);
   }
 
   const handleCashboxNameChange = (event) => {
@@ -45,7 +51,7 @@ export default function MakeBox() {
     // 저금통 이름 입력
     return (
       <div className="w-full h-full">
-        <Navbar />
+        <Navbar pageTitle="추억 저금통"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -75,7 +81,7 @@ export default function MakeBox() {
     // 저금통 설명 입력
     return (
       <div className="w-full h-full">
-        <Navbar />
+        <Navbar pageTitle="추억 저금통"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -104,7 +110,7 @@ export default function MakeBox() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full">
-        <Navbar />
+        <Navbar pageTitle="추억 저금통"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
