@@ -265,7 +265,7 @@
     background-image: url("../../assets/images/popup_img_03.jpeg");
     width: 100px; height: 100px;
     position: absolute;
-    top: 80%;
+    top: 75%;
     left: 100%;
     animation-name: img-animation-03;
     animation-delay: 3.1s;
