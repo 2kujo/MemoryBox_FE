@@ -48,17 +48,13 @@ export default function MakeMemory() {
     setMemoryDesc(event.target.value);
   };
 
+  //금액 콤마 찍기
   const onChangeDepositAmount = (event) => {
-    let num = event.target.value;
-    // 금액 콤마 찍기
-    console.log("dd" + num);
-    console.log(Number(num));
-    setDepositAmount(Number(num));
+    let num = event.target.value.replaceAll(",", "");
+    setDepositAmount(parseInt(num));
     setChangedDeposit(
       num.replaceAll(",", "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     );
-
-    console.log(depositAmount);
   };
 
   //스크롤 하기 실패
@@ -67,7 +63,11 @@ export default function MakeMemory() {
     document.getElementsByClassName("scroll-wrap").scrollLeft += 10000;
   }
 
-  const onKeyDownHandler = (event) => {};
+  const onKeyDownHandler = (event) => {
+    if (event.code == "Enter" || event.code == "enter" || event.keyCode == 13) {
+      event.target.blur();
+    }
+  };
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
@@ -113,14 +113,13 @@ export default function MakeMemory() {
               placeholder="제목을 입력하세요(선택사항)"
               autoComplete="off"
               onChange={onChangeMemoryTitle}
-              onKeyDown={onKeyDownHandler}
             ></input>
           </div>
           <hr className="hr1" />
           <div className="memory-content-box">
             <div className="my-5 h-60">
               <textarea
-                className="w-full focus:outline-none font-text"
+                className="w-full h-full focus:outline-none font-text"
                 type="text"
                 id="memory_title"
                 placeholder="내용을 작성해주세요"
@@ -163,6 +162,7 @@ export default function MakeMemory() {
                 id="input_deposit"
                 value={changedDeposit}
                 onChange={onChangeDepositAmount}
+                onKeyDown={onKeyDownHandler}
                 maxLength="20"
                 className="border-b-[1px] w-full py-2 outline-none text-md font-text"
               />
@@ -227,7 +227,7 @@ export default function MakeMemory() {
           <div className="memory-deposit-box h-20 font-text flex items-center justify-between">
             <div>입금액</div>
             <div>
-              <span className="text-blue">{depositAmount}</span>
+              <span className="text-blue">{changedDeposit}</span>
               <span> 원</span>
             </div>
           </div>
