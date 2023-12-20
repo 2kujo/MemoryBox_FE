@@ -15,11 +15,12 @@ podTemplate(
 		containerTemplate(name: "trivy", image: "aquasec/trivy", ttyEnabled: true, command: "cat"),
 		containerTemplate(name: "kubectl", image: "lachlanevenson/k8s-kubectl", command: "cat", ttyEnabled: true),
 		containerTemplate(name: 'podman', image: 'mgoltzsche/podman', ttyEnabled: true, command: 'cat', privileged: true)
-	],
+	]
+	//,
     //volume mount
-    volumes: [
-        nfsVolume( mountPath: '/home/jenkins/agent/workspace', serverAddress: '165.192.105.60', serverPath: '/users/data/jenkins', readOnly: false ),
-     ]
+//     volumes: [
+//         nfsVolume( mountPath: '/home/jenkins/agent/workspace', serverAddress: '165.192.105.60', serverPath: '/users/data/jenkins', readOnly: false ),
+//      ]
 ) 
 
 {
@@ -42,11 +43,11 @@ podTemplate(
 		selector_val=props["selector_val"]
 
 		try {
-			stage("Build React Scripts") {
+			stage("Build Vite Scripts") {
 				container("node") {
-					sh "yarn install --cache-folder ${WORKSPACE}/yarn-cache"
+					//sh "yarn install --cache-folder ${WORKSPACE}/yarn-cache"
 					sh "npm install"
-					sh "yarn build"
+					sh "npm run build"
 				}
 			}
 
@@ -59,7 +60,7 @@ podTemplate(
 						)]) {
 						    sh 'echo user "$USER" pasword "$PASSWORD"'
 						    sh "podman login ${registry} --username ${USER} --password ${PASSWORD}"
-							sh "podman build -f ./deployment/Dockerfile-cicd -t ${registry}/${organization}/${repository}:${tag} ."
+							sh "podman build -f ./deployment/Dockerfile-nginx -t ${registry}/${organization}/${repository}:${tag} ."
 							sh "sleep 2"
 							sh "podman push ${registry}/${organization}/${repository}:${tag}"
 							sh "podman tag ${registry}/${organization}/${repository}:${tag} ${registry}/${organization}/${repository}:latest"

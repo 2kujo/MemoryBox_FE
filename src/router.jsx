@@ -7,6 +7,7 @@ import Memories from "@/pages/Memories";
 import Memory from "@/pages/Memory";
 import ServiceMain from "@/pages/ServiceMain";
 import SpecialCert from "@/pages/SpecialCert";
+import DigitalAlbum from "@/pages/DigitalAlbum";
 
 export const RouterInfo = [
   {
@@ -39,6 +40,10 @@ export const RouterInfo = [
   },
   {
     path: "/special-cert",
-    element: <SpecialCert/>,
-  }
+    element: <SpecialCert />,
+  },
+  {
+    path: "/memories/album",
+    element: <DigitalAlbum />,
+  },
 ];
