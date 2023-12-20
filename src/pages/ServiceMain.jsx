@@ -89,7 +89,7 @@ export default function ServiceMain() {
             <div className="flex justify-center relative pt-1 pb-4">
               <span className="text-font1 text-sm">자기앞추억</span>
             </div>
-            <div className="flex justify-evenly relative">
+            <div className="flex justify-center gap-3 relative">
               <div className="">
                 <div className="bg-yellow w-20 h-20 rounded-full flex justify-center items-center">
                   <div className="w-16 h-16 rounded-full overflow-hidden">
@@ -104,14 +104,14 @@ export default function ServiceMain() {
               <div className="">
                 <div className="flex-col">
                   <div className="font-display">{cashbox.name}</div>
-                  <div>
-                    <span className="text-grey text-xs">
+                  <div className="">
+                    <span className="text-grey text-[0.7rem]">
                       {cashbox.startDate} ~ {cashbox.maturityDate}
                     </span>
                   </div>
                   <div>
                     <span className="pr-2 text-xs">추억으로 모은 돈</span>
-                    <span className="text-yellow font-bold text-md pr-1">
+                    <span className="text-yellow font-bold text-sm drop-shadow-sm pr-1">
                       {cashbox.balance.toLocaleString("ko-KR")}
                     </span>
                     <span className="text-xs">원</span>

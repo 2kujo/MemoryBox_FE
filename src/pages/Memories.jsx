@@ -14,7 +14,7 @@ export default function Memories() {
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
 
-  const [isFinished, setIsFinished] = useState(1);
+  const [isFinished, setIsFinished] = useState(0);
 
   function onClickHandlerToMakeMemory() {
     navigate("/make-memory");
@@ -66,7 +66,7 @@ export default function Memories() {
     <div>
       <Navbar pageTitle={cashBoxTitle} />
       <div className="mx-2">
-        <div className="cash-box-outline flex-col px-5 boder-b border-b-silver">
+        <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
           {!isFinished && <div className="text-sm pb-0.5">{savingsType}</div>}
           <div className="text-md font-bold">{cashBoxTitle}</div>
           <div className="text-xs">
