@@ -6,6 +6,8 @@ import Step from "@/components/common/Step";
 
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
+  const [imageList, setImageList] = useState([]);
+
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
@@ -15,18 +17,18 @@ export default function MakeMemory() {
   const [step, setStep] = useState(0);
   const totalStep = 3;
 
-  const elementRef = useRef(null);
-
   function nextStep() {
     setStep(step + 1);
   }
   //   이미지 상대경로 저장
   const handleAddImages = (event) => {
-    const imageLists = event.target.files;
+    const imgLists = event.target.files;
+    setImageList(imgLists);
+
     let imageUrlLists = [...showImages];
 
-    for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+    for (let i = 0; i < imgLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imgLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
 
@@ -35,7 +37,8 @@ export default function MakeMemory() {
     }
 
     setShowImages(imageUrlLists);
-    moveScroll();
+    event.target.scrollLeft = 10000;
+    // moveScroll();
   };
 
   function onChangeMemoryTitle(event) {
@@ -57,17 +60,22 @@ export default function MakeMemory() {
     );
   };
 
-  //스크롤 하기 실패
-  function moveScroll() {
-    console.log(elementRef.current);
-    document.getElementsByClassName("scroll-wrap").scrollLeft += 10000;
-  }
-
   const onKeyDownHandler = (event) => {
     if (event.code == "Enter" || event.code == "enter" || event.keyCode == 13) {
       event.target.blur();
     }
   };
+
+  function onSubmitMemory(event) {
+    event.preventDefault();
+    console.log(memoryTitle);
+    console.log(memoryDesc);
+    console.log(depositAmount);
+    for (var i = 0; i < imageList.length; i++) {
+      console.log(imageList[i]);
+    }
+  }
+
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
@@ -236,11 +244,14 @@ export default function MakeMemory() {
             <div className="warning-text mt-1">
               * 추억 등록 후 수정이 불가합니다.
             </div>
-            <div>
-              <LongBtn text="다음" clickFunc={nextStep} />
-            </div>
+            <form action="POST" onSubmit={onSubmitMemory}>
+              <div>
+                <LongBtn text="완료" clickFunc={onSubmitMemory} />
+              </div>
+            </form>
           </div>
         </div>
+        <div></div>
       </div>
     );
   }
