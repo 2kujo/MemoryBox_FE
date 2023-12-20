@@ -153,7 +153,7 @@ export default function MakeMemory() {
           <div className="memory-content-box">
             <div className="my-5 h-52">
               <textarea
-                className="w-full focus:outline-none "
+                className="w-full focus:outline-none h-full "
                 type="text"
                 id="memory_title"
                 placeholder="내용을 작성해주세요"
@@ -201,7 +201,7 @@ export default function MakeMemory() {
                   onChange={onChangeDepositAmount}
                   onKeyDown={onKeyDownHandler}
                   maxLength="20"
-                  className="opacity-0  w-full outline-none text-md"
+                  className="opacity-0 w-full outline-none text-md"
                 />
               </div>
             </div>
@@ -255,10 +255,25 @@ export default function MakeMemory() {
           <hr className="hr1" />
           <div className="memory-content-box h-60 mt-3">
             {memoryDesc === "" && <div className=" text-[#888]">내용 없음</div>}
-            {memoryDesc !== "" && <div className="">{memoryDesc}</div>}
+            {memoryDesc !== "" && (
+              <div className="memory-content-box">
+                <div className="my-5 h-52">
+                  <textarea
+                    readOnly
+                    className=" w-full h-full focus:outline-none"
+                  >
+                    {memoryDesc}
+                  </textarea>
+                </div>
+                <div className="text-right text-grey text-xs">
+                  <span>{inputCount}</span>
+                  <span>/200</span>
+                </div>
+              </div>
+            )}
           </div>
           <div>
-            <hr className="hr1" />
+            <hr className="hr1 mt-5" />
           </div>
           <div className="memory-deposit-box h-16 flex items-center justify-between">
             <div>입금액</div>
