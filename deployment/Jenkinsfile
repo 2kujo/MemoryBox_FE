@@ -43,11 +43,11 @@ podTemplate(
 		selector_val=props["selector_val"]
 
 		try {
-			stage("Build React Scripts") {
+			stage("Build Vite Scripts") {
 				container("node") {
-					sh "yarn install --cache-folder ${WORKSPACE}/yarn-cache"
+					//sh "yarn install --cache-folder ${WORKSPACE}/yarn-cache"
 					sh "npm install"
-					sh "yarn build"
+					sh "npm run build"
 				}
 			}
 
