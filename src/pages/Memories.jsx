@@ -19,7 +19,9 @@ export default function Memories() {
     navigate("/make-memory");
   }
 
-  function onClickHanlderToAlbum() {}
+  function onClickHanlderToAlbum() {
+    navigate("/memories/album");
+  }
 
   const ongoinDummyData = [
     {
@@ -66,8 +68,8 @@ export default function Memories() {
   return (
     <div>
       <Navbar pageTitle={cashBoxTitle} />
-      <div className="font-text">
-        <div className="cash-box-outline flex-col px-3 boder-b border-b-silver">
+      <div className="mx-2">
+        <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
           {!isFinished && <div className="text-sm pb-0.5">{savingsType}</div>}
           <div className="font-display text-md font-bold">{cashBoxTitle}</div>
           <div className="text-xs">

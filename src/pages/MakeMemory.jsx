@@ -68,6 +68,7 @@ export default function MakeMemory() {
   }
 
   const onKeyDownHandler = (event) => {};
+
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
@@ -107,7 +108,7 @@ export default function MakeMemory() {
           <hr className="hr1 mt-5" />
           <div className="memory-title-box h-10">
             <input
-              className="w-full h-full focus:outline-none font-text"
+              className="w-full h-full focus:outline-none text-sm"
               type="text"
               id="memory_title"
               placeholder="제목을 입력하세요(선택사항)"
@@ -118,9 +119,9 @@ export default function MakeMemory() {
           </div>
           <hr className="hr1" />
           <div className="memory-content-box">
-            <div className="my-5 h-60">
+            <div className="my-5 h-52">
               <textarea
-                className="w-full focus:outline-none font-text"
+                className="w-full focus:outline-none "
                 type="text"
                 id="memory_title"
                 placeholder="내용을 작성해주세요"
@@ -129,7 +130,7 @@ export default function MakeMemory() {
                 onChange={onChangeMemoryDesc}
               ></textarea>
             </div>
-            <div className="text-right font-text">
+            <div className="text-right text-grey text-xs">
               <span>{inputCount}</span>
               <span>/200</span>
             </div>
@@ -138,7 +139,7 @@ export default function MakeMemory() {
             <hr className="hr1 mb-5" />
           </div>
 
-          <div className="h-36 flex flex-col justify-between">
+          <div className="flex flex-col justify-between">
             <div></div>
             <div>
               <LongBtn text="다음" clickFunc={nextStep} />
@@ -156,7 +157,7 @@ export default function MakeMemory() {
         </div>
         <div className="mt-4 flex w-full h-full flex-col justify-between">
           <div>
-            <div className="text-xl font-text">얼마를 넣을까요?</div>
+            <div className="text-md ">얼마를 넣을까요?</div>
             <div className="w-full">
               <input
                 type="text"
@@ -164,7 +165,7 @@ export default function MakeMemory() {
                 value={changedDeposit}
                 onChange={onChangeDepositAmount}
                 maxLength="20"
-                className="border-b-[1px] w-full py-2 outline-none text-md font-text"
+                className="border-b-[1px] w-full py-2 outline-none text-md mt-5"
               />
             </div>
           </div>
@@ -184,7 +185,7 @@ export default function MakeMemory() {
         <div className="w-full h-full flex-col">
           {showImages.length === 0 && (
             <div className="">
-              <div className="font-text text-[#888]">사진 없음</div>
+              <div className=" text-[#888]">사진 없음</div>
             </div>
           )}
           {showImages.length !== 0 && (
@@ -203,9 +204,9 @@ export default function MakeMemory() {
             </div>
           )}
           <hr className="hr1 mt-5" />
-          <div className="memory-title-box font-text h-10 mt-5">
+          <div className="memory-title-box  h-10 mt-3">
             {memoryTitle === "" && (
-              <div className="font-text text-[#888]">제목 없음</div>
+              <div className=" text-[#888] text-sm">제목 없음</div>
             )}
             {memoryTitle !== "" && (
               <div>
@@ -215,16 +216,14 @@ export default function MakeMemory() {
             )}
           </div>
           <hr className="hr1" />
-          <div className="memory-content-box font-text h-60 mt-5">
-            {memoryDesc === "" && (
-              <div className="font-text text-[#888]">내용 없음</div>
-            )}
-            {memoryDesc !== "" && <div className="font-text">{memoryDesc}</div>}
+          <div className="memory-content-box h-60 mt-3">
+            {memoryDesc === "" && <div className=" text-[#888]">내용 없음</div>}
+            {memoryDesc !== "" && <div className="">{memoryDesc}</div>}
           </div>
           <div>
             <hr className="hr1" />
           </div>
-          <div className="memory-deposit-box h-20 font-text flex items-center justify-between">
+          <div className="memory-deposit-box h-16 flex items-center justify-between">
             <div>입금액</div>
             <div>
               <span className="text-blue">{depositAmount}</span>
@@ -232,8 +231,8 @@ export default function MakeMemory() {
             </div>
           </div>
           <hr className="hr1" />
-          <div className="h-32 flex flex-col justify-between">
-            <div className="warning-text mt-1">
+          <div className="flex flex-col justify-between">
+            <div className="text-[#EB1724] py-2 text-xs">
               * 추억 등록 후 수정이 불가합니다.
             </div>
             <div>

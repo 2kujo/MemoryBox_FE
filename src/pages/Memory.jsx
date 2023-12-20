@@ -36,7 +36,7 @@ export default function Memory() {
   return (
     <div className="overflow-hidden font-text">
       <Navbar pageTitle={cashBoxTitle} />
-      <div className="w-[100dvw] h-[100vw] absolute left-0">
+      <div className="w-[100dvw] h-[100dvw] absolute left-0">
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
           activeItemIndex={activeItemIndex}
