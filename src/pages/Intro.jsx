@@ -50,6 +50,7 @@ export default function Intro() {
   } else if (location.pathname == "/intro-finish") {
     return (
       <>
+
         <div className="flex w-full h-full justify-center items-center">
           <div className="w-full flex flex-col justify-center items-center">
             <div className="text-[2rem] text-center font-display mb-1">

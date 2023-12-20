@@ -43,17 +43,46 @@ export default function MakeBox() {
       return false;
     }
     else return true;
+
+  const validVal = {
+    0: '저금통 이름은',
+    1: '저금통 용도는',
+    2: '연결할 상품은'
+  }
+  
+  function nextStep(){
+    if(isValidNextStep()){
+      setStep(step+1);
+    }else{
+      console.log(validVal[step]+" 반드시 입력해야 합니다.");
+    }
   }
 
+  // 스텝 이동에 대한 입력값 valid check
+  function isValidNextStep(){
+    if(step == 0 && cashboxName == ""){
+      return false;
+    }else if(step == 1 && cashboxDesc == ""){
+      return false;
+    }else if(step == 2 && cashboxProduct == ""){
+      return false;
+    }
+    return true;
+
+
+  // input에서 엔터 입력 시 키패드 내려주기 위한 함수
   const keyDownHandler = (event) => {
     if(event.code == "Enter" || event.code == "enter" || event.keyCode == 13){
       event.target.blur();
     }
   }
 
+  // 저금통 이름
   const handleCashboxNameChange = (event) => {
     setCashboxName(event.target.value);
   };
+
+  // 저금통 용도
   const handleCashboxDescChange = (event) => {
     setCashboxDesc(event.target.value);
   };
