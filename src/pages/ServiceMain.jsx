@@ -8,6 +8,9 @@ import AnivPop from '@/components/AnivPop.jsx'
 import '@/pages/css/ServiceMain.css'
 
 // 시연용
+import CheckBg from "@/assets/images/bg_check.jpeg"
+import Image1 from "@/assets/images/first_tooth.png"
+import Image2 from "@/assets/images/intro_bibi.png"
 import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 const getCookie = (name) => {
@@ -51,7 +54,7 @@ export default function ServiceMain() {
       balance: "12,400,000",
       startDate: "2020.05.31",
       maturityDate: "2023.05.31",
-      thumbnail: "/src/assets/images/first_tooth.png",
+      thumbnail: Image1,
       maturityChecked: false,
     },
     {
@@ -60,7 +63,7 @@ export default function ServiceMain() {
       balance: "34,500,000",
       startDate: "2020.01.31",
       maturityDate: "2022.01.31",
-      thumbnail: "/src/assets/images/intro_bibi.png",
+      thumbnail: Image2,
       maturityChecked: true,
     },
   ];
@@ -107,7 +110,7 @@ export default function ServiceMain() {
         {finishedCashBoxList.map((cashbox) => (
           <div key={cashbox.cashBoxId} className={`${cashbox.maturityChecked == false ? 'need-to-read ' : ''}relative`} onClick={() => viewCashbox(cashbox.cashBoxId)}>
             <img
-              src="/src/assets/images/bg_check.jpeg"
+              src={CheckBg}
               alt="저금완료 저금통 배경 이미지"
               className="object-cover shadow-md z-0"
             />

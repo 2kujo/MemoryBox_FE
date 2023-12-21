@@ -4,6 +4,8 @@ import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
+import Image from "@/assets/images/first_tooth.png"
+
 export default function Memories() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,35 +40,35 @@ export default function Memories() {
       title: "민조 아랫니",
       depositAmout: 50000,
       createAt: "2023-12-04",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 2,
       title: "민조 아랫니",
       depositAmout: 30000,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 3,
       title: "민조 아랫니",
       depositAmout: 99900,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 4,
       title: "민조 아랫니",
       depositAmout: 1000,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 4,
       title: "민조 아랫니",
       depositAmout: 1000,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
   ];
 
