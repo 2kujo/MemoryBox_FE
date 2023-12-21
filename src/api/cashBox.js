@@ -1,7 +1,7 @@
 import UserApi from "@/api/UserApi";
 
 export function getCashBoxes(isFinished, success, fail) {
-  UserApi.get(`cash-boxes?isFinished=${isFinished}}`).then(success).catch(fail);
+  UserApi.get(`cash-boxes?isFinished=${isFinished}`).then(success).catch(fail);
 }
 
 export function getCashBox(cashBoxId, params, success, fail) {
