@@ -1,13 +1,18 @@
 import UserApi from "@/api/UserApi";
 
 export function requestMemories(cashBoxId, success, fail) {
+  console.log(`requestMemories CashBoxId : ${cashBoxId}`);
   UserApi.get(`cash-boxes/${cashBoxId}/memories`).then(success).catch(fail);
 }
 
 export function requestMemory(cashBoxId, memoryId, success, fail) {
-  UserApi.get(
-    `/cash-boxes/${cashBoxId}/memories/${memoryId}`.then(success).catch(fail)
-  );
+  console.log(`requestMemory CashBoxId : ${cashBoxId}`);
+  console.log(`requestMemory memoryId : ${memoryId}`);
+  console.log(`/cash-boxes/${cashBoxId}/memories/${memoryId}`);
+
+
+    UserApi.get(
+      `/cash-boxes/${cashBoxId}/memories/${memoryId}`).then(success).catch(fail);
 }
 
 export function requestCreateMemory(cashBoxId, data, success, fail) {

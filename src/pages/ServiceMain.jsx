@@ -84,7 +84,7 @@ export default function ServiceMain() {
         <div className="mb-[-0.75rem]">
           {ingCashBoxList.map((cashbox) => (
             <div
-              onClick={() => viewCashbox(cashbox.cashBoxId)}
+              onClick={() => viewCashbox(1)}
               className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
             >
               <div className="font-text text-[1.1rem]">{cashbox.name}</div>

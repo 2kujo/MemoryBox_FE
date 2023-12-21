@@ -30,13 +30,16 @@ export default function Memories() {
   const [isFinished, setIsFinished] = useState(1);
 
   const cashBoxId = location.state.cashBoxId;
+  console.log(`Memories CashBoxId : ${cashBoxId}`);
   useEffect(() => {
     requestMemories(cashBoxId, onSuccess, onFailure);
   }, []);
 
   function onSuccess(res) {
     const memories = res.data.memoryList;
+    console.log(memories);
     setMemoryList(memories);
+  
 
     let totMoney = 0;
     for (var i = 0; i < memories.length; i++) {
@@ -126,7 +129,7 @@ export default function Memories() {
         </div>
         <hr className="w-full bg-grey h-px border-none" />
         <div className="cash-box-memories">
-          <MemoryList memoryContents={memoryList} />
+          <MemoryList memoryContents={memoryList} cashBoxId={cashBoxId} />
         </div>
       </div>
       {!isFinished && (

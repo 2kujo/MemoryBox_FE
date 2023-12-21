@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Navbar from "@/components/common/Navbar";
 import ItemsCarousel from "react-items-carousel";
+import { useLocation, useParams } from "react-router-dom";
 
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -9,12 +10,33 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 // 시연용
 import Image1 from "@/assets/images/first_tooth.png"
 import Image2 from "@/assets/images/intro_bibi.png"
+import { requestMemory } from "@/api/memory";
 // 시연용
 
 export default function Memory() {
+  const location = useLocation();
+  let params = useParams()
+
+  const cashBoxId = location.state.cashBoxId;
+  const memoryId = params.memoryId
+  // const memoryId = location.state.mid;
+
+  console.log(`Memory CashBoxId : ${cashBoxId}`);
+  console.log(`Memory memoryId : ${memoryId}`);
+
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [maxImagesIndex, setMaxImagesIndex] = useState(1);
+  const [memory,setMemory] = useState(
+    {
+      memoryId: 0,
+      title: "",
+      depositAmount: 0,
+      createdAt: Date(),
+      content: "",
+      images: []
+    }
+  )
 
   const handleNextClick = () => {
     setActiveItemIndex((prevIndex) =>
@@ -38,9 +60,27 @@ export default function Memory() {
     ],
   };
 
+  useEffect(() => {   
+    requestMemory(cashBoxId, memoryId, onSuccess, onFailure);
+  }, []);
+
+  function onSuccess(res){
+    
+    console.log(res.data.images);
+setMemory(res.data)
+
+
+
+  }
+
+  function onFailure(err){
+    console.log(err);
+  }
+
+
   return (
     <div className="overflow-hidden font-text">
-      <Navbar pageTitle={cashBoxTitle} />
+      <Navbar pageTitle={memory.title} />
       <div className="w-[100dvw] h-[100dvw] absolute left-0">
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
@@ -60,10 +100,15 @@ export default function Memory() {
           outsideChevron={false}
           chevronWidth={40}
         >
-          {memoryData.images.map((image, key) => (
+
+          
+          {
+          
+          memory.images.map((image, key) => (
+            
             <img
               key={key}
-              src={image}
+              src={`http://memorybox-ikujo-back.165.192.105.60.nip.io/image/${image}`}
               alt={`${activeItemIndex + 1}번째 사진`}
               className="w-full aspect-square object-cover"
             />
@@ -73,12 +118,12 @@ export default function Memory() {
       <div className="h-[100vw]"></div>
       <div className="memory-outline flex justify-between p-2">
         <div className="">
-          <div className="text-sm font-medium">{memoryData.title}</div>
-          <div className="text-xs text-grey">{memoryData.createdAt}</div>
+          <div className="text-sm font-medium">{memory.title}</div>
+          <div className="text-xs text-grey">{memory.createdAt}</div>
         </div>
         <div className="text-sm pt-3">
           <span className="text-blue font-bold pr-0.5">
-            {memoryData.depositAmount.toLocaleString("ko-KR")}
+            {memory.depositAmount.toLocaleString("ko-KR")}
           </span>
           <span>원</span>
         </div>
@@ -87,7 +132,7 @@ export default function Memory() {
         className="memory-content p-2 bg-white text-font1 opacity-90"
         disabled
       >
-        {memoryData.content}
+        {memory.content}
       </textarea>
     </div>
   );
