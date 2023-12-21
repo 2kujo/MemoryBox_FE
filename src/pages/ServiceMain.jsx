@@ -87,7 +87,7 @@ export default function ServiceMain() {
               onClick={() => viewCashbox(cashbox.cashBoxId)}
               className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
             >
-              <div className="font-text text-[1.1rem]">cashbox.name</div>
+              <div className="font-text text-[1.1rem]">{cashbox.name}</div>
               <div className="font-text text-xs text-grey">
                 {cashbox.startDate} ~ {cashbox.maturityDate} (만기 예정)
               </div>

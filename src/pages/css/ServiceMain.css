@@ -20,12 +20,12 @@
 
 .need-to-read::after,
 .need-to-read::before {
-    content: "";
-    position: absolute;
-    inset: -0.12rem;
-    z-index: -1;
-    background: conic-gradient(from var(--angle-deg), #f7ebf1, #f8cf29);
-    animation: spin 4s linear infinite;
+  content: "";
+  position: absolute;
+  inset: -0.12rem;
+  z-index: -1;
+  background: conic-gradient(from var(--angle-deg), #f7ebf1, #f8cf29);
+  animation: spin 4s linear infinite;
 }
 
 .need-to-read::after {
