@@ -94,20 +94,21 @@ export default function MakeMemory() {
     }
   };
 
-  async function onSubmitMemory(event) {
+  function onSubmitMemory(event) {
     event.preventDefault();
 
     console.log(memoryTitle);
     console.log(memoryDesc);
     console.log(depositAmount);
 
-    await requestCreateMemory(
-      cashBoxId,
-      memoryTitle,
-      memoryDesc,
-      depositAmount,
-      imageList
-    );
+    const data = {
+      title: memoryTitle,
+      content: memoryDesc,
+      depositAmount: depositAmount,
+      imageFiles: imageList,
+    };
+
+    requestCreateMemory(cashBoxId, data);
   }
 
   window.onpopstate = function (event) {

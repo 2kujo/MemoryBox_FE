@@ -10,19 +10,11 @@ export function requestMemory(cashBoxId, memoryId, success, fail) {
   );
 }
 
-export function requestCreateMemory(
-  cashBoxId,
-  title,
-  content,
-  depopsitAmount,
-  imagesFiles,
-  success,
-  fail
-) {
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-  formData.append("depositAmount", depopsitAmount);
+export function requestCreateMemory(cashBoxId, data, success, fail) {
+  //   const formData = new FormData();
+  //   formData.append("title", title);
+  //   formData.append("content", content);
+  //   formData.append("depositAmount", depopsitAmount);
 
   // let dataSet = {
   //     title: title1,
@@ -30,9 +22,9 @@ export function requestCreateMemory(
   //     depopsitAmount: depopsitAmount1,
   //   };
 
-  for (var i = 0; i < imagesFiles.length; i++) {
-    formData.append("imageFiles", imagesFiles[i]);
-  }
+  //   for (var i = 0; i < imagesFiles.length; i++) {
+  //     formData.append("imageFiles", imagesFiles[i]);
+  //   }
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -41,10 +33,12 @@ export function requestCreateMemory(
 
   UserApi.post(
     `/cash-boxes/${cashBoxId}/memories`,
-    title,
-    content,
-    depopsitAmount,
-    imagesFiles,
+    {
+      title: data.title,
+      content: data.content,
+      depopsitAmount: data.depopsitAmount,
+      imagesFiles: data.imagesFiles,
+    },
     config
   )
     .then(success)
