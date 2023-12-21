@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, KeyboardEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "@/components/common/Navbar.jsx";
 import Step from "@/components/common/Step.jsx";
 import LongBtn from "@/components/common/LongBtn.jsx";
 
 export default function MakeBox() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [cashboxName, setCashboxName] = useState("");
   const [cashboxDesc, setCashboxDesc] = useState("");
@@ -25,6 +26,8 @@ export default function MakeBox() {
     1: "저금통 설명은",
     2: "연결할 상품은",
   };
+
+  document.body.style.backgroundColor = "#FFFFFF";
 
   function nextStep() {
     if (isNextStepPossible()) {
@@ -45,16 +48,16 @@ export default function MakeBox() {
   }
 
   const validVal = {
-    0: "저금통 이름은",
-    1: "저금통 용도는",
-    2: "연결할 상품은",
-  };
-
-  function nextStep() {
-    if (isValidNextStep()) {
-      setStep(step + 1);
-    } else {
-      console.log(validVal[step] + " 반드시 입력해야 합니다.");
+    0: '저금통 이름은',
+    1: '저금통 용도는',
+    2: '연결할 상품은'
+  }
+  
+  function nextStep(){
+    if(isValidNextStep()){
+      setStep(step+1);
+    }else{
+      toast(validVal[step]+" 반드시 입력해야 합니다.");
     }
   }
 

@@ -1,5 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import AlbumIcon from "@/assets/images/album1.svg";
 
 export default function FloatingBtn(props) {
   const type = props.type;
@@ -29,7 +30,7 @@ export default function FloatingBtn(props) {
         onClick={props.clickFunc}
       >
         <img
-          src="/src/assets/images/album1.svg"
+          src={AlbumIcon}
           alt="디지털 앨범 아이콘"
           className="w-7 h-7 text-white"
         />

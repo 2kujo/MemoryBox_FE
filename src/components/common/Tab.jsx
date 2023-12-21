@@ -10,7 +10,7 @@ export default function Tab(props) {
 
   return (
     <div>
-      <div className="mb-6 flex justify-stretch">
+      <div className="mb-7 flex justify-stretch">
         {tabList.map((tab, idx, array) => {
           return (
             <div
