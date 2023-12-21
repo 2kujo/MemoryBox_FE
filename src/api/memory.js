@@ -1,7 +1,7 @@
 import UserApi from "@/api/UserApi";
 
 export function requestMemories(cashBoxId, success, fail) {
-  UserApi.get(`cash-boxed/${cashBoxId}/memories`).then(success).catch(fail);
+  UserApi.get(`cash-boxes/${cashBoxId}/memories`).then(success).catch(fail);
 }
 
 export function requestMemory(cashBoxId, memoryId, success, fail) {
