@@ -12,8 +12,7 @@ export function getCashBox(cashBoxId, params, success, fail) {
     .catch(fail);
 }
 
-
-export function createCashBox({data}, success, fail) {
+export function createCashBox(data, success, fail) {
   UserApi.post(
     `/cash-boxes`, data
   )

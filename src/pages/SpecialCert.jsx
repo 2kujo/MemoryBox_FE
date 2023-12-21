@@ -9,7 +9,8 @@ export default function SpecialCert(){
 
     // special cert 발급을 위한 통신 수행 후 intro 페이지로 이동
     useEffect(() => {
-        getSpecialCert(() => {
+        getSpecialCert((data) => {
+            setCookie("memorybox-special-user", data.data.userId);
             navigate("/main");
         });
     }, []);

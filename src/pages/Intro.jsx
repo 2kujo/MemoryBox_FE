@@ -5,7 +5,7 @@ import IntroFinishBibi from "@/assets/images/intro_finish_bibi.gif";
 import IntroLogo from "@/assets/images/intro_logo.jpg";
 
 import LongBtn from "@/components/common/LongBtn.jsx";
-import { getCookie } from "@/api/Cookies"
+import { getCookie, setCookie } from "@/api/Cookies"
 import { getCert } from "@/api/cert"
 
 export default function Intro() {
@@ -30,13 +30,17 @@ export default function Intro() {
     userId = getCookie("memorybox-user-id");
   }
 
-  function onSuccess() {
+  function onSuccess(data) {
+    setCookie("memorybox-user-id", data.data.userId);
     if (userId) {
       userId = null;
       navigate("/main");
       return;
     }
-    navigate("/intro-finish");
+
+    navigate("/main");
+    //TODO intro-finish로 보내는 시퀀스 고민해보기
+    //navigate("/intro-finish");
   }
 
   function endIntro() {
