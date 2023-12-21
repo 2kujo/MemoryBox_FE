@@ -12,6 +12,9 @@ import CheckBg from "@/assets/images/bg_check.jpeg";
 import Image1 from "@/assets/images/first_tooth.png";
 import Image2 from "@/assets/images/intro_bibi.png";
 import { Cookies } from "react-cookie";
+
+import { getCashBoxes } from "@/api/cashBox";
+
 const cookies = new Cookies();
 const getCookie = (name) => {
   return cookies.get(name);
@@ -20,6 +23,9 @@ const getCookie = (name) => {
 
 export default function ServiceMain() {
   const navigate = useNavigate();
+
+  const [ingCashBoxList, setIngCashBoxList] = useState([]);
+  const [finishedCashBoxList, setFinishedCashBoxList] = useState([]);
 
   // 시연용
   const popShowed = getCookie("2-popShowed");
@@ -30,43 +36,54 @@ export default function ServiceMain() {
     { key: 1, title: "저금 완료", contents: "" },
   ];
 
-  const ingCashBoxList = [
-    {
-      cashBoxId: 2,
-      name: "민조 유치원",
-      balance: "750,000",
-      startDate: "2023.12.10",
-      maturityDate: "2024.12.20",
-    },
-    {
-      cashBoxId: 3,
-      name: "진아 초등학교 입학",
-      balance: "1,200,000",
-      startDate: "2022.02.01",
-      maturityDate: "2024.02.01",
-    },
-  ];
+  // const ingCashBoxList = [
+  //   {
+  //     cashBoxId: 2,
+  //     name: "민조 유치원",
+  //     balance: "750,000",
+  //     startDate: "2023.12.10",
+  //     maturityDate: "2024.12.20",
+  //   },
+  //   {
+  //     cashBoxId: 3,
+  //     name: "진아 초등학교 입학",
+  //     balance: "1,200,000",
+  //     startDate: "2022.02.01",
+  //     maturityDate: "2024.02.01",
+  //   },
+  // ];
 
-  const finishedCashBoxList = [
-    {
-      cashBoxId: 0,
-      name: "민조야 어서와",
-      balance: "12,400,000",
-      startDate: "2020.05.31",
-      maturityDate: "2023.05.31",
-      thumbnail: Image1,
-      maturityChecked: false,
-    },
-    {
-      cashBoxId: 1,
-      name: "진아 유치원 입학",
-      balance: "34,500,000",
-      startDate: "2020.01.31",
-      maturityDate: "2022.01.31",
-      thumbnail: Image2,
-      maturityChecked: true,
-    },
-  ];
+  // const finishedCashBoxList = [
+  //   {
+  //     cashBoxId: 0,
+  //     name: "민조야 어서와",
+  //     balance: "12,400,000",
+  //     startDate: "2020.05.31",
+  //     maturityDate: "2023.05.31",
+  //     thumbnail: Image1,
+  //     maturityChecked: false,
+  //   },
+  //   {
+  //     cashBoxId: 1,
+  //     name: "진아 유치원 입학",
+  //     balance: "34,500,000",
+  //     startDate: "2020.01.31",
+  //     maturityDate: "2022.01.31",
+  //     thumbnail: Image2,
+  //     maturityChecked: true,
+  //   },
+  // ];
+
+  // 환자 리스트 요청
+  useEffect(() => {
+    getCashBoxList(true, cashBoxListSuccess, cashBoxListFail);
+  }, []);
+
+  function cashBoxListSuccess(res) {
+    setIngCashBoxList(res.data.cashBoxList);
+  }
+
+  function cashBoxListFail() {}
 
   function viewCashbox(id) {
     navigate("/memories", { state: { cashBoxId: id } });
@@ -84,6 +101,7 @@ export default function ServiceMain() {
         <div className="mb-[-0.75rem]">
           {ingCashBoxList.map((cashbox) => (
             <div
+                key={cashbox.cashBoxId}
               onClick={() => viewCashbox(cashbox.cashBoxId)}
               className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
             >
