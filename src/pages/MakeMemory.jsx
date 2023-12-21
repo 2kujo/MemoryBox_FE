@@ -99,7 +99,6 @@ export default function MakeMemory() {
   function onSubmitMemory(event) {
     event.preventDefault();
 
-    console.log(imageList);
     const data = {
       title: memoryTitle,
       content: memoryDesc,
