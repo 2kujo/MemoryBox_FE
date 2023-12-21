@@ -101,14 +101,13 @@ setMemory(res.data)
           chevronWidth={40}
         >
 
-          
           {
           
           memory.images.map((image, key) => (
             
             <img
               key={key}
-              src={`http://memorybox-ikujo-back.165.192.105.60.nip.io/image/${image}`}
+              src={`http://memorybox-ikujo.165.192.105.60.nip.io/image/${image}`}
               alt={`${activeItemIndex + 1}번째 사진`}
               className="w-full aspect-square object-cover"
             />

@@ -34,7 +34,7 @@ export default function MemoryList({ memoryContents, cashBoxId }) {
           <div className="w-20 h-20 overflow-hidden rounded-sm">
             <img
               className="w-full h-full m-auto object-cover"
-              src={`http://memorybox-ikujo-back.165.192.105.60.nip.io/image/${memory.image}`}
+              src={`http://memorybox-ikujo.165.192.105.60.nip.io/image/${memory.image}`}
               alt={`${memory.title}`}
             />
           </div>
