@@ -1,26 +1,35 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
 export default function Memories() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   // isFinished props로 받기
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [savingsType, setSavingsType] = useState("KB 특★별한 우리아이 적금");
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
+  // const [isFinished, setIsFinished] = useState(0);
 
-  const [isFinished, setIsFinished] = useState(0);
+  // 시연용
+  let isFinished = 0
+  const cashBoxId = location.state.cashBoxId;
+  if (cashBoxId == 0 || cashBoxId == 1){
+    isFinished = 1;
+  }
+  // 시연용
+
 
   function onClickHandlerToMakeMemory() {
     navigate("/make-memory");
   }
 
   function onClickHanlderToAlbum() {
-    navigate("/memories/album");
+    navigate("/memories/album", {state: {cashBoxId: cashBoxId}});
   }
 
   const ongoinDummyData = [

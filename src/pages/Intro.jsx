@@ -11,11 +11,16 @@ export default function Intro() {
 
   if(location.pathname == "/"){
     document.body.style.backgroundColor = "#FFDA48";
+  }else{
+    document.body.style.backgroundColor = "#FFFFFF";
   }
   
   function startIntro() {
     //cert를 통해 유저 판별
-    navigate("/make-box");
+    // navigate("/make-box");
+
+    // 시연용
+    navigate("/intro-finish");
   }
   function endIntro() {
     navigate("/main");

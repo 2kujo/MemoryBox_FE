@@ -26,7 +26,6 @@
     z-index: -1;
     background: conic-gradient(from var(--angle-deg), #f7ebf1, #f8cf29);
     animation: spin 4s linear infinite;
-    border-radius: 10px;
 }
 
 .need-to-read::after {
