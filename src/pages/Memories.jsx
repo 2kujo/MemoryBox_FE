@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
 import Image from "@/assets/images/first_tooth.png";
+import { requestMemories } from "@/api/memory";
 
 export default function Memories() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Memories() {
   const [savingsType, setSavingsType] = useState("KB 특★별한 우리아이 적금");
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
+  const [memoryList, setMemoryList] = useState([]);
   // const [isFinished, setIsFinished] = useState(0);
 
   // 시연용
@@ -28,6 +30,24 @@ export default function Memories() {
   const [isFinished, setIsFinished] = useState(1);
 
   const cashBoxId = location.state.cashBoxId;
+  useEffect(() => {
+    requestMemories(cashBoxId, onSuccess, onFailure);
+  }, []);
+
+  function onSuccess(res) {
+    const memories = res.data.memoryList;
+    setMemoryList(memories);
+
+    let totMoney = 0;
+    for (var i = 0; i < memories.length; i++) {
+      totMoney += memories[i].depositAmount;
+    }
+    setCashBoxAmt(totMoney);
+  }
+
+  function onFailure(err) {
+    console.log(err);
+  }
 
   function onClickHandlerToMakeMemory() {
     navigate("/make-memory", { state: { cashBoxId: cashBoxId } });
@@ -106,7 +126,7 @@ export default function Memories() {
         </div>
         <hr className="w-full bg-grey h-px border-none" />
         <div className="cash-box-memories">
-          <MemoryList memoryContents={ongoinDummyData} />
+          <MemoryList memoryContents={memoryList} />
         </div>
       </div>
       {!isFinished && (
