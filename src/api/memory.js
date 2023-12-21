@@ -11,20 +11,6 @@ export function requestMemory(cashBoxId, memoryId, success, fail) {
 }
 
 export function requestCreateMemory(cashBoxId, data, success, fail) {
-  //   const formData = new FormData();
-  //   formData.append("title", title);
-  //   formData.append("content", content);
-  //   formData.append("depositAmount", depopsitAmount);
-
-  // let dataSet = {
-  //     title: title1,
-  //     content : content1,
-  //     depopsitAmount: depopsitAmount1,
-  //   };
-
-  //   for (var i = 0; i < imagesFiles.length; i++) {
-  //     formData.append("imageFiles", imagesFiles[i]);
-  //   }
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -36,7 +22,7 @@ export function requestCreateMemory(cashBoxId, data, success, fail) {
     {
       title: data.title,
       content: data.content,
-      depopsitAmount: data.depopsitAmount,
+      depositAmount: data.depositAmount,
       imagesFiles: data.imagesFiles,
     },
     config

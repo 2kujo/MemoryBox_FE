@@ -99,6 +99,7 @@ export default function MakeMemory() {
   function onSubmitMemory(event) {
     event.preventDefault();
 
+    console.log(imageList);
     const data = {
       title: memoryTitle,
       content: memoryDesc,
@@ -111,19 +112,23 @@ export default function MakeMemory() {
 
   function onSuccess(res) {
     const memoryId = res.data.memoryId;
+    console.log(memoryId);
     navigate(`/memories/${memoryId}`);
   }
 
   function onFailure(err) {
     console.log(err);
+    // console.log(err.response.data);
+    // console.log(err.response.status);
+    // console.log(err.response.headers);
   }
-  window.onpopstate = function (event) {
-    console.log("sdsdsd");
-    const state = { id: 1 };
-    const url = "/make-box";
+  // window.onpopstate = function (event) {
+  //   console.log("sdsdsd");
+  //   const state = { id: 1 };
+  //   const url = "/make-box";
 
-    history.pushState(state, "", url);
-  };
+  //   history.pushState(state, "", url);
+  // };
 
   if (step == 0) {
     return (
