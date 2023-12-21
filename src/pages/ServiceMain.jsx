@@ -1,10 +1,11 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Navbar from "@/components/common/Navbar.jsx";
 import Tab from "@/components/common/Tab.jsx";
 import FloatingBtn from "@/components/common/FloatingBtn.jsx";
-import '@/pages/css/ServiceMain.css'
+
+import "@/pages/css/ServiceMain.css";
 
 export default function ServiceMain() {
   const navigate = useNavigate();
@@ -18,17 +19,19 @@ export default function ServiceMain() {
       cashBoxId: 0,
       name: "저금통 이름1",
       balance: 1200000,
-      startDate: "2023-12-10",
-      maturityDate: "2023-12-20",
+      startDate: "2023.12.10",
+      maturityDate: "2023.12.20",
       thumbnail: "/src/assets/images/first_tooth.png",
+      notChecked: true,
     },
     {
       cashBoxId: 1,
       name: "저금통 이름2",
       balance: 34500000,
-      startDate: "2023-05-11",
-      maturityDate: "2023-09-26",
+      startDate: "2023.05.11",
+      maturityDate: "2023.09.26",
       thumbnail: "/src/assets/images/intro_bibi.png",
+      notChecked: false,
     },
   ];
 
@@ -36,7 +39,7 @@ export default function ServiceMain() {
     navigate("/memories");
   }
 
-  function floatingClickHandler(){
+  function floatingClickHandler() {
     navigate("/make-box");
   }
 
@@ -48,30 +51,32 @@ export default function ServiceMain() {
         <div className="mb-[-0.75rem]">
           <div
             onClick={() => viewCashbox()}
-            className="need-to-read mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
+            className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
           >
-            <div className="font-text text-md">우리 민조</div>
+            <div className="font-text text-[1.1rem]">우리 민조</div>
             <div className="font-text text-xs text-grey">
               2000.05.31 - 2000.05.31
             </div>
-            <div className="font-text font-medium text-md text-right">
-              200,000원
+            <div className="font-text font-medium text-sm text-right">
+              <span className="font-bold">200,000</span>
+              <span className="pl-0.5">원</span>
             </div>
           </div>
           <div
             onClick={() => viewCashbox()}
             className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
           >
-            <div className="font-text text-md">우리 민조</div>
+            <div className="font-text text-[1.1rem]">우리 민조</div>
             <div className="font-text text-xs text-grey">
               2000.05.31 - 2000.05.31
             </div>
-            <div className="font-text font-medium text-md text-right">
-              200,000원
+            <div className="font-text font-medium text-sm text-right">
+              <span className="font-bold">200,000</span>
+              <span className="pl-0.5">원</span>
             </div>
           </div>
         </div>
-        <FloatingBtn type="add" clickFunc={floatingClickHandler}/>
+        <FloatingBtn type="add" clickFunc={floatingClickHandler} />
       </div>
     );
   }
@@ -81,7 +86,13 @@ export default function ServiceMain() {
     tabList[1].contents = (
       <div className="flex-col space-y-5 font-text">
         {finishedCashBoxList.map((cashbox) => (
-          <div key={cashbox.cashBoxId} className="relative h-44">
+          <div
+            key={cashbox.cashBoxId}
+            className={`relative h-44 ${
+              cashbox.notChecked === true && "need-to-read"
+            }`}
+            onClick={viewCashbox}
+          >
             <img
               src="/src/assets/images/bg_check.jpeg"
               alt="저금완료 저금통 배경 이미지"
@@ -128,7 +139,7 @@ export default function ServiceMain() {
 
   return (
     <div className="w-full h-full">
-      <Navbar pageTitle="추억 저금통"/>
+      <Navbar pageTitle="추억 저금통" />
       <div>
         <Tab tabList={tabList} />
       </div>

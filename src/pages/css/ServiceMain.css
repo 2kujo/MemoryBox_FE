@@ -1,34 +1,34 @@
 @property --angle-deg {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 @keyframes spin {
-    0% {
-        --angle-deg: 0deg;
-    }
-    100% {
-        --angle-deg: 360deg;
-    }
+  0% {
+    --angle-deg: 0deg;
+  }
+  100% {
+    --angle-deg: 360deg;
+  }
 }
 
 .need-to-read {
-    position: relative;
-    /* aspect-ratio: 1/1.5; */
+  position: relative;
+  /* aspect-ratio: 1/1.5; */
 }
 
 .need-to-read::after,
 .need-to-read::before {
-    content: "";
-    position: absolute;
-    inset: -0.12rem;
-    z-index: -1;
-    background: conic-gradient(from var(--angle-deg), #f7ebf1, #f8cf29);
-    animation: spin 4s linear infinite;
-    border-radius: 10px;
+  content: "";
+  position: absolute;
+  inset: -0.12rem;
+  z-index: -1;
+  background: conic-gradient(from var(--angle-deg), #f7ebf1, #ffe18f);
+  animation: spin 4s linear infinite;
+  /* border-radius: 10px; */
 }
 
 .need-to-read::after {
-    filter: blur(5px);
+  filter: blur(5px);
 }
