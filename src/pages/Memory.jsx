@@ -6,6 +6,11 @@ import ItemsCarousel from "react-items-carousel";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
+// 시연용
+import Image1 from "@/assets/images/first_tooth.png"
+import Image2 from "@/assets/images/intro_bibi.png"
+// 시연용
+
 export default function Memory() {
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -28,8 +33,8 @@ export default function Memory() {
     createdAt: "2000.10.21",
     content: "추억 상세 페이지 작성중 \n줄넘기기 되냐?",
     images: [
-      "/src/assets/images/first_tooth.png",
-      "/src/assets/images/intro_bibi.png",
+      Image1,
+      Image2,
     ],
   };
 

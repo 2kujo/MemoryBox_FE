@@ -34,14 +34,14 @@ export default function Intro() {
               <div className="text-3xl font-display mb-1">
                 KB 추억 저금통
               </div>
-              <div className="text-grey text-md">
+              <div className="text-grey text-sm">
                 아이에게 특별한 선물을 하고싶다면<br/>
                 추억을 저금하세요
               </div>
             </div>
             <div className="mt-10 mb-20 w-64 text-center">
               <img
-                className="mx-w-md mb-[10px]"
+                className="mx-w-[22rem] mb-[10px]"
                 src={IntroBibi}
                 alt="추억 저금통에 추억을 저금하고 있는 키키"
               />
