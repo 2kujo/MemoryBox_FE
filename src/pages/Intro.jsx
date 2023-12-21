@@ -1,20 +1,22 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import IntroBibi from '@/assets/images/intro_bibi.png'
-import IntroLogo from '@/assets/images/intro_logo.jpg'
-import IntroFinishBibi from '@/assets/images/intro_finish_bibi.gif'
-import LongBtn from '@/components/common/LongBtn.jsx'
+
+import IntroBibi from "@/assets/images/intro_bibi.png";
+import IntroFinishBibi from "@/assets/images/intro_finish_bibi.gif";
+import IntroLogo from "@/assets/images/intro_logo.jpg";
+
+import LongBtn from "@/components/common/LongBtn.jsx";
 
 export default function Intro() {
   const location = useLocation();
   const navigate = useNavigate();
   const needPop = true;
 
-  if(location.pathname == "/"){
+  if (location.pathname == "/") {
     document.body.style.backgroundColor = "#FFDA48";
-  }else{
+  } else {
     document.body.style.backgroundColor = "#FFFFFF";
   }
-  
+
   function startIntro() {
     //cert를 통해 유저 판별
     // navigate("/make-box");
@@ -25,17 +27,17 @@ export default function Intro() {
   function endIntro() {
     navigate("/main");
   }
+
   if (location.pathname == "/") {
     return (
       <>
         <div className="flex w-full h-full justify-center items-center pt-10">
           <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full px-4">
-              <div className="text-3xl font-display mb-1">
-                KB 추억 저금통
-              </div>
+              <div className="text-3xl font-display mb-1">KB 추억 저금통</div>
               <div className="text-grey text-sm">
-                아이에게 특별한 선물을 하고싶다면<br/>
+                아이에게 특별한 선물을 하고싶다면
+                <br />
                 추억을 저금하세요
               </div>
             </div>
@@ -59,7 +61,6 @@ export default function Intro() {
   } else if (location.pathname == "/intro-finish") {
     return (
       <>
-
         <div className="flex w-full h-full justify-center items-center">
           <div className="w-full flex flex-col justify-center items-center">
             <div className="text-[2rem] text-center font-display mb-1">

@@ -4,7 +4,7 @@ import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
-import Image from "@/assets/images/first_tooth.png"
+import Image from "@/assets/images/first_tooth.png";
 
 export default function Memories() {
   const navigate = useNavigate();
@@ -18,20 +18,23 @@ export default function Memories() {
   // const [isFinished, setIsFinished] = useState(0);
 
   // 시연용
-  let isFinished = 0
-  const cashBoxId = location.state.cashBoxId;
-  if (cashBoxId == 0 || cashBoxId == 1){
-    isFinished = 1;
-  }
+  // let isFinished = 0
+  // const cashBoxId = location.state.cashBoxId;
+  // if (cashBoxId == 0 || cashBoxId == 1){
+  //   isFinished = 1;
+  // }
   // 시연용
 
+  const [isFinished, setIsFinished] = useState(1);
+
+  const cashBoxId = location.state.cashBoxId;
 
   function onClickHandlerToMakeMemory() {
-    navigate("/make-memory");
+    navigate("/make-memory", { state: { cashBoxId: cashBoxId } });
   }
 
   function onClickHanlderToAlbum() {
-    navigate("/memories/album", {state: {cashBoxId: cashBoxId}});
+    navigate("/memories/album", { state: { cashBoxId: cashBoxId } });
   }
 
   const ongoinDummyData = [
@@ -72,8 +75,8 @@ export default function Memories() {
     },
   ];
 
-  function floatingClickHandler(){
-    navigate("/make-memory")
+  function floatingClickHandler() {
+    navigate("/make-memory");
   }
 
   return (

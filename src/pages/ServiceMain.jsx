@@ -1,16 +1,16 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Navbar from "@/components/common/Navbar.jsx";
 import Tab from "@/components/common/Tab.jsx";
 import FloatingBtn from "@/components/common/FloatingBtn.jsx";
-import AnivPop from '@/components/AnivPop.jsx'
-import '@/pages/css/ServiceMain.css'
+import AnivPop from "@/components/AnivPop.jsx";
+import "@/pages/css/ServiceMain.css";
 
 // 시연용
-import CheckBg from "@/assets/images/bg_check.jpeg"
-import Image1 from "@/assets/images/first_tooth.png"
-import Image2 from "@/assets/images/intro_bibi.png"
+import CheckBg from "@/assets/images/bg_check.jpeg";
+import Image1 from "@/assets/images/first_tooth.png";
+import Image2 from "@/assets/images/intro_bibi.png";
 import { Cookies } from "react-cookie";
 const cookies = new Cookies();
 const getCookie = (name) => {
@@ -20,9 +20,9 @@ const getCookie = (name) => {
 
 export default function ServiceMain() {
   const navigate = useNavigate();
-  
+
   // 시연용
-  const popShowed = getCookie("2-popShowed")
+  const popShowed = getCookie("2-popShowed");
   // 시연용
 
   const tabList = [
@@ -44,8 +44,8 @@ export default function ServiceMain() {
       balance: "1,200,000",
       startDate: "2022.02.01",
       maturityDate: "2024.02.01",
-    }
-  ]
+    },
+  ];
 
   const finishedCashBoxList = [
     {
@@ -69,10 +69,10 @@ export default function ServiceMain() {
   ];
 
   function viewCashbox(id) {
-    navigate("/memories", { state: { cashBoxId: id }});
+    navigate("/memories", { state: { cashBoxId: id } });
   }
 
-  function floatingClickHandler(){
+  function floatingClickHandler() {
     navigate("/make-box");
   }
 
@@ -84,21 +84,21 @@ export default function ServiceMain() {
         <div className="mb-[-0.75rem]">
           {ingCashBoxList.map((cashbox) => (
             <div
-            key={cashbox.cashBoxId}
-            onClick={() => viewCashbox(cashbox.cashBoxId)}
-            className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
-          >
-            <div className="font-text text-md">{cashbox.name}</div>
-            <div className="font-text text-xs text-grey">
-              {cashbox.startDate} ~ {cashbox.maturityDate} (만기 예정)
+              onClick={() => viewCashbox(cashbox.cashBoxId)}
+              className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
+            >
+              <div className="font-text text-[1.1rem]">{cashbox.name}</div>
+              <div className="font-text text-xs text-grey">
+                {cashbox.startDate} ~ {cashbox.maturityDate} (만기 예정)
+              </div>
+              <div className="font-text font-medium text-sm text-right">
+                <span className="font-bold">{cashbox.balance}</span>
+                <span className="pl-0.5">원</span>
+              </div>
             </div>
-            <div className="font-text font-medium text-md text-right">
-              {cashbox.balance}원
-            </div>
-          </div>
           ))}
         </div>
-        <FloatingBtn type="add" clickFunc={floatingClickHandler}/>
+        <FloatingBtn type="add" clickFunc={floatingClickHandler} />
       </div>
     );
   }
@@ -108,7 +108,13 @@ export default function ServiceMain() {
     tabList[1].contents = (
       <div className="flex-col space-y-5 font-text">
         {finishedCashBoxList.map((cashbox) => (
-          <div key={cashbox.cashBoxId} className={`${cashbox.maturityChecked == false ? 'need-to-read ' : ''}relative`} onClick={() => viewCashbox(cashbox.cashBoxId)}>
+          <div
+            key={cashbox.cashBoxId}
+            className={`${
+              cashbox.maturityChecked == false ? "need-to-read " : ""
+            }relative`}
+            onClick={() => viewCashbox(cashbox.cashBoxId)}
+          >
             <img
               src={CheckBg}
               alt="저금완료 저금통 배경 이미지"
@@ -149,7 +155,6 @@ export default function ServiceMain() {
                 </div>
               </div>
             </div>
-            
           </div>
         ))}
       </div>
@@ -158,12 +163,16 @@ export default function ServiceMain() {
 
   return (
     <div className="w-full h-full">
-      <Navbar pageTitle="추억 저금통"/>
+      <Navbar pageTitle="추억 저금통" />
       <div>
         <Tab tabList={tabList} />
       </div>
       {!popShowed && (
-        <AnivPop cashBoxTitle="민조 유치원" cashBoxDuration="100" cashBoxId="2"/>
+        <AnivPop
+          cashBoxTitle="민조 유치원"
+          cashBoxDuration="100"
+          cashBoxId="2"
+        />
       )}
     </div>
   );
