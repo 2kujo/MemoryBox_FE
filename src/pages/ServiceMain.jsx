@@ -1,6 +1,6 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Navbar from "@/components/common/Navbar.jsx";
 import Tab from "@/components/common/Tab.jsx";
 import FloatingBtn from "@/components/common/FloatingBtn.jsx";
@@ -72,7 +72,7 @@ export default function ServiceMain() {
     navigate("/memories", { state: { cashBoxId: id }});
   }
 
-  function floatingClickHandler(){
+  function floatingClickHandler() {
     navigate("/make-box");
   }
 
@@ -82,23 +82,37 @@ export default function ServiceMain() {
     tabList[0].contents = (
       <div>
         <div className="mb-[-0.75rem]">
-          {ingCashBoxList.map((cashbox) => (
-            <div
+        {ingCashBoxList.map((cashbox) => (
+          <div
             key={cashbox.cashBoxId}
             onClick={() => viewCashbox(cashbox.cashBoxId)}
             className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
           >
-            <div className="font-text text-md">{cashbox.name}</div>
+            <div className="font-text text-[1.1rem]">{cashbox.name}</div>
+            <div className="font-text text-xs text-grey">
+              2000.05.31 - 2000.05.31
+            </div>
+            <div className="font-text font-medium text-sm text-right">
+              <span className="font-bold">200,000</span>
+              <span className="pl-0.5">원</span>
+            </div>
+          </div>
+          <div
+            onClick={() => viewCashbox()}
+            className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
+          >
+            <div className="font-text text-[1.1rem]">우리 민조</div>
             <div className="font-text text-xs text-grey">
               {cashbox.startDate} ~ {cashbox.maturityDate} (만기 예정)
             </div>
-            <div className="font-text font-medium text-md text-right">
-              {cashbox.balance}원
+            <div className="font-text font-medium text-sm text-right">
+              <span className="font-bold">{cashbox.balance}</span>
+              <span className="pl-0.5">원</span>
             </div>
           </div>
           ))}
         </div>
-        <FloatingBtn type="add" clickFunc={floatingClickHandler}/>
+        <FloatingBtn type="add" clickFunc={floatingClickHandler} />
       </div>
     );
   }
@@ -158,7 +172,7 @@ export default function ServiceMain() {
 
   return (
     <div className="w-full h-full">
-      <Navbar pageTitle="추억 저금통"/>
+      <Navbar pageTitle="추억 저금통" />
       <div>
         <Tab tabList={tabList} />
       </div>

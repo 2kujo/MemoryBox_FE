@@ -25,6 +25,7 @@ export default function Memories() {
   }
   // 시연용
 
+  const [isFinished, setIsFinished] = useState(1);
 
   function onClickHandlerToMakeMemory() {
     navigate("/make-memory");
@@ -72,8 +73,8 @@ export default function Memories() {
     },
   ];
 
-  function floatingClickHandler(){
-    navigate("/make-memory")
+  function floatingClickHandler() {
+    navigate("/make-memory");
   }
 
   return (

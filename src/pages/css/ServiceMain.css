@@ -1,21 +1,21 @@
 @property --angle-deg {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 @keyframes spin {
-    0% {
-        --angle-deg: 0deg;
-    }
-    100% {
-        --angle-deg: 360deg;
-    }
+  0% {
+    --angle-deg: 0deg;
+  }
+  100% {
+    --angle-deg: 360deg;
+  }
 }
 
 .need-to-read {
-    position: relative;
-    /* aspect-ratio: 1/1.5; */
+  position: relative;
+  /* aspect-ratio: 1/1.5; */
 }
 
 .need-to-read::after,
@@ -29,5 +29,5 @@
 }
 
 .need-to-read::after {
-    filter: blur(5px);
+  filter: blur(5px);
 }
