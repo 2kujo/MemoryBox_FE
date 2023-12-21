@@ -1,13 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function DigitalAlbum() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const cashBoxId = location.state.cashBoxId;
 
   function closeDigitalAlbum() {
-    navigate("/memories");
+    navigate("/memories", {state: {cashBoxId: cashBoxId}});
   }
 
   return (
