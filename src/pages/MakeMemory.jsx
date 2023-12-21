@@ -5,7 +5,7 @@ import LongBtn from "@/components/common/LongBtn";
 import { ToastContainer, toast } from "react-toastify";
 
 import Step from "@/components/common/Step";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { requestCreateMemory } from "@/api/memory";
 
 export default function MakeMemory() {
@@ -21,7 +21,9 @@ export default function MakeMemory() {
   const [step, setStep] = useState(0);
   const totalStep = 3;
 
+  const navigate = useNavigate();
   const location = useLocation();
+
   const cashBoxId = location.state.cashBoxId;
   console.log(cashBoxId);
 
@@ -97,10 +99,6 @@ export default function MakeMemory() {
   function onSubmitMemory(event) {
     event.preventDefault();
 
-    console.log(memoryTitle);
-    console.log(memoryDesc);
-    console.log(depositAmount);
-
     const data = {
       title: memoryTitle,
       content: memoryDesc,
@@ -108,9 +106,17 @@ export default function MakeMemory() {
       imageFiles: imageList,
     };
 
-    requestCreateMemory(cashBoxId, data);
+    requestCreateMemory(cashBoxId, data, onSuccess, onFailure);
   }
 
+  function onSuccess(res) {
+    const memoryId = res.data.memoryId;
+    navigate(`/memories/${memoryId}`);
+  }
+
+  function onFailure(err) {
+    console.log(err);
+  }
   window.onpopstate = function (event) {
     console.log("sdsdsd");
     const state = { id: 1 };
