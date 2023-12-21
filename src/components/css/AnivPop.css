@@ -18,126 +18,146 @@
     animation-fill-mode: forwards;
 }
 
-.image-con img{border-radius: 10px;}
-.image-con img:nth-child(1){
+/* bottom to top */
+/* .image-con .img-box{display: inline-block; overflow: hidden; display: flex; align-items: center; justify-content: center; border-radius: 10px; background-size: cover; background-position: center center;}
+.image-con .img-box:nth-child(1){
+    background-image: url("../../assets/images/popup_img_01.jpeg");
     width: 100px; height: 100px;
     position: absolute;
     top: 100%;
     left: 0%;
     animation-name: img-animation-01;
-    animation-delay: 1.8s;
-    animation-duration: 3s;
+    animation-delay: 2s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-    /* animation-iteration-count: infinite; */
+    animation-iteration-count: infinite;
 }
 
-.image-con img:nth-child(2){
+.image-con .img-box:nth-child(2){
+    background-image: url("../../assets/images/popup_img_02.jpeg");
     width: 150px; height: 150px;
     position: absolute;
     top: 100%;
     left: 20%;
     animation-name: img-animation-02;
     animation-delay: 2.5s;
-    animation-duration: 3s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
-.image-con img:nth-child(3){
+.image-con .img-box:nth-child(3){
+    background-image: url("../../assets/images/popup_img_03.jpeg");
     width: 80px; height: 80px;
     position: absolute;
     top: 100%;
     right: 0%;
     animation-name: img-animation-03;
-    animation-delay: 3.3s;
-    animation-duration: 3s;
+    animation-delay: 3.1s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
-.image-con img:nth-child(4){
+.image-con .img-box:nth-child(4){
+    background-image: url("../../assets/images/popup_img_04.jpeg");
     width: 120px; height: 120px;
     position: absolute;
     top: 100%;
     left: 5%;
     animation-name: img-animation-04;
-    animation-delay: 3.5s;
-    animation-duration: 3s;
+    animation-delay: 3.3s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
-.image-con img:nth-child(5){
+.image-con .img-box:nth-child(5){
+    background-image: url("../../assets/images/popup_img_05.jpeg");
     width: 100px; height: 100px;
     position: absolute;
     top: 100%;
-    left: 25%;
+    left: 40%;
     animation-name: img-animation-05;
-    animation-delay: 3.9s;
-    animation-duration: 3s;
+    animation-delay: 3.7s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
-.image-con img:nth-child(6){
+.image-con .img-box:nth-child(6){
+    background-image: url("../../assets/images/popup_img_06.jpeg");
     width: 90px; height: 90px;
     position: absolute;
     top: 100%;
     right: 0%;
     animation-name: img-animation-06;
-    animation-delay: 4.3s;
-    animation-duration: 3s;
+    animation-delay: 4s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
-.image-con img:nth-child(7){
-    width: 120px; height: 120px;
-    position: absolute;
-    top: 100%;
-    left: 5%;
-    animation-name: img-animation-07;
-    animation-delay: 4.8s;
-    animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-}
-
-.image-con img:nth-child(8){
-    width: 100px; height: 100px;
-    position: absolute;
-    top: 100%;
-    left: 40%;
-    animation-name: img-animation-08;
-    animation-delay: 5.3s;
-    animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-}
-
-.image-con img:nth-child(9){
-    width: 120px; height: 120px;
-    position: absolute;
-    top: 100%;
-    right: 0%;
-    animation-name: img-animation-09;
-    animation-delay: 5.7s;
-    animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-}
-
-.image-con img:nth-child(10){
+.image-con .img-box:nth-child(7){
+    background-image: url("../../assets/images/popup_img_07.jpeg");
     width: 120px; height: 120px;
     position: absolute;
     top: 100%;
     left: 10%;
-    animation-name: img-animation-10;
-    animation-delay: 6s;
-    animation-duration: 3s;
+    animation-name: img-animation-07;
+    animation-delay: 4.5s;
+    animation-duration: 5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(8){
+    background-image: url("../../assets/images/popup_img_08.jpeg");
+    width: 150px; height: 150px;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    animation-name: img-animation-08;
+    animation-delay: 5s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(9){
+    background-image: url("../../assets/images/popup_img_09.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    animation-name: img-animation-09;
+    animation-delay: 5.5s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(10){
+    background-image: url("../../assets/images/popup_img_10.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 100%;
+    left: 30%;
+    animation-name: img-animation-10;
+    animation-delay: 6s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
 }
 
 @keyframes pop-bottom-to-top {
@@ -151,42 +171,285 @@
 }
 
 @keyframes img-animation-01{
-    from {top: 100%;}
-    to {top: -100px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -100px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-02{
-    from {top: 100%;}
-    to {top: -150px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -150px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-03{
-    from {top: 100%;}
-    to {top: -80px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -80px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-04{
-    from {top: 100%;}
-    to {top: -120px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-05{
-    from {top: 100%;}
-    to {top: -100px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -100px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-06{
-    from {top: 100%;}
-    to {top: -120px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-07{
-    from {top: 100%;}
-    to {top: -120px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-08{
-    from {top: 100%;}
-    to {top: -120px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -150px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-09{
-    from {top: 100%;}
-    to {top: -120px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }
 @keyframes img-animation-10{
-    from {top: 100%;}
-    to {top: -120px;}
+    0% {top: 100%; opacity: 1}
+    60% {top: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+} */
+
+/* right to left */
+.image-con .img-box{display: inline-block; overflow: hidden; border-radius: 10px; background-size: cover; background-position: center center;}
+.image-con .img-box:nth-child(1){
+    /* background-image: url("../../assets/images/popup_img_01.jpeg"); */
+    background-image: url("../../assets/images/popup_img_11.jpeg");
+    width: 100px; height: 100px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    animation-name: img-animation-01;
+    animation-delay: 2s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(2){
+    /* background-image: url("../../assets/images/popup_img_02.jpeg"); */
+    background-image: url("../../assets/images/popup_img_12.jpeg");
+    width: 150px; height: 150px;
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    animation-name: img-animation-02;
+    animation-delay: 2.5s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(3){
+    /* background-image: url("../../assets/images/popup_img_03.jpeg"); */
+    background-image: url("../../assets/images/popup_img_13.jpeg");
+    width: 100px; height: 100px;
+    position: absolute;
+    top: 75%;
+    left: 100%;
+    animation-name: img-animation-03;
+    animation-delay: 3.1s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(4){
+    /* background-image: url("../../assets/images/popup_img_04.jpeg"); */
+    background-image: url("../../assets/images/popup_img_14.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 45%;
+    left: 100%;
+    animation-name: img-animation-04;
+    animation-delay: 3.3s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(5){
+    /* background-image: url("../../assets/images/popup_img_05.jpeg"); */
+    background-image: url("../../assets/images/popup_img_15.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    animation-name: img-animation-05;
+    animation-delay: 3.7s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(6){
+    /* background-image: url("../../assets/images/popup_img_06.jpeg"); */
+    background-image: url("../../assets/images/popup_img_16.jpeg");
+    width: 90px; height: 90px;
+    position: absolute;
+    top: 25%;
+    left: 100%;
+    animation-name: img-animation-06;
+    animation-delay: 4s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(7){
+    /* background-image: url("../../assets/images/popup_img_07.jpeg"); */
+    background-image: url("../../assets/images/popup_img_17.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 40%;
+    left: 100%;
+    animation-name: img-animation-07;
+    animation-delay: 4.5s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(8){
+    /* background-image: url("../../assets/images/popup_img_08.jpeg"); */
+    background-image: url("../../assets/images/popup_img_18.jpeg");
+    width: 150px; height: 150px;
+    position: absolute;
+    top: 65%;
+    left: 100%;
+    animation-name: img-animation-08;
+    animation-delay: 5s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(9){
+    /* background-image: url("../../assets/images/popup_img_09.jpeg"); */
+    background-image: url("../../assets/images/popup_img_19.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 0%;
+    left: 100%;
+    animation-name: img-animation-09;
+    animation-delay: 5.2s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+.image-con .img-box:nth-child(10){
+    /* background-image: url("../../assets/images/popup_img_10.jpeg"); */
+    background-image: url("../../assets/images/popup_img_20.jpeg");
+    width: 120px; height: 120px;
+    position: absolute;
+    top: 35%;
+    left: 100%;
+    animation-name: img-animation-10;
+    animation-delay: 5.5s;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pop-bottom-to-top {
+    from {top: 100%}
+    to {top: 0}
+}
+
+@keyframes close-pop-btn-show{
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes img-animation-01{
+    0% {left: 100%; opacity: 1}
+    60% {left: -100px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-02{
+    0% {left: 100%; opacity: 1}
+    60% {left: -150px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-03{
+    0% {left: 100%; opacity: 1}
+    60% {left: -80px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-04{
+    0% {left: 100%; opacity: 1}
+    60% {left: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-05{
+    0% {left: 100%; opacity: 1}
+    60% {left: -100px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-06{
+    0% {left: 100%; opacity: 1}
+    60% {left: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-07{
+    0% {left: 100%; opacity: 1}
+    60% {left: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-08{
+    0% {left: 100%; opacity: 1}
+    60% {left: -150px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-09{
+    0% {left: 100%; opacity: 1}
+    60% {left: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
+}
+@keyframes img-animation-10{
+    0% {left: 100%; opacity: 1}
+    60% {left: -120px; opacity: 1}
+    60.1%{opacity: 0}
+    100%{opacity: 0}
 }

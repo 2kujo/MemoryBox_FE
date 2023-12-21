@@ -1,17 +1,29 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
+import Image from "@/assets/images/first_tooth.png"
+
 export default function Memories() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   // isFinished props로 받기
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [savingsType, setSavingsType] = useState("KB 특★별한 우리아이 적금");
   const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
   const [cashBoxAmt, setCashBoxAmt] = useState(123000);
+  // const [isFinished, setIsFinished] = useState(0);
+
+  // 시연용
+  let isFinished = 0
+  const cashBoxId = location.state.cashBoxId;
+  if (cashBoxId == 0 || cashBoxId == 1){
+    isFinished = 1;
+  }
+  // 시연용
 
   const [isFinished, setIsFinished] = useState(1);
 
@@ -20,7 +32,7 @@ export default function Memories() {
   }
 
   function onClickHanlderToAlbum() {
-    navigate("/memories/album");
+    navigate("/memories/album", {state: {cashBoxId: cashBoxId}});
   }
 
   const ongoinDummyData = [
@@ -29,35 +41,35 @@ export default function Memories() {
       title: "민조 아랫니",
       depositAmout: 50000,
       createAt: "2023-12-04",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 2,
       title: "민조 아랫니",
       depositAmout: 30000,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 3,
       title: "민조 아랫니",
       depositAmout: 99900,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 4,
       title: "민조 아랫니",
       depositAmout: 1000,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
     {
       memoryId: 4,
       title: "민조 아랫니",
       depositAmout: 1000,
       createAt: "2023-11-28",
-      images: ["/src/assets/images/first_tooth.png"],
+      images: [Image],
     },
   ];
 
