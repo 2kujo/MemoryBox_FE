@@ -13,9 +13,9 @@ const UserApi = axios.create({
 
 UserApi.interceptors.request.use(
   (config) => {
-    const userId = getCookie("userId");
-    if (userId) {
-      config.headers["Authorization"] = "Bearer " + userId;
+    const userCookie = getCookie("memorybox-user-id");
+    if (userCookie) {
+      config.headers["Cookie"] = userCookie;
     }
     return config;
   },
