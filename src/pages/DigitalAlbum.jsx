@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
+import AlbumImage from "@/assets/images/sample_album.jpeg"
+
 export default function DigitalAlbum() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +24,7 @@ export default function DigitalAlbum() {
         <XMarkIcon className="h-6 w-6 text-[#ffffff]" />
       </button>
       <img
-        src="/src/assets/images/sample_album.jpeg"
+        src={AlbumImage}
         alt={`저금완료된 추억저금통 디지털 앨범`}
         className="absolute left-0 top-0 z-0"
       />
