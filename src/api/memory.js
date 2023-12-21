@@ -10,8 +10,23 @@ export function requestMemory(cashBoxId, memoryId, success, fail) {
   );
 }
 
-export function requestCreateMemory(cashBoxId, params, success, fail) {
-  UserApi.post(`/cash-boxes/${cashBoxId}/memories`, params)
+export function requestCreateMemory(cashBoxId, data, success, fail) {
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  UserApi.post(
+    `/cash-boxes/${cashBoxId}/memories`,
+    {
+      title: data.title,
+      content: data.content,
+      depositAmount: data.depositAmount,
+      imagesFiles: data.imagesFiles,
+    },
+    config
+  )
     .then(success)
     .catch(fail);
 }
