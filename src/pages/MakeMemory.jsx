@@ -2,10 +2,16 @@ import Navbar from "@/components/common/Navbar";
 import React, { useState, useRef } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
+import { ToastContainer, toast } from "react-toastify";
+
 import Step from "@/components/common/Step";
+import { useNavigate, useLocation } from "react-router-dom";
+import { requestCreateMemory } from "@/api/memory";
 
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
+  const [imageList, setImageList] = useState([]);
+
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
@@ -15,18 +21,43 @@ export default function MakeMemory() {
   const [step, setStep] = useState(0);
   const totalStep = 3;
 
-  const elementRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const cashBoxId = location.state.cashBoxId;
+  console.log(cashBoxId);
 
   function nextStep() {
-    setStep(step + 1);
+    if (isValidNextStep()) {
+      setStep(step + 1);
+    } else {
+      toast(validVal[step] + " 필수 입력값입니다");
+    }
   }
+
+  const validVal = {
+    0: "사진 혹은 내용은",
+    1: "입금액은",
+  };
+  // 스텝 이동에 대한 입력값 valid check
+  function isValidNextStep() {
+    if (step == 0 && memoryDesc === "" && showImages.length === 0) {
+      return false;
+    } else if (step == 1 && changedDeposit === "") {
+      return false;
+    }
+    return true;
+  }
+
   //   이미지 상대경로 저장
   const handleAddImages = (event) => {
-    const imageLists = event.target.files;
+    const imgLists = event.target.files;
+    setImageList(imgLists);
+
     let imageUrlLists = [...showImages];
 
-    for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+    for (let i = 0; i < imgLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imgLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
 
@@ -35,7 +66,8 @@ export default function MakeMemory() {
     }
 
     setShowImages(imageUrlLists);
-    moveScroll();
+    event.target.scrollLeft = 10000;
+    // moveScroll();
   };
 
   function onChangeMemoryTitle(event) {
@@ -48,30 +80,60 @@ export default function MakeMemory() {
     setMemoryDesc(event.target.value);
   };
 
+  //금액 콤마 찍기
   const onChangeDepositAmount = (event) => {
-    let num = event.target.value;
-    // 금액 콤마 찍기
-    console.log("dd" + num);
-    console.log(Number(num));
-    setDepositAmount(Number(num));
+    console.log(typeof event.target.value);
+    let num = event.target.value.replaceAll(",", "");
+    setDepositAmount(parseInt(num));
     setChangedDeposit(
       num.replaceAll(",", "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     );
-
-    console.log(depositAmount);
   };
 
-  //스크롤 하기 실패
-  function moveScroll() {
-    console.log(elementRef.current);
-    document.getElementsByClassName("scroll-wrap").scrollLeft += 10000;
+  const onKeyDownHandler = (event) => {
+    if (event.code == "Enter" || event.code == "enter" || event.keyCode == 13) {
+      event.target.blur();
+    }
+  };
+
+  function onSubmitMemory(event) {
+    event.preventDefault();
+
+    console.log(imageList);
+    const data = {
+      title: memoryTitle,
+      content: memoryDesc,
+      depositAmount: depositAmount,
+      imageFiles: imageList,
+    };
+
+    requestCreateMemory(cashBoxId, data, onSuccess, onFailure);
   }
 
-  const onKeyDownHandler = (event) => {};
+  function onSuccess(res) {
+    const memoryId = res.data.memoryId;
+    console.log(memoryId);
+    navigate(`/memories/${memoryId}`);
+  }
+
+  function onFailure(err) {
+    console.log(err);
+    // console.log(err.response.data);
+    // console.log(err.response.status);
+    // console.log(err.response.headers);
+  }
+  // window.onpopstate = function (event) {
+  //   console.log("sdsdsd");
+  //   const state = { id: 1 };
+  //   const url = "/make-box";
+
+  //   history.pushState(state, "", url);
+  // };
 
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
+        <ToastContainer />
         <Navbar pageTitle={"추억 기록"} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
@@ -114,14 +176,13 @@ export default function MakeMemory() {
               placeholder="제목을 입력하세요(선택사항)"
               autoComplete="off"
               onChange={onChangeMemoryTitle}
-              onKeyDown={onKeyDownHandler}
             ></input>
           </div>
           <hr className="hr1" />
           <div className="memory-content-box">
             <div className="my-5 h-52">
               <textarea
-                className="w-full focus:outline-none "
+                className="w-full focus:outline-none h-full "
                 type="text"
                 id="memory_title"
                 placeholder="내용을 작성해주세요"
@@ -130,7 +191,7 @@ export default function MakeMemory() {
                 onChange={onChangeMemoryDesc}
               ></textarea>
             </div>
-            <div className="text-right text-grey text-xs">
+            <div className="text-right text-grey text-xs mb-5">
               <span>{inputCount}</span>
               <span>/200</span>
             </div>
@@ -151,6 +212,7 @@ export default function MakeMemory() {
   } else if (step == 1) {
     return (
       <div className="w-full h-full flex flex-col">
+        <ToastContainer />
         <Navbar pageTitle={"추억 기록"} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
@@ -159,14 +221,19 @@ export default function MakeMemory() {
           <div>
             <div className="text-md ">얼마를 넣을까요?</div>
             <div className="w-full">
-              <input
-                type="text"
-                id="input_deposit"
-                value={changedDeposit}
-                onChange={onChangeDepositAmount}
-                maxLength="20"
-                className="border-b-[1px] w-full py-2 outline-none text-md mt-5"
-              />
+              <div className="h-full mt-5 relative">
+                <div className="w-full absolute border-b-[1px] h-[48px] py-2 text-md font-text">
+                  {changedDeposit}
+                </div>
+                <input
+                  type="number"
+                  id="input_deposit"
+                  onChange={onChangeDepositAmount}
+                  onKeyDown={onKeyDownHandler}
+                  maxLength="20"
+                  className="opacity-0 w-full outline-none text-md"
+                />
+              </div>
             </div>
           </div>
           <div>
@@ -218,15 +285,30 @@ export default function MakeMemory() {
           <hr className="hr1" />
           <div className="memory-content-box h-60 mt-3">
             {memoryDesc === "" && <div className=" text-[#888]">내용 없음</div>}
-            {memoryDesc !== "" && <div className="">{memoryDesc}</div>}
+            {memoryDesc !== "" && (
+              <div className="memory-content-box">
+                <div className="my-5 h-52">
+                  <textarea
+                    readOnly
+                    className=" w-full h-full focus:outline-none"
+                  >
+                    {memoryDesc}
+                  </textarea>
+                </div>
+                <div className="text-right text-grey text-xs">
+                  <span>{inputCount}</span>
+                  <span>/200</span>
+                </div>
+              </div>
+            )}
           </div>
           <div>
-            <hr className="hr1" />
+            <hr className="hr1 mt-5" />
           </div>
           <div className="memory-deposit-box h-16 flex items-center justify-between">
             <div>입금액</div>
             <div>
-              <span className="text-blue">{depositAmount}</span>
+              <span className="text-blue">{changedDeposit}</span>
               <span> 원</span>
             </div>
           </div>
@@ -235,11 +317,14 @@ export default function MakeMemory() {
             <div className="text-[#EB1724] py-2 text-xs">
               * 추억 등록 후 수정이 불가합니다.
             </div>
-            <div>
-              <LongBtn text="다음" clickFunc={nextStep} />
-            </div>
+            <form action="POST" onSubmit={onSubmitMemory}>
+              <div>
+                <LongBtn text="완료" clickFunc={onSubmitMemory} />
+              </div>
+            </form>
           </div>
         </div>
+        <div></div>
       </div>
     );
   }

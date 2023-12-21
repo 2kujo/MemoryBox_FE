@@ -27,8 +27,10 @@ export default function Memories() {
 
   const [isFinished, setIsFinished] = useState(1);
 
+  const cashBoxId = location.state.cashBoxId;
+
   function onClickHandlerToMakeMemory() {
-    navigate("/make-memory");
+    navigate("/make-memory", { state: { cashBoxId: cashBoxId } });
   }
 
   function onClickHanlderToAlbum() {

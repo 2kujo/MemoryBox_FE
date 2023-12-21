@@ -17,35 +17,34 @@ export default function MakeBox() {
   const [step, setStep] = useState(0);
   const totalStep = 3;
   const productList = [
-    {key: 0, title: 'KB 특별한 적금', duration: 36, min: 3, max: 3.5},
-    {key: 1, title: 'KB내맘대로적금', duration: 36, min: 3.15, max: 3.75},
-    {key: 2, title: 'KB우리아이행복적금', duration: 24, min: 3.2, max: 3.55}
+    { key: 0, title: "KB 특별한 적금", duration: 36, min: 3, max: 3.5 },
+    { key: 1, title: "KB내맘대로적금", duration: 36, min: 3.15, max: 3.75 },
+    { key: 2, title: "KB우리아이행복적금", duration: 24, min: 3.2, max: 3.55 },
   ];
   const invalidTxt = {
-    0: '저금통 이름은',
-    1: '저금통 설명은',
-    2: '연결할 상품은'
-  }
+    0: "저금통 이름은",
+    1: "저금통 설명은",
+    2: "연결할 상품은",
+  };
 
   document.body.style.backgroundColor = "#FFFFFF";
 
   function nextStep() {
-    if(isNextStepPossible()){
+    if (isNextStepPossible()) {
       setStep(step + 1);
-    }else{
-      toast(invalidTxt[step] + ' 필수 입력값입니다');
+    } else {
+      toast(invalidTxt[step] + " 필수 입력값입니다");
     }
   }
 
-  function isNextStepPossible(){
-    if(step == 0 && cashboxName == ''){
+  function isNextStepPossible() {
+    if (step == 0 && cashboxName == "") {
       return false;
-    }else if(step == 1 && cashboxDesc == ''){
+    } else if (step == 1 && cashboxDesc == "") {
       return false;
-    }else if(step == 2 && cashboxProduct == ''){
+    } else if (step == 2 && cashboxProduct == "") {
       return false;
-    }
-    else return true;
+    } else return true;
   }
 
   const validVal = {
@@ -63,12 +62,12 @@ export default function MakeBox() {
   }
 
   // 스텝 이동에 대한 입력값 valid check
-  function isValidNextStep(){
-    if(step == 0 && cashboxName == ""){
+  function isValidNextStep() {
+    if (step == 0 && cashboxName == "") {
       return false;
-    }else if(step == 1 && cashboxDesc == ""){
+    } else if (step == 1 && cashboxDesc == "") {
       return false;
-    }else if(step == 2 && cashboxProduct == ""){
+    } else if (step == 2 && cashboxProduct == "") {
       return false;
     }
     return true;
@@ -76,10 +75,10 @@ export default function MakeBox() {
 
   // input에서 엔터 입력 시 키패드 내려주기 위한 함수
   const keyDownHandler = (event) => {
-    if(event.code == "Enter" || event.code == "enter" || event.keyCode == 13){
+    if (event.code == "Enter" || event.code == "enter" || event.keyCode == 13) {
       event.target.blur();
     }
-  }
+  };
 
   // 저금통 이름
   const handleCashboxNameChange = (event) => {
@@ -92,16 +91,16 @@ export default function MakeBox() {
   };
 
   function selectCashboxProduct(idx, productName) {
-      setCurrProduct(idx);
-      setCashboxProduct(productName);
+    setCurrProduct(idx);
+    setCashboxProduct(productName);
   }
 
   function makeCashbox() {
-    if(isNextStepPossible()){
+    if (isNextStepPossible()) {
       // name, desc, productType 사용해 api 통신 수행
       navigate("/intro-finish");
-    }else{
-      toast(invalidTxt[step] + ' 필수 입력값입니다');
+    } else {
+      toast(invalidTxt[step] + " 필수 입력값입니다");
     }
   }
 
@@ -110,7 +109,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통"/>
+        <Navbar pageTitle="추억 저금통" />
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -142,7 +141,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통"/>
+        <Navbar pageTitle="추억 저금통" />
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -173,7 +172,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통"/>
+        <Navbar pageTitle="추억 저금통" />
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
