@@ -37,8 +37,6 @@ export default function MakeBox() {
     }
   });
 
-  document.body.style.backgroundColor = "#FFFFFF";
-
   function nextStep() {
     if (isNextStepPossible()) {
       setStep(step + 1);

@@ -1,29 +1,21 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-
+import { getCookie } from "@/api/Cookies"
 import Navbar from "@/components/common/Navbar.jsx";
 import Tab from "@/components/common/Tab.jsx";
 import FloatingBtn from "@/components/common/FloatingBtn.jsx";
 import AnivPop from "@/components/AnivPop.jsx";
 import "@/pages/css/ServiceMain.css";
-
-// 시연용
 import CheckBg from "@/assets/images/bg_check.jpeg";
-import { Cookies } from "react-cookie";
-
 import { getCashBoxes } from "@/api/cashBox";
 
-const cookies = new Cookies();
-const getCookie = (name) => {
-  return cookies.get(name);
-};
-// 시연용
-
 export default function ServiceMain() {
+  document.body.style.backgroundColor = "#FFFFFF";
+
   const navigate = useNavigate();
 
   const specialCookie = getCookie("memorybox-special-user");
-  let popShowed = null;
+  let popShowed = 0;
   if (specialCookie && specialCookie != undefined) {
     popShowed = getCookie("popShowed");
   }
@@ -155,9 +147,8 @@ export default function ServiceMain() {
       </div>
       {!popShowed && (
         <AnivPop
-          cashBoxTitle="민조 유치원"
+          cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
-          cashBoxId="2"
         />
       )}
     </div>
