@@ -6,17 +6,20 @@ import FloatingBtn from "@/components/common/FloatingBtn";
 
 import Image from "@/assets/images/first_tooth.png";
 import { requestMemories } from "@/api/memory";
+import { getCashBox } from "@/api/cashBox";
 
 export default function Memories() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // isFinished props로 받기
-  const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
-  const [savingsType, setSavingsType] = useState("KB 특★별한 우리아이 적금");
-  const [cashBoxAcno, setCashBoxAcno] = useState("640406-14-120472");
-  const [cashBoxAmt, setCashBoxAmt] = useState(123000);
   const [memoryList, setMemoryList] = useState([]);
+  const [cashBoxInfo, setChahBoxInfo] = useState({
+    cashBoxId: 0,
+    name: "",
+    accountNum: 0,
+    productName: "",
+    balance: 0,
+    finished: false,
+  });
   // const [isFinished, setIsFinished] = useState(0);
 
   // 시연용
@@ -27,28 +30,31 @@ export default function Memories() {
   // }
   // 시연용
 
-  const [isFinished, setIsFinished] = useState(1);
-
   const cashBoxId = location.state.cashBoxId;
-  console.log(`Memories CashBoxId : ${cashBoxId}`);
+
   useEffect(() => {
-    requestMemories(cashBoxId, onSuccess, onFailure);
+    requestMemories(cashBoxId, reqMemorySuccess, reqMemoryFailure);
+    getCashBox(cashBoxId, getCashBoxSuccess, getCashBoxFailure);
   }, []);
 
-  function onSuccess(res) {
+  function reqMemorySuccess(res) {
     const memories = res.data.memoryList;
     console.log(memories);
     setMemoryList(memories);
-  
-
-    let totMoney = 0;
-    for (var i = 0; i < memories.length; i++) {
-      totMoney += memories[i].depositAmount;
-    }
-    setCashBoxAmt(totMoney);
   }
 
-  function onFailure(err) {
+  function reqMemoryFailure(err) {
+    console.log(err);
+  }
+
+  function getCashBoxSuccess(res) {
+    console.log(res.data);
+    setChahBoxInfo(res.data);
+
+    console.log(cashBoxInfo);
+  }
+
+  function getCashBoxFailure(err) {
     console.log(err);
   }
 
@@ -60,69 +66,35 @@ export default function Memories() {
     navigate("/memories/album", { state: { cashBoxId: cashBoxId } });
   }
 
-  const ongoinDummyData = [
-    {
-      memoryId: 1,
-      title: "민조 아랫니",
-      depositAmout: 50000,
-      createAt: "2023-12-04",
-      images: [Image],
-    },
-    {
-      memoryId: 2,
-      title: "민조 아랫니",
-      depositAmout: 30000,
-      createAt: "2023-11-28",
-      images: [Image],
-    },
-    {
-      memoryId: 3,
-      title: "민조 아랫니",
-      depositAmout: 99900,
-      createAt: "2023-11-28",
-      images: [Image],
-    },
-    {
-      memoryId: 4,
-      title: "민조 아랫니",
-      depositAmout: 1000,
-      createAt: "2023-11-28",
-      images: [Image],
-    },
-    {
-      memoryId: 4,
-      title: "민조 아랫니",
-      depositAmout: 1000,
-      createAt: "2023-11-28",
-      images: [Image],
-    },
-  ];
-
-  function floatingClickHandler() {
-    navigate("/make-memory");
-  }
-
   return (
     <div>
-      <Navbar pageTitle={cashBoxTitle} />
+      <Navbar pageTitle={cashBoxInfo.name} />
       <div className="mx-2">
         <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
-          {!isFinished && <div className="text-sm pb-0.5">{savingsType}</div>}
-          <div className="font-display text-md font-bold">{cashBoxTitle}</div>
+          {!cashBoxInfo.finished && (
+            <div className="text-sm pb-0.5">{cashBoxInfo.productName}</div>
+          )}
+          <div className="font-display text-md font-bold">
+            {cashBoxInfo.name}
+          </div>
           <div className="text-xs">
-            {!!isFinished && <span className="text-grey pr-2">입금 계좌</span>}
-            <span className="text-font1">{cashBoxAcno}</span>
+            {!!cashBoxInfo.finished && (
+              <span className="text-grey pr-2">입금 계좌</span>
+            )}
+            <span className="text-font1">{cashBoxInfo.accountNum}</span>
           </div>
           <div
-            className={`space-x-1 float-right pb-2 ${!!isFinished && "pt-4"}`}
+            className={`space-x-1 float-right pb-2 ${
+              !!cashBoxInfo.finished && "pt-4"
+            }`}
           >
             <span className="text-md">총</span>
             <span
               className={`text-md font-bold ${
-                !isFinished ? "text-blue" : "text-yellow"
+                !cashBoxInfo.finished ? "text-blue" : "text-yellow"
               } `}
             >
-              {cashBoxAmt.toLocaleString("ko-KR")}
+              {cashBoxInfo.balance.toLocaleString("ko-KR")}
             </span>
             <span className="text-md">원</span>
           </div>
@@ -132,10 +104,10 @@ export default function Memories() {
           <MemoryList memoryContents={memoryList} cashBoxId={cashBoxId} />
         </div>
       </div>
-      {!isFinished && (
+      {!cashBoxInfo.finished && (
         <FloatingBtn type="write" clickFunc={onClickHandlerToMakeMemory} />
       )}
-      {!!isFinished && (
+      {!!cashBoxInfo.finished && (
         <FloatingBtn type="album" clickFunc={onClickHanlderToAlbum} />
       )}
     </div>

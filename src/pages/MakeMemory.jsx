@@ -113,7 +113,7 @@ export default function MakeMemory() {
   function onSuccess(res) {
     const memoryId = res.data.memoryId;
     console.log(memoryId);
-    navigate(`/memories/${memoryId}`);
+    navigate(`/memories/${memoryId}`, { state: { cashBoxId: cashBoxId } });
   }
 
   function onFailure(err) {

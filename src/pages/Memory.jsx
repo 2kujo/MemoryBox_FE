@@ -8,17 +8,17 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 // 시연용
-import Image1 from "@/assets/images/first_tooth.png"
-import Image2 from "@/assets/images/intro_bibi.png"
+import Image1 from "@/assets/images/first_tooth.png";
+import Image2 from "@/assets/images/intro_bibi.png";
 import { requestMemory } from "@/api/memory";
 // 시연용
 
 export default function Memory() {
   const location = useLocation();
-  let params = useParams()
+  let params = useParams();
 
   const cashBoxId = location.state.cashBoxId;
-  const memoryId = params.memoryId
+  const memoryId = params.memoryId;
   // const memoryId = location.state.mid;
 
   console.log(`Memory CashBoxId : ${cashBoxId}`);
@@ -27,16 +27,14 @@ export default function Memory() {
   const [cashBoxTitle, setCashBoxTitle] = useState("우리 민조");
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [maxImagesIndex, setMaxImagesIndex] = useState(1);
-  const [memory,setMemory] = useState(
-    {
-      memoryId: 0,
-      title: "",
-      depositAmount: 0,
-      createdAt: Date(),
-      content: "",
-      images: []
-    }
-  )
+  const [memory, setMemory] = useState({
+    memoryId: 0,
+    title: "",
+    depositAmount: 0,
+    createdAt: Date(),
+    content: "",
+    images: [],
+  });
 
   const handleNextClick = () => {
     setActiveItemIndex((prevIndex) =>
@@ -54,29 +52,22 @@ export default function Memory() {
     depositAmount: 10000,
     createdAt: "2000.10.21",
     content: "추억 상세 페이지 작성중 \n줄넘기기 되냐?",
-    images: [
-      Image1,
-      Image2,
-    ],
+    images: [Image1, Image2],
   };
 
-  useEffect(() => {   
+  useEffect(() => {
     requestMemory(cashBoxId, memoryId, onSuccess, onFailure);
   }, []);
 
-  function onSuccess(res){
-    
+  function onSuccess(res) {
     console.log(res.data.images);
-setMemory(res.data)
-
-
-
+    console.log(res.data);
+    setMemory(res.data);
   }
 
-  function onFailure(err){
+  function onFailure(err) {
     console.log(err);
   }
-
 
   return (
     <div className="overflow-hidden font-text">
@@ -100,11 +91,7 @@ setMemory(res.data)
           outsideChevron={false}
           chevronWidth={40}
         >
-
-          {
-          
-          memory.images.map((image, key) => (
-            
+          {memory.images.map((image, key) => (
             <img
               key={key}
               src={`http://memorybox-ikujo.165.192.105.60.nip.io/image/${image}`}
