@@ -1,8 +1,8 @@
 import { React, useEffect } from "react";
 import { useState, KeyboardEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/common/Navbar.jsx";
 import Step from "@/components/common/Step.jsx";
 import LongBtn from "@/components/common/LongBtn.jsx";
@@ -30,8 +30,8 @@ export default function MakeBox() {
   };
 
   useEffect(() => {
-    if('state' in location && location.state != null){
-      if('step' in location.state){
+    if ("state" in location && location.state != null) {
+      if ("step" in location.state) {
         setStep(location.state.step);
       }
     }
@@ -56,16 +56,16 @@ export default function MakeBox() {
   }
 
   const validVal = {
-    0: '저금통 이름은',
-    1: '저금통 용도는',
-    2: '연결할 상품은'
-  }
-  
-  function nextStep(){
-    if(isValidNextStep()){
-      setStep(step+1);
-    }else{
-      toast(validVal[step]+" 반드시 입력해야 합니다.");
+    0: "저금통 이름은",
+    1: "저금통 용도는",
+    2: "연결할 상품은",
+  };
+
+  function nextStep() {
+    if (isValidNextStep()) {
+      setStep(step + 1);
+    } else {
+      toast(validVal[step] + " 반드시 입력해야 합니다.");
     }
   }
 
@@ -108,7 +108,7 @@ export default function MakeBox() {
       const data = {
         name: cashboxName,
         description: cashboxDesc,
-        productName: cashboxProduct
+        productName: cashboxProduct,
       };
       createCashBox(data, onSuccess, onFailure);
     } else {
@@ -133,7 +133,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" step={step}/>
+        <Navbar pageTitle="추억 저금통" step={step} />
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -165,7 +165,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" step={step}/>
+        <Navbar pageTitle="추억 저금통" step={step} />
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -196,7 +196,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" step={step}/>
+        <Navbar pageTitle="추억 저금통" step={step} />
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />

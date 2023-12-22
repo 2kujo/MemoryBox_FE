@@ -5,8 +5,8 @@ import IntroFinishBibi from "@/assets/images/intro_finish_bibi.gif";
 import IntroLogo from "@/assets/images/intro_logo.jpg";
 
 import LongBtn from "@/components/common/LongBtn.jsx";
-import { getCookie, setCookie } from "@/api/Cookies"
-import { getCert } from "@/api/cert"
+import { getCookie, setCookie } from "@/api/Cookies";
+import { getCert } from "@/api/cert";
 
 export default function Intro() {
   const location = useLocation();

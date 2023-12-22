@@ -1,5 +1,5 @@
 import Navbar from "@/components/common/Navbar";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import LongBtn from "@/components/common/LongBtn";
 import { ToastContainer, toast } from "react-toastify";
@@ -25,7 +25,14 @@ export default function MakeMemory() {
   const location = useLocation();
 
   const cashBoxId = location.state.cashBoxId;
-  console.log(cashBoxId);
+
+  useEffect(() => {
+    if ("state" in location && location.state != null) {
+      if ("step" in location.state) {
+        setStep(location.state.step);
+      }
+    }
+  });
 
   function nextStep() {
     if (isValidNextStep()) {
@@ -39,6 +46,7 @@ export default function MakeMemory() {
     0: "사진 혹은 내용은",
     1: "입금액은",
   };
+
   // 스텝 이동에 대한 입력값 valid check
   function isValidNextStep() {
     if (step == 0 && memoryDesc === "" && showImages.length === 0) {
@@ -67,7 +75,6 @@ export default function MakeMemory() {
 
     setShowImages(imageUrlLists);
     event.target.scrollLeft = 10000;
-    // moveScroll();
   };
 
   function onChangeMemoryTitle(event) {
@@ -118,26 +125,17 @@ export default function MakeMemory() {
 
   function onFailure(err) {
     console.log(err);
-    // console.log(err.response.data);
-    // console.log(err.response.status);
-    // console.log(err.response.headers);
   }
-  // window.onpopstate = function (event) {
-  //   console.log("sdsdsd");
-  //   const state = { id: 1 };
-  //   const url = "/make-box";
-
-  //   history.pushState(state, "", url);
-  // };
 
   if (step == 0) {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} />
+        <Navbar pageTitle={"추억 기록"} step={step} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
+
         <div className="w-full h-full">
           <div className="wrap w-full">
             <div className="scroll-wrap">
@@ -170,6 +168,7 @@ export default function MakeMemory() {
           <hr className="hr1 mt-5" />
           <div className="memory-title-box h-10">
             <input
+              value={memoryTitle}
               className="w-full h-full focus:outline-none text-sm"
               type="text"
               id="memory_title"
@@ -182,6 +181,7 @@ export default function MakeMemory() {
           <div className="memory-content-box">
             <div className="my-5 h-52">
               <textarea
+                value={memoryDesc}
                 className="w-full focus:outline-none h-full "
                 type="text"
                 id="memory_title"
@@ -213,7 +213,7 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} />
+        <Navbar pageTitle={"추억 기록"} step={step} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -245,10 +245,15 @@ export default function MakeMemory() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full flex flex-col">
-        <Navbar pageTitle={"추억 기록"} />
+        <Navbar pageTitle={"추억 기록"} step={step} />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
+        <div className="text-sm">입력한 정보를 확인해주세요</div>
+        <div className="text-[#EB1724] py-2 text-xs">
+          * 추억 등록 후 수정이 불가합니다.
+        </div>
+        <hr className="mb-5" />
         <div className="w-full h-full flex-col">
           {showImages.length === 0 && (
             <div className="">
@@ -277,7 +282,6 @@ export default function MakeMemory() {
             )}
             {memoryTitle !== "" && (
               <div>
-                <label>제목 : </label>
                 <span>{memoryTitle}</span>
               </div>
             )}
@@ -295,10 +299,6 @@ export default function MakeMemory() {
                     {memoryDesc}
                   </textarea>
                 </div>
-                <div className="text-right text-grey text-xs">
-                  <span>{inputCount}</span>
-                  <span>/200</span>
-                </div>
               </div>
             )}
           </div>
@@ -314,9 +314,9 @@ export default function MakeMemory() {
           </div>
           <hr className="hr1" />
           <div className="flex flex-col justify-between">
-            <div className="text-[#EB1724] py-2 text-xs">
+            {/* <div className="text-[#EB1724] py-2 text-xs">
               * 추억 등록 후 수정이 불가합니다.
-            </div>
+            </div> */}
             <form action="POST" onSubmit={onSubmitMemory}>
               <div>
                 <LongBtn text="완료" clickFunc={onSubmitMemory} />

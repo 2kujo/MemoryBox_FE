@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "@/api/Cookies"
+import { getCookie } from "@/api/Cookies";
 import Navbar from "@/components/common/Navbar.jsx";
 import Tab from "@/components/common/Tab.jsx";
 import FloatingBtn from "@/components/common/FloatingBtn.jsx";
@@ -149,6 +149,7 @@ export default function ServiceMain() {
         <AnivPop
           cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
+          cashBoxId={7}
         />
       )}
     </div>
