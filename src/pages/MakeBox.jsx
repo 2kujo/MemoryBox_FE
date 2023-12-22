@@ -7,6 +7,8 @@ import Navbar from "@/components/common/Navbar.jsx";
 import Step from "@/components/common/Step.jsx";
 import LongBtn from "@/components/common/LongBtn.jsx";
 
+import { createCashBox } from "@/api/cashBox";
+
 export default function MakeBox() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -97,11 +99,29 @@ export default function MakeBox() {
 
   function makeCashbox() {
     if (isNextStepPossible()) {
-      // name, desc, productType 사용해 api 통신 수행
-      navigate("/intro-finish");
+      const data = {
+        name: cashboxName,
+        description: cashboxDesc,
+        productName: cashboxProduct
+      };
+      console.log("send data");
+      console.log(data);
+      createCashBox(data, onSuccess, onFailure);
     } else {
       toast(invalidTxt[step] + " 필수 입력값입니다");
     }
+  }
+
+  function onSuccess(res) {
+    //navigate("/intro-finish");
+    navigate("/main");
+  }
+
+  function onFailure(err) {
+    console.log(err);
+    // console.log(err.response.data);
+    // console.log(err.response.status);
+    // console.log(err.response.headers);
   }
 
   if (step == 0) {
