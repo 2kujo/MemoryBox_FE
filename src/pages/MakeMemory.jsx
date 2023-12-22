@@ -58,16 +58,29 @@ export default function MakeMemory() {
     return true;
   }
 
-  //   이미지 상대경로 저장
+  // 이미지 상대경로 저장
   const handleAddImages = (event) => {
-    const tmpImgList = event.target.files;
+    const imageLists = event.target.files;
+    // let imgList = [...imageList];
+    setImageList(imageLists);
+    // if (imageList.length !== 0) {
+    //   let newList = [];
+    //   for (let i = 0; i < imageLists.length; i++) {
+    //     newList.push(imageLists[i]);
+    //   }
+    //   for (let i = 0; i < imageList.length; i++) {
+    //     newList.push(imageList[i]);
+    //   }
+    //   console.log(newList);
+    //   setImageList(newList);
+    // } else {
+    //   setImageList(imageList);
+    // }
 
-    imageList.console.log(imgLists);
-    setImageList(imgLists);
     let imageUrlLists = [...showImages];
 
-    for (let i = 0; i < imgLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imgLists[i]);
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
 
@@ -76,7 +89,6 @@ export default function MakeMemory() {
     }
 
     setShowImages(imageUrlLists);
-    event.target.scrollLeft = 10000;
   };
 
   // X버튼 클릭 시 이미지 삭제
@@ -155,7 +167,11 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/memories"
+          propsObj={{ state: { cashBoxId: cashBoxId } }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -241,7 +257,11 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 0}, replace: true}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/make-memory"
+          propsObj={{ state: { cashBoxId: cashBoxId, step: 0 }, replace: true }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -273,11 +293,14 @@ export default function MakeMemory() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full flex flex-col">
-        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 1}, replace: true}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/make-memory"
+          propsObj={{ state: { cashBoxId: cashBoxId, step: 1 }, replace: true }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
-
 
         <div className="text-[#888] text-sm flex justify-start items-center">
           <PencilIcon class="h-4 w-4 text-gray-500 mr-2" />
