@@ -69,7 +69,7 @@ export default function Memories() {
 
   return (
     <div>
-      <Navbar pageTitle={cashBoxInfo.name} />
+      <Navbar pageTitle={cashBoxInfo.name} path="/main"/>
       <div className="mx-2">
         <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
           {!cashBoxInfo.finished && (

@@ -1,24 +1,15 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { HomeIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
 export default function Navbar(props) {
-  const location = useLocation();
   const navigate = useNavigate();
   function goBackHandler(){
-    if('step' in props){
-      if(props.step == 0){
-        console.log('step is 0');
-        navigate(-1);
-      }else{
-        console.log('step is ' + props.step);
-        navigate(location.pathname, {state: {step: props.step - 1}, replace: true})
-      }
-    }else{
-      navigate(-1);
-    }
+    console.log(props.path);
+    console.log(props.propsObj);
+    navigate(props.path, props.propsObj);
   }
 
   return (

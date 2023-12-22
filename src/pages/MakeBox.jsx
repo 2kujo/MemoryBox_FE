@@ -133,7 +133,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" step={step} />
+        <Navbar pageTitle="추억 저금통" path="/main"/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -165,7 +165,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" step={step} />
+        <Navbar pageTitle="추억 저금통" path="/make-box" propsObj={{state: {step: 0}, replace: true}}/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -196,7 +196,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" step={step} />
+        <Navbar pageTitle="추억 저금통" path="/make-box" propsObj={{state: {step: 1}, replace: true}}/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
