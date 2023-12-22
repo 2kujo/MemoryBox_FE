@@ -249,7 +249,7 @@ export default function MakeMemory() {
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
-        <div className="text-sm">입력한 정보를 확인해주세요</div>
+        <div className="text-[#888]  text-sm">입력한 정보를 확인해주세요</div>
         <div className="text-[#EB1724] py-2 text-xs">
           * 추억 등록 후 수정이 불가합니다.
         </div>
@@ -276,7 +276,7 @@ export default function MakeMemory() {
             </div>
           )}
           <hr className="hr1 mt-5" />
-          <div className="memory-title-box  h-10 mt-3">
+          <div className="memory-title-box my-1">
             {memoryTitle === "" && (
               <div className=" text-[#888] text-sm">제목 없음</div>
             )}
@@ -287,11 +287,11 @@ export default function MakeMemory() {
             )}
           </div>
           <hr className="hr1" />
-          <div className="memory-content-box h-60 mt-3">
+          <div className="memory-content-box h-40 mt-2">
             {memoryDesc === "" && <div className=" text-[#888]">내용 없음</div>}
             {memoryDesc !== "" && (
               <div className="memory-content-box">
-                <div className="my-5 h-52">
+                <div className="h-40">
                   <textarea
                     readOnly
                     className=" w-full h-full focus:outline-none"
@@ -313,10 +313,7 @@ export default function MakeMemory() {
             </div>
           </div>
           <hr className="hr1" />
-          <div className="flex flex-col justify-between">
-            {/* <div className="text-[#EB1724] py-2 text-xs">
-              * 추억 등록 후 수정이 불가합니다.
-            </div> */}
+          <div className="flex flex-col justify-between mt-5">
             <form action="POST" onSubmit={onSubmitMemory}>
               <div>
                 <LongBtn text="완료" clickFunc={onSubmitMemory} />

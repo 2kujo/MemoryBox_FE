@@ -70,7 +70,9 @@ export default function ServiceMain() {
                 {cashbox.startDate} ~ {cashbox.maturityDate} (만기 예정)
               </div>
               <div className="font-text font-medium text-sm text-right">
-                <span className="font-bold">{cashbox.balance}</span>
+                <span className="font-bold">
+                  {cashbox.balance.toLocaleString("ko-KR")}
+                </span>
                 <span className="pl-0.5">원</span>
               </div>
             </div>
