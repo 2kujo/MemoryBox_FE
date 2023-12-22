@@ -21,26 +21,12 @@ export default function Intro() {
   }
 
   function startIntro() {
-    checkAlreadyHasUserIdCookie();
-
     getCert(onSuccess);
-  }
-
-  function checkAlreadyHasUserIdCookie() {
-    userId = getCookie("memorybox-user-id");
   }
 
   function onSuccess(data) {
     setCookie("memorybox-user-id", data.data.userId);
-    if (userId) {
-      userId = null;
-      navigate("/main");
-      return;
-    }
-
     navigate("/main");
-    //TODO intro-finish로 보내는 시퀀스 고민해보기
-    //navigate("/intro-finish");
   }
 
   function endIntro() {
@@ -83,7 +69,7 @@ export default function Intro() {
         <div className="flex w-full h-full justify-center items-center">
           <div className="w-full flex flex-col justify-center items-center">
             <div className="text-[2rem] text-center font-display mb-1">
-              추억 저금통 준비 완료!
+              추억 저금통 생성 완료!
             </div>
             <div className="text-grey text-md text-center">
               KB와 함께 추억을 저금해보세요

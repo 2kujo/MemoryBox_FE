@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { useState, KeyboardEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -29,7 +29,13 @@ export default function MakeBox() {
     2: "연결할 상품은",
   };
 
-  document.body.style.backgroundColor = "#FFFFFF";
+  useEffect(() => {
+    if('state' in location && location.state != null){
+      if('step' in location.state){
+        setStep(location.state.step);
+      }
+    }
+  });
 
   function nextStep() {
     if (isNextStepPossible()) {
@@ -104,8 +110,6 @@ export default function MakeBox() {
         description: cashboxDesc,
         productName: cashboxProduct
       };
-      console.log("send data");
-      console.log(data);
       createCashBox(data, onSuccess, onFailure);
     } else {
       toast(invalidTxt[step] + " 필수 입력값입니다");
@@ -113,8 +117,8 @@ export default function MakeBox() {
   }
 
   function onSuccess(res) {
-    //navigate("/intro-finish");
-    navigate("/main");
+    navigate("/intro-finish");
+    // navigate("/main");
   }
 
   function onFailure(err) {
@@ -129,7 +133,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" />
+        <Navbar pageTitle="추억 저금통" step={step}/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -161,7 +165,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" />
+        <Navbar pageTitle="추억 저금통" step={step}/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
@@ -192,7 +196,7 @@ export default function MakeBox() {
     return (
       <div className="w-full h-full">
         <ToastContainer />
-        <Navbar pageTitle="추억 저금통" />
+        <Navbar pageTitle="추억 저금통" step={step}/>
         <div className="flex w-full h-full flex-col">
           <div className="grow-0 mb-4">
             <Step totalStep={totalStep} currStep={step} />
