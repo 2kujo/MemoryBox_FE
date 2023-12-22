@@ -14,6 +14,8 @@ import { requestCreateMemory } from "@/api/memory";
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [tmpImgList, setTmpImgList] = useState([])
+
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
@@ -35,6 +37,21 @@ export default function MakeMemory() {
     }
   });
 
+  useEffect(()=> {
+    const finalList = []
+    if(imageList.length !== 0){
+      for(var i = 0; i < imageList.length; i++){
+        finalList.push(imageList[i])
+      }
+    }
+
+    for(var i = 0; i < tmpImgList.length;i++){
+      finalList.push(tmpImgList[i])
+    }
+    console.log(finalList);
+    setImageList(finalList)
+  },[tmpImgList])
+
   function nextStep() {
     if (isValidNextStep()) {
       setStep(step + 1);
@@ -55,27 +72,15 @@ export default function MakeMemory() {
     } else if (step == 1 && changedDeposit === "") {
       return false;
     }
+
     return true;
   }
 
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
     const imageLists = event.target.files;
-    // let imgList = [...imageList];
-    setImageList(imageLists);
-    // if (imageList.length !== 0) {
-    //   let newList = [];
-    //   for (let i = 0; i < imageLists.length; i++) {
-    //     newList.push(imageLists[i]);
-    //   }
-    //   for (let i = 0; i < imageList.length; i++) {
-    //     newList.push(imageList[i]);
-    //   }
-    //   console.log(newList);
-    //   setImageList(newList);
-    // } else {
-    //   setImageList(imageList);
-    // }
+
+    setTmpImgList(imageLists);
 
     let imageUrlLists = [...showImages];
 
@@ -93,24 +98,20 @@ export default function MakeMemory() {
 
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (idx) => {
-    console.log(showImages);
-    // const imgL = showImages.filter(function (_, index) {
-    //   return index !== idx;
-    // });
-    // console.log(imgL);
+
     setShowImages(
       showImages.filter(function (_, index) {
         return index !== idx;
       })
     );
 
-    console.log(idx);
-    console.log(imageList);
-    delete imageList[idx.toString()];
-    console.log(imageList);
+    const newList = []
+    for(var i = 0; i < imageList.length;i++){
+      if(i == idx) continue
+      newList.push(imageList[i])
+    }
 
-    // delete console.log(dataList);
-    setImageList(imageList);
+    setImageList(newList);
   };
 
   function onChangeMemoryTitle(event) {
