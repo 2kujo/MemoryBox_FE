@@ -12,6 +12,10 @@ export default function Navbar(props) {
     navigate(props.path, props.propsObj);
   }
 
+  function goHome(){
+    navigate("/main");
+  }
+
   return (
     <div className="flex justify-between py-5 px-0.5 sticky bg-[#ffffff] top-0 font-display">
       <div className="flex gap-3 font-text font-medium">
@@ -19,7 +23,7 @@ export default function Navbar(props) {
         <span>{props.pageTitle}</span>
       </div>
       <div className="flex gap-3">
-        <HomeIcon className="h-6 w-6 text-gray-500" />
+        <HomeIcon className="h-6 w-6 text-gray-500" onClick={goHome} />
         <Bars3Icon className="h-6 w-6 text-gray-500" />
       </div>
     </div>
