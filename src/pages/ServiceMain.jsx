@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "@/api/Cookies"
 import Navbar from "@/components/common/Navbar.jsx";
@@ -61,7 +61,7 @@ export default function ServiceMain() {
         <div className="mb-[-0.75rem]">
           {ingCashBoxList.map((cashbox) => (
             <div
-                key={cashbox.cashBoxId}
+              key={cashbox.cashBoxId}
               onClick={() => viewCashbox(cashbox.cashBoxId)}
               className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
             >
