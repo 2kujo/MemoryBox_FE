@@ -155,7 +155,7 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} step={step} />
+        <Navbar pageTitle={"추억 기록"} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -241,7 +241,7 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} step={step} />
+        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 0}, replace: true}}/>
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -273,16 +273,18 @@ export default function MakeMemory() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full flex flex-col">
-        <Navbar pageTitle={"추억 기록"} step={step} />
+        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 1}, replace: true}}/>
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
+
 
         <div className="text-[#888] text-sm flex justify-start items-center">
           <PencilIcon class="h-4 w-4 text-gray-500 mr-2" />
 
           <div>입력한 정보를 확인해주세요</div>
         </div>
+
         <div className="text-[#EB1724] py-2 text-xs">
           * 추억 등록 후 수정이 불가합니다.
         </div>

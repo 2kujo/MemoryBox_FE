@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-import AlbumImage from "@/assets/images/sample_album.jpeg"
+import AlbumImage from "@/assets/images/sample_album.png"
 
 export default function DigitalAlbum() {
   const navigate = useNavigate();

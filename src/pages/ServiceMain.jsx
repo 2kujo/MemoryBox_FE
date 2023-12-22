@@ -15,10 +15,14 @@ export default function ServiceMain() {
   const navigate = useNavigate();
 
   const specialCookie = getCookie("memorybox-special-user");
-  let popShowed = 0;
+  console.log(specialCookie);
+  let willPopShow = 0;
   if (specialCookie && specialCookie != undefined) {
-    popShowed = getCookie("popShowed");
+    willPopShow = getCookie("popShowed");
+  }else{
+    willPopShow = 1;
   }
+  console.log(willPopShow);
 
   const [ingCashBoxList, setIngCashBoxList] = useState([]);
   const [finishedCashBoxList, setFinishedCashBoxList] = useState([]);
@@ -45,8 +49,8 @@ export default function ServiceMain() {
 
   function finishedCashBoxListFail() {}
 
-  function viewCashbox(id) {
-    navigate("/memories", { state: { cashBoxId: id } });
+  function viewCashbox(id, checked) {
+    navigate("/memories", { state: { cashBoxId: id, maturityChecked: checked } });
   }
 
   function floatingClickHandler() {
@@ -62,7 +66,7 @@ export default function ServiceMain() {
           {ingCashBoxList.map((cashbox) => (
             <div
               key={cashbox.cashBoxId}
-              onClick={() => viewCashbox(cashbox.cashBoxId)}
+              onClick={() => viewCashbox(cashbox.cashBoxId, cashbox.maturityChecked)}
               className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
             >
               <div className="font-text text-[1.1rem]">{cashbox.name}</div>
@@ -147,7 +151,7 @@ export default function ServiceMain() {
       <div>
         <Tab tabList={tabList} />
       </div>
-      {!popShowed && (
+      {!willPopShow && (
         <AnivPop
           cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
