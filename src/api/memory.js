@@ -21,13 +21,19 @@ export function requestCreateMemory(cashBoxId, data, success, fail) {
       "Content-Type": "multipart/form-data",
     },
   };
+  console.log("타이틀");
+
+  console.log(data.title);
+  console.log("JSON 타이틀");
+  console.log(JSON.stringify(data.title));
+
   let formData = new FormData();
   for (let i = 0; i < data.imageFiles.length; i++) {
     formData.append("imageFiles", data.imageFiles[i]);
   }
-  formData.append("title", JSON.stringify(data.title));
-  formData.append("content", JSON.stringify(data.content));
-  formData.append("depositAmount", JSON.stringify(data.depositAmount));
+  formData.append("title", data.title);
+  formData.append("content", data.content);
+  formData.append("depositAmount", data.depositAmount);
 
   UserApi.post(`/cash-boxes/${cashBoxId}/memories`, formData, config)
     .then(success)

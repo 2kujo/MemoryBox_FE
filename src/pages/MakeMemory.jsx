@@ -1,6 +1,9 @@
 import Navbar from "@/components/common/Navbar";
 import React, { useState, useEffect } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
+import { PencilIcon } from "@heroicons/react/24/outline";
+import { XCircleIcon } from "@heroicons/react/24/outline";
+
 import LongBtn from "@/components/common/LongBtn";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -11,12 +14,10 @@ import { requestCreateMemory } from "@/api/memory";
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
   const [imageList, setImageList] = useState([]);
-
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
   const [changedDeposit, setChangedDeposit] = useState("");
-
   const [inputCount, setInputCount] = useState(0);
   const [step, setStep] = useState(0);
   const totalStep = 3;
@@ -59,9 +60,10 @@ export default function MakeMemory() {
 
   //   이미지 상대경로 저장
   const handleAddImages = (event) => {
-    const imgLists = event.target.files;
-    setImageList(imgLists);
+    const tmpImgList = event.target.files;
 
+    imageList.console.log(imgLists);
+    setImageList(imgLists);
     let imageUrlLists = [...showImages];
 
     for (let i = 0; i < imgLists.length; i++) {
@@ -75,6 +77,28 @@ export default function MakeMemory() {
 
     setShowImages(imageUrlLists);
     event.target.scrollLeft = 10000;
+  };
+
+  // X버튼 클릭 시 이미지 삭제
+  const handleDeleteImage = (idx) => {
+    console.log(showImages);
+    // const imgL = showImages.filter(function (_, index) {
+    //   return index !== idx;
+    // });
+    // console.log(imgL);
+    setShowImages(
+      showImages.filter(function (_, index) {
+        return index !== idx;
+      })
+    );
+
+    console.log(idx);
+    console.log(imageList);
+    delete imageList[idx.toString()];
+    console.log(imageList);
+
+    // delete console.log(dataList);
+    setImageList(imageList);
   };
 
   function onChangeMemoryTitle(event) {
@@ -140,11 +164,15 @@ export default function MakeMemory() {
           <div className="wrap w-full">
             <div className="scroll-wrap">
               {showImages.map((image, id) => (
-                <div className="scroll-element rounded-sm" key={id}>
+                <div className="scroll-element rounded-sm relative" key={id}>
                   <img
-                    className="w-full h-full m-auto object-cover"
+                    className="w-full h-full m-auto object-cover absolute"
                     src={image}
                     alt={`${image}-${id}`}
+                  />
+                  <XCircleIcon
+                    className="h-6 w-6 text-[#000] absolute flex justify-end items-end"
+                    onClick={() => handleDeleteImage(id)}
                   />
                 </div>
               ))}
@@ -157,7 +185,7 @@ export default function MakeMemory() {
                     style={{ display: "none" }}
                   />
                   <div className="camera-box items-center flex justify-center">
-                    <div>
+                    <div className="text-[#888]">
                       <CameraIcon className="camera-icon h-10"></CameraIcon>
                     </div>
                   </div>
@@ -249,7 +277,14 @@ export default function MakeMemory() {
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
-        <div className="text-[#888]  text-sm">입력한 정보를 확인해주세요</div>
+
+
+        <div className="text-[#888] text-sm flex justify-start items-center">
+          <PencilIcon class="h-4 w-4 text-gray-500 mr-2" />
+
+          <div>입력한 정보를 확인해주세요</div>
+        </div>
+
         <div className="text-[#EB1724] py-2 text-xs">
           * 추억 등록 후 수정이 불가합니다.
         </div>
