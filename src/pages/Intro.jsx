@@ -5,11 +5,14 @@ import IntroFinishBibi from "@/assets/images/intro_finish_bibi.gif";
 import IntroLogo from "@/assets/images/intro_logo.jpg";
 
 import LongBtn from "@/components/common/LongBtn.jsx";
+import { getCookie, setCookie } from "@/api/Cookies"
+import { getCert } from "@/api/cert"
 
 export default function Intro() {
   const location = useLocation();
   const navigate = useNavigate();
   const needPop = true;
+  let userId;
 
   if (location.pathname == "/") {
     document.body.style.backgroundColor = "#FFDA48";
@@ -18,12 +21,28 @@ export default function Intro() {
   }
 
   function startIntro() {
-    //cert를 통해 유저 판별
-    // navigate("/make-box");
+    checkAlreadyHasUserIdCookie();
 
-    // 시연용
-    navigate("/intro-finish");
+    getCert(onSuccess);
   }
+
+  function checkAlreadyHasUserIdCookie() {
+    userId = getCookie("memorybox-user-id");
+  }
+
+  function onSuccess(data) {
+    setCookie("memorybox-user-id", data.data.userId);
+    if (userId) {
+      userId = null;
+      navigate("/main");
+      return;
+    }
+
+    navigate("/main");
+    //TODO intro-finish로 보내는 시퀀스 고민해보기
+    //navigate("/intro-finish");
+  }
+
   function endIntro() {
     navigate("/main");
   }

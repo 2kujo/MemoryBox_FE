@@ -3,15 +3,16 @@ import { getCookie } from "@/api/Cookies";
 
 axios.defaults.withCredentials = true;
 
-const UserApi = axios.create({
-  // baseURL: "http://memorybox-main:8080/",
-  baseURL: "http://memorybox-ikujo-back.165.192.105.60.nip.io/main/",
+const CertApi = axios.create({
+  // baseURL: "http://memorybox-cert:8080",
+  baseURL: "http://memorybox-ikujo-back.165.192.105.60.nip.io/certification/",
+  // baseURL: "http://localhost:8080/",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-UserApi.interceptors.request.use(
+CertApi.interceptors.request.use(
   (config) => {
     let userId = getCookie("memorybox-user-id");
     if (userId) {
@@ -24,4 +25,4 @@ UserApi.interceptors.request.use(
   }
 );
 
-export default UserApi;
+export default CertApi;

@@ -17,7 +17,8 @@ export default function AnivPop(props) {
   const [isOpen, setOpen] = useState(1);
   function closePop() {
     setOpen(0);
-    setCookie(`${props.cashBoxId}-popShowed`, 1);
+    // setCookie(`${props.cashBoxId}-popShowed`, 1);
+    setCookie(`popShowed`, 1);
   }
   function viewCashBox(id){
     navigate("/memories", { state: { cashBoxId: id }});

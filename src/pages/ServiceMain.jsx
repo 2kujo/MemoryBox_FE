@@ -22,12 +22,14 @@ const getCookie = (name) => {
 export default function ServiceMain() {
   const navigate = useNavigate();
 
+  const specialCookie = getCookie("memorybox-special-user");
+  let popShowed = null;
+  if (specialCookie && specialCookie != undefined) {
+    popShowed = getCookie("popShowed");
+  }
+
   const [ingCashBoxList, setIngCashBoxList] = useState([]);
   const [finishedCashBoxList, setFinishedCashBoxList] = useState([]);
-
-  // 시연용
-  const popShowed = getCookie("2-popShowed");
-  // 시연용
 
   const tabList = [
     { key: 0, title: "저금중", contents: "" },
