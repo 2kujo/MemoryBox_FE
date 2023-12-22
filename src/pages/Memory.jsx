@@ -71,7 +71,7 @@ export default function Memory() {
 
   return (
     <div className="overflow-hidden font-text">
-      <Navbar pageTitle={memory.title} />
+      <Navbar pageTitle={memory.title} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
       <div className="w-[100dvw] h-[100dvw] absolute left-0">
         <ItemsCarousel
           requestToChangeActive={setActiveItemIndex}
