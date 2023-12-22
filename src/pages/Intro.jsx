@@ -12,7 +12,6 @@ export default function Intro() {
   const location = useLocation();
   const navigate = useNavigate();
   const needPop = true;
-  let userId;
 
   if (location.pathname == "/") {
     document.body.style.backgroundColor = "#FFDA48";
@@ -21,8 +20,9 @@ export default function Intro() {
   }
 
   function startIntro() {
-    if (getCookie("memorybox-user-id")) {
+    if (getCookie(setCookie("memorybox-user-id"))) {
       navigate("/main");
+      return;
     }
     getCert(onSuccess);
   }
