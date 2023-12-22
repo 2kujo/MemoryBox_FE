@@ -21,6 +21,9 @@ export default function Intro() {
   }
 
   function startIntro() {
+    if (getCookie("memorybox-user-id")) {
+      navigate("/main");
+    }
     getCert(onSuccess);
   }
 
