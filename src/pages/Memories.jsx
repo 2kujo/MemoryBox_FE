@@ -12,7 +12,7 @@ export default function Memories() {
   const navigate = useNavigate();
   const location = useLocation();
   const [memoryList, setMemoryList] = useState([]);
-  const [cashBoxInfo, setChahBoxInfo] = useState({
+  const [cashBoxInfo, setCashBoxInfo] = useState({
     cashBoxId: 0,
     name: "",
     accountNum: 0,
@@ -50,7 +50,7 @@ export default function Memories() {
 
   function getCashBoxSuccess(res) {
     console.log(res.data);
-    setChahBoxInfo(res.data);
+    setCashBoxInfo(res.data);
 
     console.log(cashBoxInfo);
   }
