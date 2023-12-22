@@ -3,14 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LongBtn from "@/components/common/LongBtn.jsx";
 import "@/components/css/AnivPop.css";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-
-// 시연용
-import { Cookies } from "react-cookie";
-const cookies = new Cookies();
-const setCookie = (name, value, option) => {
-    return cookies.set(name, value, { ...option });
-};
-// 시연용
+import { setCookie } from "@/api/Cookies"
 
 export default function AnivPop(props) {
   const navigate = useNavigate();
