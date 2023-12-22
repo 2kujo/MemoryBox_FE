@@ -20,6 +20,7 @@ export default function ServiceMain() {
   if (specialCookie && specialCookie != undefined) {
     popShowed = getCookie("popShowed");
   }
+  console.log(popShowed);
 
   const [ingCashBoxList, setIngCashBoxList] = useState([]);
   const [finishedCashBoxList, setFinishedCashBoxList] = useState([]);
