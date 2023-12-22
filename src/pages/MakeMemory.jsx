@@ -14,6 +14,8 @@ import { requestCreateMemory } from "@/api/memory";
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [tmpImgList, setTmpImgList] = useState([])
+
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
@@ -35,6 +37,21 @@ export default function MakeMemory() {
     }
   });
 
+  useEffect(()=> {
+    const finalList = []
+    if(imageList.length !== 0){
+      for(var i = 0; i < imageList.length; i++){
+        finalList.push(imageList[i])
+      }
+    }
+
+    for(var i = 0; i < tmpImgList.length;i++){
+      finalList.push(tmpImgList[i])
+    }
+    console.log(finalList);
+    setImageList(finalList)
+  },[tmpImgList])
+
   function nextStep() {
     if (isValidNextStep()) {
       setStep(step + 1);
@@ -55,19 +72,20 @@ export default function MakeMemory() {
     } else if (step == 1 && changedDeposit === "") {
       return false;
     }
+
     return true;
   }
 
-  //   이미지 상대경로 저장
+  // 이미지 상대경로 저장
   const handleAddImages = (event) => {
-    const tmpImgList = event.target.files;
+    const imageLists = event.target.files;
 
-    imageList.console.log(imgLists);
-    setImageList(imgLists);
+    setTmpImgList(imageLists);
+
     let imageUrlLists = [...showImages];
 
-    for (let i = 0; i < imgLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imgLists[i]);
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
 
@@ -76,29 +94,24 @@ export default function MakeMemory() {
     }
 
     setShowImages(imageUrlLists);
-    event.target.scrollLeft = 10000;
   };
 
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (idx) => {
-    console.log(showImages);
-    // const imgL = showImages.filter(function (_, index) {
-    //   return index !== idx;
-    // });
-    // console.log(imgL);
+
     setShowImages(
       showImages.filter(function (_, index) {
         return index !== idx;
       })
     );
 
-    console.log(idx);
-    console.log(imageList);
-    delete imageList[idx.toString()];
-    console.log(imageList);
+    const newList = []
+    for(var i = 0; i < imageList.length;i++){
+      if(i == idx) continue
+      newList.push(imageList[i])
+    }
 
-    // delete console.log(dataList);
-    setImageList(imageList);
+    setImageList(newList);
   };
 
   function onChangeMemoryTitle(event) {
@@ -155,7 +168,11 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/memories"
+          propsObj={{ state: { cashBoxId: cashBoxId } }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -241,7 +258,11 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 0}, replace: true}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/make-memory"
+          propsObj={{ state: { cashBoxId: cashBoxId, step: 0 }, replace: true }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -273,11 +294,14 @@ export default function MakeMemory() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full flex flex-col">
-        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 1}, replace: true}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/make-memory"
+          propsObj={{ state: { cashBoxId: cashBoxId, step: 1 }, replace: true }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
-
 
         <div className="text-[#888] text-sm flex justify-start items-center">
           <PencilIcon class="h-4 w-4 text-gray-500 mr-2" />
