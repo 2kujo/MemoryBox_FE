@@ -110,8 +110,6 @@ export default function MakeBox() {
         description: cashboxDesc,
         productName: cashboxProduct
       };
-      console.log("send data");
-      console.log(data);
       createCashBox(data, onSuccess, onFailure);
     } else {
       toast(invalidTxt[step] + " 필수 입력값입니다");
@@ -119,8 +117,8 @@ export default function MakeBox() {
   }
 
   function onSuccess(res) {
-    //navigate("/intro-finish");
-    navigate("/main");
+    navigate("/intro-finish");
+    // navigate("/main");
   }
 
   function onFailure(err) {
