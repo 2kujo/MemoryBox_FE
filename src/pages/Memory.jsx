@@ -102,7 +102,7 @@ export default function Memory() {
         </ItemsCarousel>
       </div>
       <div className="h-[100vw]"></div>
-      <div className="memory-outline flex justify-between p-2">
+      <div className="memory-outline h-full flex justify-between p-2">
         <div className="">
           <div className="text-sm font-medium">{memory.title}</div>
           <div className="text-xs text-grey">{memory.createdAt}</div>
@@ -114,12 +114,14 @@ export default function Memory() {
           <span>원</span>
         </div>
       </div>
-      <textarea
+
+      <div>{memory.content}</div>
+      {/* <textarea
         className="memory-content p-2 bg-white text-font1 opacity-90"
         disabled
       >
-        {memory.content}
-      </textarea>
+            
+      </textarea> */}
     </div>
   );
 }

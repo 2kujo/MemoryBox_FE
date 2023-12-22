@@ -31,6 +31,7 @@ export default function Memories() {
   // 시연용
 
   const cashBoxId = location.state.cashBoxId;
+  console.log(cashBoxId);
 
   useEffect(() => {
     requestMemories(cashBoxId, reqMemorySuccess, reqMemoryFailure);
