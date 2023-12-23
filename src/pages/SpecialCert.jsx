@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from 'axios';
-import { setCookie } from "@/api/Cookies";
+import { getCookie, setCookie } from "@/api/Cookies";
 import { getCert } from "@/api/cert";
 
 export default function SpecialCert(){
@@ -17,7 +17,7 @@ export default function SpecialCert(){
         getCert((data) => {
             setCookie("memorybox-user-id", data.data.userId);
             setCookie("memorybox-special-user", data.data.userId);
-            navigate("/intro");
+            navigate("/");
         });
 
     }, []);

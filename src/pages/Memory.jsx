@@ -72,7 +72,7 @@ export default function Memory() {
 
   return (
     <div className="overflow-hidden font-text">
-      <Navbar pageTitle={cashBoxName} />
+      <Navbar pageTitle={cashBoxName} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
       {memory.images.length === 0 && (
         <div className="w-[100dvw] h-[100dvw] absolute left-0 items-center flex justify-center">
           <div className="camera-box items-center flex justify-center">
