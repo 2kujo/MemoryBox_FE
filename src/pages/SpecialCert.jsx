@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from 'axios';
-import { setCookie, getCookie } from "@/api/Cookies";
+import { getCookie, setCookie } from "@/api/Cookies";
 import { getCert } from "@/api/cert";
 
 export default function SpecialCert(){
