@@ -20,7 +20,7 @@ export default function Intro() {
   }
 
   function startIntro() {
-    if (getCookie(setCookie("memorybox-user-id"))) {
+    if (getCookie("memorybox-user-id")) {
       navigate("/main");
       return;
     }

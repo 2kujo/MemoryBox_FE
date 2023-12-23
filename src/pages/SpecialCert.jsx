@@ -9,7 +9,7 @@ export default function SpecialCert(){
 
     // special cert 발급을 위한 통신 수행 후 intro 페이지로 이동
     useEffect(() => {
-        let userId = getCookie(setCookie("memorybox-user-id"));        
+        let userId = getCookie("memorybox-user-id");        
         if (userId) {
             setCookie("memorybox-special-user", userId);
             return;
