@@ -102,7 +102,11 @@ export default function Memories() {
         </div>
         <hr className="w-full bg-grey h-px border-none" />
         <div className="cash-box-memories">
-          <MemoryList memoryContents={memoryList} cashBoxId={cashBoxId} />
+          <MemoryList
+            memoryContents={memoryList}
+            cashBoxId={cashBoxId}
+            cashBoxName={cashBoxInfo.name}
+          />
         </div>
       </div>
       {!cashBoxInfo.finished && (

@@ -1,21 +1,22 @@
 import React from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function MemoryList({ memoryContents, cashBoxId }) {
+export default function MemoryList({ memoryContents, cashBoxId, cashBoxName }) {
   const navigate = useNavigate();
 
   console.log(`MemoryList CashBoxId : ${cashBoxId}`);
 
+  console.log(memoryContents);
+
   function onClickMemoryDetail(memoryId) {
-    navigate(`/memories/${memoryId}`, { state: { cashBoxId: cashBoxId} });
+    navigate(`/memories/${memoryId}`, {
+      state: { cashBoxId: cashBoxId, cashBoxName: cashBoxName },
+    });
   }
 
   return (
     <div>
-     
-      {
-      
-      memoryContents.map((memory, memoryId) => (
+      {memoryContents.map((memory, memoryId) => (
         <div
           key={memoryId}
           className="cash-box-memory px-3 py-3 flex justify-between items-center border-b border-b-silver"
@@ -32,11 +33,13 @@ export default function MemoryList({ memoryContents, cashBoxId }) {
             </div>
           </div>
           <div className="w-20 h-20 overflow-hidden rounded-sm">
-            <img
-              className="w-full h-full m-auto object-cover"
-              src={`http://memorybox-ikujo.165.192.105.60.nip.io/image/${memory.image}`}
-              alt={`${memory.title}`}
-            />
+            {memory.image !== "/" && (
+              <img
+                className="w-full h-full m-auto object-cover"
+                src={`http://memorybox-ikujo.165.192.105.60.nip.io/image/${memory.image}`}
+                alt={`${memory.title}`}
+              />
+            )}
           </div>
         </div>
       ))}

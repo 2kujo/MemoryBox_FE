@@ -1,6 +1,9 @@
 import Navbar from "@/components/common/Navbar";
 import React, { useState, useEffect } from "react";
 import { CameraIcon } from "@heroicons/react/24/outline";
+import { PencilIcon } from "@heroicons/react/24/outline";
+import { XCircleIcon } from "@heroicons/react/24/outline";
+
 import LongBtn from "@/components/common/LongBtn";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -11,12 +14,12 @@ import { requestCreateMemory } from "@/api/memory";
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [tmpImgList, setTmpImgList] = useState([])
 
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
   const [depositAmount, setDepositAmount] = useState(0);
   const [changedDeposit, setChangedDeposit] = useState("");
-
   const [inputCount, setInputCount] = useState(0);
   const [step, setStep] = useState(0);
   const totalStep = 3;
@@ -33,6 +36,21 @@ export default function MakeMemory() {
       }
     }
   });
+
+  useEffect(()=> {
+    const finalList = []
+    if(imageList.length !== 0){
+      for(var i = 0; i < imageList.length; i++){
+        finalList.push(imageList[i])
+      }
+    }
+
+    for(var i = 0; i < tmpImgList.length;i++){
+      finalList.push(tmpImgList[i])
+    }
+    console.log(finalList);
+    setImageList(finalList)
+  },[tmpImgList])
 
   function nextStep() {
     if (isValidNextStep()) {
@@ -54,18 +72,20 @@ export default function MakeMemory() {
     } else if (step == 1 && changedDeposit === "") {
       return false;
     }
+
     return true;
   }
 
-  //   이미지 상대경로 저장
+  // 이미지 상대경로 저장
   const handleAddImages = (event) => {
-    const imgLists = event.target.files;
-    setImageList(imgLists);
+    const imageLists = event.target.files;
+
+    setTmpImgList(imageLists);
 
     let imageUrlLists = [...showImages];
 
-    for (let i = 0; i < imgLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imgLists[i]);
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
     }
 
@@ -74,7 +94,24 @@ export default function MakeMemory() {
     }
 
     setShowImages(imageUrlLists);
-    event.target.scrollLeft = 10000;
+  };
+
+  // X버튼 클릭 시 이미지 삭제
+  const handleDeleteImage = (idx) => {
+
+    setShowImages(
+      showImages.filter(function (_, index) {
+        return index !== idx;
+      })
+    );
+
+    const newList = []
+    for(var i = 0; i < imageList.length;i++){
+      if(i == idx) continue
+      newList.push(imageList[i])
+    }
+
+    setImageList(newList);
   };
 
   function onChangeMemoryTitle(event) {
@@ -131,7 +168,11 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/memories"
+          propsObj={{ state: { cashBoxId: cashBoxId } }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -140,11 +181,15 @@ export default function MakeMemory() {
           <div className="wrap w-full">
             <div className="scroll-wrap">
               {showImages.map((image, id) => (
-                <div className="scroll-element rounded-sm" key={id}>
+                <div className="scroll-element rounded-sm relative" key={id}>
                   <img
-                    className="w-full h-full m-auto object-cover"
+                    className="w-full h-full m-auto object-cover absolute"
                     src={image}
                     alt={`${image}-${id}`}
+                  />
+                  <XCircleIcon
+                    className="h-6 w-6 text-[#000] absolute flex justify-end items-end"
+                    onClick={() => handleDeleteImage(id)}
                   />
                 </div>
               ))}
@@ -157,7 +202,7 @@ export default function MakeMemory() {
                     style={{ display: "none" }}
                   />
                   <div className="camera-box items-center flex justify-center">
-                    <div>
+                    <div className="text-[#888]">
                       <CameraIcon className="camera-icon h-10"></CameraIcon>
                     </div>
                   </div>
@@ -213,7 +258,11 @@ export default function MakeMemory() {
     return (
       <div className="w-full h-full flex flex-col">
         <ToastContainer />
-        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 0}, replace: true}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/make-memory"
+          propsObj={{ state: { cashBoxId: cashBoxId, step: 0 }, replace: true }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
@@ -245,11 +294,21 @@ export default function MakeMemory() {
   } else if (step == 2) {
     return (
       <div className="w-full h-full flex flex-col">
-        <Navbar pageTitle={"추억 기록"} path="/make-memory" propsObj={{state: {cashBoxId: cashBoxId, step: 1}, replace: true}}/>
+        <Navbar
+          pageTitle={"추억 기록"}
+          path="/make-memory"
+          propsObj={{ state: { cashBoxId: cashBoxId, step: 1 }, replace: true }}
+        />
         <div className="grow-0">
           <Step totalStep={totalStep} currStep={step} />
         </div>
-        <div className="text-[#888]  text-sm">입력한 정보를 확인해주세요</div>
+
+        <div className="text-[#888] text-sm flex justify-start items-center">
+          <PencilIcon class="h-4 w-4 text-gray-500 mr-2" />
+
+          <div>입력한 정보를 확인해주세요</div>
+        </div>
+
         <div className="text-[#EB1724] py-2 text-xs">
           * 추억 등록 후 수정이 불가합니다.
         </div>

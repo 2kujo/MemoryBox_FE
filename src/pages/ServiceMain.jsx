@@ -16,11 +16,13 @@ export default function ServiceMain() {
 
   const specialCookie = getCookie("memorybox-special-user");
   console.log(specialCookie);
-  let popShowed = 0;
+  let willPopShow = 0;
   if (specialCookie && specialCookie != undefined) {
-    popShowed = getCookie("popShowed");
+    willPopShow = getCookie("popShowed");
+  }else{
+    willPopShow = 1;
   }
-  console.log(popShowed);
+  console.log(willPopShow);
 
   const [ingCashBoxList, setIngCashBoxList] = useState([]);
   const [finishedCashBoxList, setFinishedCashBoxList] = useState([]);
@@ -111,7 +113,7 @@ export default function ServiceMain() {
                   <div className="bg-yellow w-20 h-20 rounded-full flex justify-center items-center">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
                       <img
-                        src={cashbox.thumbnail}
+                        src={`http://memorybox-ikujo.165.192.105.60.nip.io/image/${cashbox.thumbnail}`}
                         alt={`${cashbox.name}의 대표사진 입니다`}
                         className="w-full h-full m-auto object-cover"
                       />
@@ -149,7 +151,7 @@ export default function ServiceMain() {
       <div>
         <Tab tabList={tabList} />
       </div>
-      {!popShowed && (
+      {!willPopShow && (
         <AnivPop
           cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
