@@ -17,7 +17,7 @@ export default function SpecialCert(){
         getCert((data) => {
             setCookie("memorybox-user-id", data.data.userId);
             setCookie("memorybox-special-user", data.data.userId);
-            navigate("/intro");
+            navigate("/");
         });
 
     }, []);
