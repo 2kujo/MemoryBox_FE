@@ -1,20 +1,22 @@
-import Navbar from "@/components/common/Navbar";
 import React, { useState, useEffect } from "react";
+
+import Navbar from "@/components/common/Navbar";
+import LongBtn from "@/components/common/LongBtn";
+import Step from "@/components/common/Step";
+
 import { CameraIcon } from "@heroicons/react/24/outline";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { XCircleIcon } from "@heroicons/react/24/outline";
+import { XCircleIcon } from "@heroicons/react/24/solid";
 
-import LongBtn from "@/components/common/LongBtn";
 import { ToastContainer, toast } from "react-toastify";
 
-import Step from "@/components/common/Step";
 import { useNavigate, useLocation } from "react-router-dom";
 import { requestCreateMemory } from "@/api/memory";
 
 export default function MakeMemory() {
   const [showImages, setShowImages] = useState([]);
   const [imageList, setImageList] = useState([]);
-  const [tmpImgList, setTmpImgList] = useState([])
+  const [tmpImgList, setTmpImgList] = useState([]);
 
   const [memoryTitle, setMemoryTitle] = useState("");
   const [memoryDesc, setMemoryDesc] = useState("");
@@ -38,24 +40,25 @@ export default function MakeMemory() {
     }
   });
 
-  useEffect(()=> {
-    const finalList = []
-    if(imageList.length !== 0){
-      for(var i = 0; i < imageList.length; i++){
-        finalList.push(imageList[i])
+  useEffect(() => {
+    const finalList = [];
+    if (imageList.length !== 0) {
+      for (let i = 0; i < imageList.length; i++) {
+        finalList.push(imageList[i]);
       }
     }
 
-    for(var i = 0; i < tmpImgList.length;i++){
-      finalList.push(tmpImgList[i])
+    for (let i = 0; i < tmpImgList.length; i++) {
+      finalList.push(tmpImgList[i]);
     }
     console.log(finalList);
-    setImageList(finalList)
-  },[tmpImgList])
+    setImageList(finalList);
+  }, [tmpImgList]);
 
   function nextStep() {
     if (isValidNextStep()) {
       setStep(step + 1);
+      toast.dismiss();
     } else {
       toast(validVal[step] + " 필수 입력값입니다");
     }
@@ -99,17 +102,16 @@ export default function MakeMemory() {
 
   // X버튼 클릭 시 이미지 삭제
   const handleDeleteImage = (idx) => {
-
     setShowImages(
       showImages.filter(function (_, index) {
         return index !== idx;
       })
     );
 
-    const newList = []
-    for(var i = 0; i < imageList.length;i++){
-      if(i == idx) continue
-      newList.push(imageList[i])
+    const newList = [];
+    for (let i = 0; i < imageList.length; i++) {
+      if (i == idx) continue;
+      newList.push(imageList[i]);
     }
 
     setImageList(newList);
@@ -136,7 +138,11 @@ export default function MakeMemory() {
   };
 
   const onKeyDownHandler = (event) => {
-    if (event.code == "Enter" || event.code == "enter" || event.keyCode == 13) {
+    if (
+      event.code === "Enter" ||
+      event.code === "enter" ||
+      event.keyCode === 13
+    ) {
       event.target.blur();
     }
   };
@@ -182,14 +188,14 @@ export default function MakeMemory() {
           <div className="wrap w-full">
             <div className="scroll-wrap">
               {showImages.map((image, id) => (
-                <div className="scroll-element rounded-sm relative" key={id}>
+                <div className="scroll-element relative" key={id}>
                   <img
-                    className="w-full h-full m-auto object-cover absolute"
+                    className="w-[92%] h-[92%] m-auto object-cover absolute rounded-sm bottom-0"
                     src={image}
                     alt={`${image}-${id}`}
                   />
                   <XCircleIcon
-                    className="h-6 w-6 text-[#000] absolute flex justify-end items-end"
+                    className="h-6 w-6 text-[#ADADAD] absolute right-[-0.1rem] top-[-0.1rem]"
                     onClick={() => handleDeleteImage(id)}
                   />
                 </div>
@@ -281,7 +287,7 @@ export default function MakeMemory() {
                   onChange={onChangeDepositAmount}
                   onKeyDown={onKeyDownHandler}
                   maxLength="20"
-                  className="opacity-0 w-full outline-none text-md"
+                  className="opacity-0 w-full focus:outline-none text-md"
                 />
               </div>
             </div>
