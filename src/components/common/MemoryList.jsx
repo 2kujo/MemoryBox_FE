@@ -15,7 +15,7 @@ export default function MemoryList({ memoryContents, cashBoxId, cashBoxName }) {
   }
 
   return (
-    <div>
+    <div className="pb-5">
       {memoryContents.map((memory, memoryId) => (
         <div
           key={memoryId}
