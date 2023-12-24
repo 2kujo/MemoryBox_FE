@@ -53,12 +53,12 @@ export default function Intro() {
               <img
                 className="mx-w-[22rem] mb-[10px]"
                 src={IntroBibi}
-                alt="추억 저금통에 추억을 저금하고 있는 키키"
+                alt="추억 저금통에 추억을 저금하고 있는 비비"
               />
               <img
                 className="inline"
                 src={IntroLogo}
-                alt="추억 저금통에 추억을 저금하고 있는 키키"
+                alt="추억 저금통에 추억을 저금하고 있는 비비"
               />
             </div>
             <LongBtn type="white" text="시작하기" clickFunc={startIntro} />
@@ -78,7 +78,11 @@ export default function Intro() {
               KB와 함께 추억을 저금해보세요
             </div>
             <div className="mt-10 mb-20 w-64">
-              <img className="mx-auto" src={IntroFinishBibi} alt="" />
+              <img
+                className="mx-auto"
+                src={IntroFinishBibi}
+                alt="추억 저금통 생성 완료 후 기뻐하는 비비"
+              />
             </div>
             <LongBtn text="추억 저금하기" clickFunc={endIntro} />
           </div>
