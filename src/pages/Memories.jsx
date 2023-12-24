@@ -5,6 +5,7 @@ import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
 import Image from "@/assets/images/first_tooth.png";
+import NoDataImg from "@/assets/images/no_data.png"
 import { requestMemories } from "@/api/memory";
 import { getCashBox } from "@/api/cashBox";
 
@@ -102,11 +103,18 @@ export default function Memories() {
         </div>
         <hr className="w-full bg-grey h-px border-none" />
         <div className="cash-box-memories">
-          <MemoryList
+          {memoryList.length == 0 ? 
+            (<div className="h-[70dvh] flex flex-col items-center justify-center">
+              <img className="w-[100px] mb-[20px]" src={NoDataImg} alt="노 데이터 이미지" />
+              <div className="font-sm">아직 저금된 추억이 없습니다.</div>
+            </div>) : 
+            <MemoryList
             memoryContents={memoryList}
             cashBoxId={cashBoxId}
             cashBoxName={cashBoxInfo.name}
-          />
+            />
+           }
+          
         </div>
       </div>
       {!cashBoxInfo.finished && (
