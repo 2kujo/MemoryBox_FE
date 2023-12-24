@@ -7,6 +7,12 @@ import Navbar from "@/components/common/Navbar.jsx";
 import Step from "@/components/common/Step.jsx";
 import LongBtn from "@/components/common/LongBtn.jsx";
 
+import Icon1 from "@/assets/images/life_icon1.png";
+import Icon2 from "@/assets/images/life_icon2.png";
+import Icon3 from "@/assets/images/life_icon3.png";
+import Icon4 from "@/assets/images/life_icon4.png";
+import Icon5 from "@/assets/images/life_icon5.png";
+
 import { createCashBox } from "@/api/cashBox";
 
 export default function MakeBox() {
@@ -14,31 +20,37 @@ export default function MakeBox() {
   const navigate = useNavigate();
   const [cashboxName, setCashboxName] = useState("");
   const [cashboxDesc, setCashboxDesc] = useState("");
-  const [cashboxProduct, setCashboxProduct] = useState("");
-  const [currProduct, setCurrProduct] = useState(null);
+  // const [cashboxProduct, setCashboxProduct] = useState("");
+  const [lifeCycleName, setlifeCycleName] = useState("");
+  const cashboxProduct = "특★한 적금"
+  const [currLife, setCurrLife] = useState(null);
   const [step, setStep] = useState(0);
   const totalStep = 3;
-  const productList = [
-    { key: 0, title: "KB 특별한 적금", duration: 36, min: 3, max: 3.5 },
-    { key: 1, title: "KB내맘대로적금", duration: 36, min: 3.15, max: 3.75 },
-    { key: 2, title: "KB우리아이행복적금", duration: 24, min: 3.2, max: 3.55 },
+  const lifeList = [
+    { key: 0, title: "영아기", duration: 24, icon: Icon1 },
+    { key: 1, title: "유치원", duration: 24, icon: Icon2 },
+    { key: 2, title: "초등학교", duration: 72, icon: Icon3 },
+    { key: 2, title: "중학교", duration: 36, icon: Icon4 },
+    { key: 2, title: "고등학교", duration: 36, icon: Icon5 },
   ];
   const invalidTxt = {
     0: "저금통 이름은",
     1: "저금통 설명은",
-    2: "연결할 상품은",
+    2: "성장 과정은",
   };
 
   useEffect(() => {
     if ("state" in location && location.state != null) {
       if ("step" in location.state) {
         setStep(location.state.step);
+        delete location.state.step;
       }
     }
   });
 
   function nextStep() {
     if (isNextStepPossible()) {
+      // delete location.state.step
       setStep(step + 1);
     } else {
       toast(invalidTxt[step] + " 필수 입력값입니다");
@@ -98,15 +110,16 @@ export default function MakeBox() {
     setCashboxDesc(event.target.value);
   };
 
-  function selectCashboxProduct(idx, productName) {
-    setCurrProduct(idx);
-    setCashboxProduct(productName);
+  // 저금 시기(성장 과정)
+  function selectCashboxLife(idx, name) {
+    setCurrLife(idx);
+    setlifeCycleName(name);
   }
 
   function makeCashbox() {
     if (isNextStepPossible()) {
       const data = {
-        name: cashboxName,
+        name: cashboxName + '-' + lifeCycleName,
         description: cashboxDesc,
         productName: cashboxProduct,
       };
@@ -203,28 +216,21 @@ export default function MakeBox() {
           </div>
           <div className="grow flex flex-col justify-between">
             <div>
-              <div className="mb-5 text-md ">연결할 상품을 선택해주세요</div>
+              <div className="mb-5 text-md ">기록할 성장 과정을 선택해주세요</div>
               <div className="mb-[-0.75rem]">
-                {productList.map((product, idx, array) => {
+                {lifeList.map((life, idx, array) => {
                   return (
                     <div
                       key={idx}
-                      onClick={() => selectCashboxProduct(idx, product.title)}
+                      onClick={() => selectCashboxLife(idx, life.title)}
                       className={
-                        idx === currProduct
-                          ? "border-2 border-blue mb-3 shadow-md rounded-sm bg-[#f3f3f3] px-5 py-3"
-                          : "border-2 border-transparent mb-3 shadow-md rounded-sm bg-[#f3f3f3] px-5 py-3"
+                        idx === currLife
+                          ? "border-2 border-blue mb-3 shadow-md rounded-sm bg-[#f3f3f3] px-5 py-3 flex items-center"
+                          : "border-2 border-transparent mb-3 shadow-md rounded-sm bg-[#f3f3f3] px-5 py-3 flex items-center"
                       }
                     >
-                      <div className=" text-sm mb-2">{product.title}</div>
-                      <div className=" text-right">
-                        <span className="text-xs text-grey">
-                          {product.duration}개월 기준,{" "}
-                        </span>
-                        <span className="text-xs text-blue font-semibold">
-                          {product.min}%~{product.max}%
-                        </span>
-                      </div>
+                      <img className="w-[50px]" src={life.icon} alt="성장 과정 아이콘" />
+                      <div className="font-display text-md mt-[5px] ml-[15px]">{life.title}</div>
                     </div>
                   );
                 })}
