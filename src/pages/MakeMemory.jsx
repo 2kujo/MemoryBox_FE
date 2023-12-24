@@ -33,6 +33,7 @@ export default function MakeMemory() {
     if ("state" in location && location.state != null) {
       if ("step" in location.state) {
         setStep(location.state.step);
+        delete location.state.step;
       }
     }
   });
