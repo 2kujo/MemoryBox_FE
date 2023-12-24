@@ -9,8 +9,8 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 // 시연용
-import Image1 from "@/assets/images/first_tooth.png";
-import Image2 from "@/assets/images/intro_bibi.png";
+// import Image1 from "@/assets/images/first_tooth.png";
+// import Image2 from "@/assets/images/intro_bibi.png";
 import { requestMemory } from "@/api/memory";
 // 시연용
 
@@ -37,24 +37,24 @@ export default function Memory() {
     images: [],
   });
 
-  const handleNextClick = () => {
-    setActiveItemIndex((prevIndex) =>
-      prevIndex >= maxImagesIndex ? maxImagesIndex : prevIndex + 1
-    );
-  };
+  // const handleNextClick = () => {
+  //   setActiveItemIndex((prevIndex) =>
+  //     prevIndex >= maxImagesIndex ? maxImagesIndex : prevIndex + 1
+  //   );
+  // };
 
-  const handlePrevClick = () => {
-    setActiveItemIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
-  };
+  // const handlePrevClick = () => {
+  //   setActiveItemIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
+  // };
 
-  const memoryData = {
-    memoryId: 0,
-    title: "우리 민조 아랫니",
-    depositAmount: 10000,
-    createdAt: "2000.10.21",
-    content: "추억 상세 페이지 작성중 \n줄넘기기 되냐?",
-    images: [Image1, Image2],
-  };
+  // const memoryData = {
+  //   memoryId: 0,
+  //   title: "우리 민조 아랫니",
+  //   depositAmount: 10000,
+  //   createdAt: "2000.10.21",
+  //   content: "추억 상세 페이지 작성중 \n줄넘기기 되냐?",
+  //   images: [Image1, Image2],
+  // };
 
   useEffect(() => {
     requestMemory(cashBoxId, memoryId, onSuccess, onFailure);
@@ -72,7 +72,11 @@ export default function Memory() {
 
   return (
     <div className="overflow-hidden font-text">
-      <Navbar pageTitle={cashBoxName} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
+      <Navbar
+        pageTitle={cashBoxName}
+        path="/memories"
+        propsObj={{ state: { cashBoxId: cashBoxId } }}
+      />
       {memory.images.length === 0 && (
         <div className="w-[100dvw] h-[100dvw] absolute left-0 items-center flex justify-center">
           <div className="camera-box items-center flex justify-center">
@@ -83,7 +87,7 @@ export default function Memory() {
         </div>
       )}
       {memory.images.length !== 0 && (
-        <div className="w-[100dvw] h-[100dvw] absolute left-0 p-2">
+        <div className="w-[100dvw] h-[100dvw] absolute left-0">
           <ItemsCarousel
             requestToChangeActive={setActiveItemIndex}
             activeItemIndex={activeItemIndex}
@@ -115,7 +119,7 @@ export default function Memory() {
         </div>
       )}
       <div className="h-[100vw]"></div>
-      <div className="memory-outline h-full flex justify-between p-2">
+      <div className="memory-outline h-full flex justify-between px-2 pt-3.5 pb-2">
         <div className="max-w-[60%]">
           <div className="text-sm font-medium">{memory.title}</div>
           <div className="text-xs text-grey">{memory.createdAt}</div>

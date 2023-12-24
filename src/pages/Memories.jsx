@@ -4,7 +4,7 @@ import Navbar from "@/components/common/Navbar";
 import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
-import Image from "@/assets/images/first_tooth.png";
+// import Image from "@/assets/images/first_tooth.png";
 import NoDataImg from "@/assets/images/no_data.png"
 import { requestMemories, updateMaturityChecked } from "@/api/memory";
 import { getCashBox } from "@/api/cashBox";
@@ -83,7 +83,7 @@ export default function Memories() {
 
   return (
     <div>
-      <Navbar pageTitle={cashBoxInfo.name} path="/main"/>
+      <Navbar pageTitle={cashBoxInfo.name} path="/main" />
       <div className="mx-2">
         <div className="cash-box-outline flex-col px-4 boder-b border-b-silver">
           {!cashBoxInfo.finished && (
