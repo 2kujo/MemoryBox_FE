@@ -6,7 +6,7 @@ import FloatingBtn from "@/components/common/FloatingBtn";
 
 import Image from "@/assets/images/first_tooth.png";
 import NoDataImg from "@/assets/images/no_data.png"
-import { requestMemories } from "@/api/memory";
+import { requestMemories, updateMaturityChecked } from "@/api/memory";
 import { getCashBox } from "@/api/cashBox";
 
 export default function Memories() {
@@ -37,6 +37,11 @@ export default function Memories() {
   useEffect(() => {
     requestMemories(cashBoxId, reqMemorySuccess, reqMemoryFailure);
     getCashBox(cashBoxId, getCashBoxSuccess, getCashBoxFailure);
+    if ("state" in location && location.state != null) {
+      if ("maturityChecked" in location.state) {
+        updateMaturityChecked(cashBoxId, updateMaturityCheckedSuccess, updateMaturityCheckedFailure)
+      }
+    }
   }, []);
 
   function reqMemorySuccess(res) {
@@ -57,6 +62,14 @@ export default function Memories() {
   }
 
   function getCashBoxFailure(err) {
+    console.log(err);
+  }
+  
+  function updateMaturityCheckedSuccess(res) {
+    console.log(res.data);
+  }
+
+  function updateMaturityCheckedFailure(err) {
     console.log(err);
   }
 

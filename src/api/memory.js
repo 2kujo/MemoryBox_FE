@@ -39,3 +39,12 @@ export function requestCreateMemory(cashBoxId, data, success, fail) {
     .then(success)
     .catch(fail);
 }
+
+export function updateMaturityChecked(cashBoxId, success, fail) {
+  console.log(`requestMemory CashBoxId : ${cashBoxId}`);
+  console.log(`/cash-boxes/${cashBoxId}`);
+
+  UserApi.patch(`/cash-boxes/${cashBoxId}`)
+    .then(success)
+    .catch(fail);
+}
