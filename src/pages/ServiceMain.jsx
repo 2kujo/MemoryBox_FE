@@ -157,7 +157,7 @@ export default function ServiceMain() {
         <AnivPop
           cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
-          cashBoxId={7}
+          cashBoxId={1}
         />
       )}
     </div>
