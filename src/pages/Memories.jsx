@@ -5,7 +5,8 @@ import MemoryList from "@/components/common/MemoryList";
 import FloatingBtn from "@/components/common/FloatingBtn";
 
 // import Image from "@/assets/images/first_tooth.png";
-import { requestMemories } from "@/api/memory";
+import NoDataImg from "@/assets/images/no_data.png"
+import { requestMemories, updateMaturityChecked } from "@/api/memory";
 import { getCashBox } from "@/api/cashBox";
 
 export default function Memories() {
@@ -36,6 +37,11 @@ export default function Memories() {
   useEffect(() => {
     requestMemories(cashBoxId, reqMemorySuccess, reqMemoryFailure);
     getCashBox(cashBoxId, getCashBoxSuccess, getCashBoxFailure);
+    if ("state" in location && location.state != null) {
+      if ("maturityChecked" in location.state) {
+        updateMaturityChecked(cashBoxId, updateMaturityCheckedSuccess, updateMaturityCheckedFailure)
+      }
+    }
   }, []);
 
   function reqMemorySuccess(res) {
@@ -56,6 +62,14 @@ export default function Memories() {
   }
 
   function getCashBoxFailure(err) {
+    console.log(err);
+  }
+  
+  function updateMaturityCheckedSuccess(res) {
+    console.log(res.data);
+  }
+
+  function updateMaturityCheckedFailure(err) {
     console.log(err);
   }
 
@@ -101,12 +115,19 @@ export default function Memories() {
           </div>
         </div>
         <hr className="w-full bg-grey h-px border-none" />
-        <div className="cash-box-memories pb-5">
-          <MemoryList
+        <div className="cash-box-memories">
+          {memoryList.length == 0 ? 
+            (<div className="h-[70dvh] flex flex-col items-center justify-center">
+              <img className="w-[100px] mb-[20px]" src={NoDataImg} alt="노 데이터 이미지" />
+              <div className="font-sm">아직 저금된 추억이 없습니다.</div>
+            </div>) : 
+            <MemoryList
             memoryContents={memoryList}
             cashBoxId={cashBoxId}
             cashBoxName={cashBoxInfo.name}
-          />
+            />
+           }
+          
         </div>
       </div>
       {!cashBoxInfo.finished && (
