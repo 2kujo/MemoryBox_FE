@@ -229,8 +229,8 @@ export default function MakeBox() {
                           : "border-2 border-transparent mb-3 shadow-md rounded-sm bg-[#f3f3f3] px-5 py-3 flex items-center"
                       }
                     >
-                      <img className="w-[50px]" src={life.icon} alt="성장 과정 아이콘" />
-                      <div className="font-display text-md mt-[5px] ml-[15px]">{life.title}</div>
+                      <img className="w-[30px]" src={life.icon} alt="성장 과정 아이콘" />
+                      <div className="font-display text-md mt-[2px] ml-[15px]">{life.title}</div>
                     </div>
                   );
                 })}
