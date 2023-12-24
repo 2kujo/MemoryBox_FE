@@ -9,7 +9,7 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 // 시연용
-import Image1 from "@/assets/images/first_tooth.png";
+// import Image1 from "@/assets/images/first_tooth.png";
 import Image2 from "@/assets/images/intro_bibi.png";
 import { requestMemory } from "@/api/memory";
 // 시연용
@@ -72,7 +72,11 @@ export default function Memory() {
 
   return (
     <div className="overflow-hidden font-text">
-      <Navbar pageTitle={cashBoxName} path="/memories" propsObj={{state: {cashBoxId: cashBoxId}}}/>
+      <Navbar
+        pageTitle={cashBoxName}
+        path="/memories"
+        propsObj={{ state: { cashBoxId: cashBoxId } }}
+      />
       {memory.images.length === 0 && (
         <div className="w-[100dvw] h-[100dvw] absolute left-0 items-center flex justify-center">
           <div className="camera-box items-center flex justify-center">
