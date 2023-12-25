@@ -205,6 +205,7 @@ export default function MakeMemory() {
                   <input
                     type="file"
                     id="gallery-input-file"
+                    accept="image/*,video/*"
                     multiple="multiple"
                     style={{ display: "none" }}
                   />
