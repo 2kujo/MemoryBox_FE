@@ -16,11 +16,14 @@ export default function ServiceMain() {
 
   const specialCookie = getCookie("memorybox-special-user");
   console.log(specialCookie);
-  let popShowed = 0;
+  let willShowPop = 0;
   if (specialCookie && specialCookie != undefined) {
-    popShowed = getCookie("popShowed");
+    willShowPop = getCookie("popShowed");
+  }else{
+    // special cookie가 없는 경우에는 팝업 노출 안되도록 처리
+    willShowPop = 1;
   }
-  console.log(popShowed);
+  console.log(willShowPop);
 
   const [ingCashBoxList, setIngCashBoxList] = useState([]);
   const [finishedCashBoxList, setFinishedCashBoxList] = useState([]);
@@ -153,7 +156,7 @@ export default function ServiceMain() {
       <div>
         <Tab tabList={tabList} />
       </div>
-      {!popShowed && (
+      {!willShowPop && (
         <AnivPop
           cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
