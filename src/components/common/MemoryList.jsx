@@ -15,14 +15,14 @@ export default function MemoryList({ memoryContents, cashBoxId, cashBoxName }) {
   }
 
   return (
-    <div>
+    <div className="pb-5">
       {memoryContents.map((memory, memoryId) => (
         <div
           key={memoryId}
-          className="cash-box-memory px-3 py-3 flex justify-between items-center border-b border-b-silver"
+          className="cash-box-memory px-3 py-3 flex justify-between items-center border-b border-b-silver w-full"
           onClick={() => onClickMemoryDetail(memory.memoryId)}
         >
-          <div className="memory-text">
+          <div className="memory-text w-4/6">
             <div className="text-sm">{memory.title}</div>
             <div className="text-xs text-grey">{memory.createdAt}</div>
             <div className="text-sm pt-3">

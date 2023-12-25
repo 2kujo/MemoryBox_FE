@@ -48,7 +48,9 @@ export default function ServiceMain() {
   function finishedCashBoxListFail() {}
 
   function viewCashbox(id, checked) {
-    navigate("/memories", { state: { cashBoxId: id, maturityChecked: checked } });
+    navigate("/memories", {
+      state: { cashBoxId: id, maturityChecked: checked },
+    });
   }
 
   function floatingClickHandler() {
@@ -64,7 +66,9 @@ export default function ServiceMain() {
           {ingCashBoxList.map((cashbox) => (
             <div
               key={cashbox.cashBoxId}
-              onClick={() => viewCashbox(cashbox.cashBoxId, cashbox.maturityChecked)}
+              onClick={() =>
+                viewCashbox(cashbox.cashBoxId, cashbox.maturityChecked)
+              }
               className="mb-3 shadow-md rounded-sm bg-[#ffeec2] p-5"
             >
               <div className="font-text text-[1.1rem]">{cashbox.name}</div>
@@ -153,7 +157,7 @@ export default function ServiceMain() {
         <AnivPop
           cashBoxTitle="우리 지윤-어린이집"
           cashBoxDuration="100"
-          cashBoxId={7}
+          cashBoxId={1}
         />
       )}
     </div>
