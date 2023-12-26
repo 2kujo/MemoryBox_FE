@@ -12,6 +12,7 @@ export default function SpecialCert(){
         let userId = getCookie("memorybox-user-id");        
         if (userId) {
             setCookie("memorybox-special-user", userId);
+            navigate("/");
             return;
         }
         getCert((data) => {
